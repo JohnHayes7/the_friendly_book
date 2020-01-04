@@ -1,9 +1,20 @@
 class FansController < ApplicationController
 
+    def create
+
+    end
+
     def show
         f = Fan.find(params[:id])
-        binding.pry
         render json: FanSerializer.new(f)
+    end
+
+    def edit
+
+    end
+
+    def delete
+
     end
 
 end
