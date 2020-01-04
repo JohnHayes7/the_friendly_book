@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   get 'fans/:id', to: 'fans#show'
 
+  get 'shows/:id', to: 'shows#show'
+
 end
