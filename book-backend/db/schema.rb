@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_05_025629) do
+ActiveRecord::Schema.define(version: 2020_01_05_033028) do
 
   create_table "fans", force: :cascade do |t|
     t.string "username"
@@ -34,10 +34,18 @@ ActiveRecord::Schema.define(version: 2020_01_05_025629) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "show_dates", force: :cascade do |t|
+    t.string "day"
+    t.string "month"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "shows", force: :cascade do |t|
     t.text "setlist"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "show_date_id"
   end
 
 end
