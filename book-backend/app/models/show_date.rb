@@ -3,3 +3,5 @@ class ShowDate < ApplicationRecord
     belongs_to :year
     belongs_to :venue
 end
+
+
