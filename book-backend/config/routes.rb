@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   get 'cities/:id', to: 'cities#show'
 
+  resources :years, only: [:index, :show, :edit]
+
 end
