@@ -4,4 +4,5 @@ class Show < ApplicationRecord
     belongs_to :show_date
     has_and_belongs_to_many :songs
     belongs_to :venue
+    
 end
