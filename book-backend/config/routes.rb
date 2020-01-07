@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   resources :years, only: [:index, :show, :edit]
 
+  resources :shows_dates, only: [:index, :show]
+
 end
