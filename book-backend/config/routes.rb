@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   get 'venues/:id', to: 'venues#show'
 
+  get 'cities/:id', to: 'cities#show'
+
 end
