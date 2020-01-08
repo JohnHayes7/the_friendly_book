@@ -2,12 +2,14 @@ class StatesController < ApplicationController
 
     def index
         states = State.all
-        render json: StateSerializer.new(states)
+        options = {include: [:cities, :venues]}
+        render json: StateSerializer.new(states, options)
     end
 
     def show
         s = State.find(params[:id])
-        render json: StateSerializer.new(s)
+        options = {include: [:cities, :venues]}
+        render json: StateSerializer.new(s, options)
     end
 
 end
