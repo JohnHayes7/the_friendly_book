@@ -2,7 +2,8 @@ class CitiesController < ApplicationController
 
     def show
         c = City.find(params[:id])
-        render json: CitySerializer.new(c)
+        options = {include: [:state, :venues]}
+        render json: CitySerializer.new(c, options)
     end
 
 end
