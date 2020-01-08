@@ -6,7 +6,8 @@ class FansController < ApplicationController
 
     def show
         f = Fan.find(params[:id])
-        render json: FanSerializer.new(f)
+        options = {include: [:shows, :memories]}
+        render json: FanSerializer.new(f, options)
     end
 
     def edit
