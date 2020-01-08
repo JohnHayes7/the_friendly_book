@@ -6,7 +6,8 @@ class VenuesController < ApplicationController
 
     def show
         v = Venue.find(params[:id])
-        render json: VenueSerializer.new(v)
+        options = {include: [:shows, :state, :city]}
+        render json: VenueSerializer.new(v, options)
 
     end
 

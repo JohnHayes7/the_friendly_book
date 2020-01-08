@@ -2,12 +2,14 @@ class YearsController < ApplicationController
 
     def index
         years = Year.all 
-        render json: YearSerializer.new(years)
+        options = {include: [:show_dates]}
+        render json: YearSerializer.new(years, options)
     end
 
     def show
         y = Year.find(params[:id])
-        render json: YearSerializer.new(y)
+        options = {include: [:show_dates]}
+        render json: YearSerializer.new(y, options)
     end
 
 end
