@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   get 'fans/:id', to: 'fans#show'
 
-  get 'shows/:id', to: 'shows#show'
+  # get 'shows/:id', to: 'shows#show'
+  resources :shows, only: [:show]
 
   get 'venues/:id', to: 'venues#show'
 

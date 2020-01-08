@@ -1,13 +1,14 @@
 class ShowsController < ApplicationController
 
+
     def create
 
     end
 
     def show
         s = Show.find(params[:id])
-        render json: ShowSerializer.new(s)
-    
+        options = {include: [:fans, :memories, :show_date, :venue, :songs]}
+        render json: ShowSerializer.new(s, options)
     end
 
     def edit
