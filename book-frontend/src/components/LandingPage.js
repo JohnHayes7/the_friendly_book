@@ -1,12 +1,14 @@
 import React from 'react'
-import LogInController from '../controllers/Log_In_Controller'
+import LogInContainer from '../containers/Log_In_Container'
+import LandingMain from '../containers/LandingMain_Container'
 
 export default class Login extends React.Component{
     render(){
         return(
             <div>
                 <h1>The Friendly Book</h1>
-                <LogInController />
+                <LogInContainer />
+                <LandingMain />
             </div>
         )
     }
