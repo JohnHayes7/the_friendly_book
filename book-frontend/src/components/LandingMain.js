@@ -2,15 +2,19 @@ import React from 'react'
 import Youtube from 'react-youtube'
 
 export default class LandingMain extends React.Component{
+
+    
+   
+
     render(){
+        
 
         const opts = {
             height: '200',
             width: '410'
         }
-
-        debugger
-
+        
+       
         
         return(
             <div id="landingPage-main">
@@ -26,4 +30,6 @@ export default class LandingMain extends React.Component{
             </div>
         )
     }
+
 }
+
