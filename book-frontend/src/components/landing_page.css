@@ -24,4 +24,17 @@
     /* background-color:red ; */
     width: 25%;
     border: 1px solid black;
+    background-color: rgba(245, 245, 245, 0.842);
+    
+
+}
+
+#login-form {
+    display: block;
+    text-align: center;
+    padding-top: 30px;
+}
+
+#login-label{
+    font-size: 2em;   
 }
