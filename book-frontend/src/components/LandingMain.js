@@ -8,6 +8,10 @@ export default class LandingMain extends React.Component{
             height: '200',
             width: '410'
         }
+
+        debugger
+
+        
         return(
             <div id="landingPage-main">
                 Random Phish Video

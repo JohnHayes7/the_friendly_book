@@ -19,8 +19,13 @@ class LandingMainContainer extends React.Component {
                     randomVideos: [...prevState.randomVideos, video.id.videoId ]
                 }))
             })
-           
+           console.log(this.state.randomVideos)
+          
         })
+    }
+
+    shuffle = array => {
+        array.sort(() => Math.random() - 0.5)
     }
     
 
@@ -31,7 +36,7 @@ class LandingMainContainer extends React.Component {
     render(){
         return(
             <div id="landingMainContainer">
-                <LandingMain randomVideos={this.state.randomVideos}/>
+                <LandingMain randomVideos={this.state.randomVideos} shuffle={this.shuffle}/>
             </div>
         )
     }
