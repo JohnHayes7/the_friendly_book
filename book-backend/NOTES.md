@@ -24,3 +24,10 @@ YOUTUBE EMBED
 
 YOUTUBE VIDEO SEARCH
 https://www.googleapis.com/youtube/v3/search?part=snippet&q="${search_term}"&key=${APIKEY}
+
+RELISTEN
+<!-- ***** RETURNS ALL YEARS -->
+https://api.relisten.net/api/v2/artists/phish/years/
+
+<!-- **** RETURNS ALL SHOWS IN A GIVEN YEAR -->
+https://api.relisten.net/api/v2/artists/phish/years/${year}
