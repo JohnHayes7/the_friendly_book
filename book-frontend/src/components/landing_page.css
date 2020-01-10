@@ -1,8 +1,14 @@
 #title {
-    width: 100%;
-    height: 200px;
-    background-color: aqua;
+    /* display: flex; */
+    width: 73%;
+    height: 175px;
+    /* background-color: aqua; */
+    background-image: url('../landing_page_images/CroppedBanner.jpg') ;
     text-align: center;
-    font-size: 4em;
+    vertical-align: middle;
+    font-size: 7em;
+    color: white;
+    line-height: 175px;
+    
     
 }
