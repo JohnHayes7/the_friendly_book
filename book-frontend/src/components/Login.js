@@ -5,7 +5,7 @@ export default class Login extends React.Component{
     render(){
         return(
             <div id="login-form">
-                <span id='login-label'>LogIn</span>
+                <span id='login-label'>Log In</span>
                 <form>
                     <label>UserName:</label>
                     <input type="text"/><br></br>

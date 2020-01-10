@@ -1,40 +1,76 @@
-#landing-wrapper{
-    display: flex;
-    width: 100%;
-    height: 175px;
-    margin-left: 5px;
-}
+/* LANDING PAGE */
+    #whole-window{
+        height: 100%;
+        width: 100%;
+    }
+    #landing-wrapper{
+        display: flex;
+        width: 100%;
+        height: 175px;
+        margin-left: 5px;
+    }
 
-#title {
-    float: left;
-    width: 74%;
-    background-position: center;
-    background-image: url('../landing_page_images/CroppedBanner.jpg') ;
-    text-align: center;
-    /* vertical-align: middle; */
-    font-size: 5em;
-    color: white;
-    line-height: 170px;
-    
-    
-}
+    /* HEADER */
+    #title {
+        float: left;
+        width: 74%;
+        background-position: center;
+        background-image: url('../landing_page_images/CroppedBanner.jpg') ;
+        text-align: center;
+        /* vertical-align: middle; */
+        font-size: 5em;
+        color: white;
+        line-height: 170px;
+    }
 
-#login-window {
-    float: right;
-    /* background-color:red ; */
-    width: 25%;
-    border: 1px solid black;
-    background-color: rgba(245, 245, 245, 0.842);
-    
+    /* LOGIN */
+    #login-window {
+        float: right;
+        /* background-color:red ; */
+        width: 25%;
+        border: 1px solid black;
+        background-color: rgba(245, 245, 245, 0.842);
+        
 
-}
+    }
 
-#login-form {
-    display: block;
-    text-align: center;
-    padding-top: 30px;
-}
+    #login-form {
+        display: block;
+        text-align: center;
+        padding-top: 30px;
+    }
 
-#login-label{
-    font-size: 2em;   
-}
+    #login-label{
+        font-size: 2em;   
+    }
+
+    /* MAIN WINDOW */
+
+    #landingMainContainer{
+        margin-left: 5px;
+        width: 74.1%;
+        height: 100%;
+    }
+
+    #landingPage-main{        
+        height: 450px;
+        border: 1px solid black;
+        text-align: center;
+        font-size: 2em;
+    }
+    /* VIDEOS */
+    #landingMain-Vids{
+        display: flex;
+        margin-left: 10px;
+    }
+
+    .landingPageVid{
+        width: 410px;
+        height: 200px;
+        border: 1px solid black
+    }
+
+    #land-vid-2{
+        margin-left: 15px;
+    }
+
