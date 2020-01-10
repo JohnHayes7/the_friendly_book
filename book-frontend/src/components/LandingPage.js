@@ -6,10 +6,10 @@ import './landing_page.css'
 export default class Login extends React.Component{
     render(){
         return(
-            <div>
+            <div id="landing-wrapper">
                 <header id="title">The Friendly Book</header>
                 <LogInContainer />
-                <LandingMain />
+                {/* <LandingMain /> */}
             </div>
         )
     }
