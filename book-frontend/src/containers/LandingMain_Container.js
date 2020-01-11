@@ -10,6 +10,15 @@ class LandingMainContainer extends React.Component {
         }
     }
 
+    randomizeVideos = array => {
+        // debugger
+       const randomizedVideos =  array.sort(() => Math.random() - 0.5)
+        this.setState({
+            randomVideos: randomizedVideos
+        })
+       
+    }
+
     getVideos = () => {
         fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=phish&key=${YT_APIKEY}`).then(response => response.json())
         .then(videos => {
@@ -18,15 +27,21 @@ class LandingMainContainer extends React.Component {
                 return this.setState(prevState => ({
                     randomVideos: [...prevState.randomVideos, video.id.videoId ]
                 }))
+               
             })
            console.log(this.state.randomVideos)
-          
+        
+           if(this.state.randomVideos.length > 0){
+            //    debugger
+               this.randomizeVideos(this.state.randomVideos)
+           }
+           
+           console.log(this.state.randomVideos)
+
         })
     }
 
-    shuffle = array => {
-        array.sort(() => Math.random() - 0.5)
-    }
+    
     
 
     componentDidMount(){

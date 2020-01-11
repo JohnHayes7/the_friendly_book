@@ -15,7 +15,7 @@ export default class LandingMain extends React.Component{
         }
         
        
-        
+        console.log(this.props.randomVideos)
         return(
             <div id="landingPage-main">
                 Random Phish Video
