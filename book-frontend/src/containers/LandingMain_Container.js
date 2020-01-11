@@ -10,39 +10,28 @@ class LandingMainContainer extends React.Component {
         }
     }
 
-    randomizeVideos = array => {
-        // debugger
-       const randomizedVideos =  array.sort(() => Math.random() - 0.5)
-        this.setState({
-            randomVideos: randomizedVideos
-        })
-       
+    randomizeVideos = () => {
+        if(this.state.randomVideos.length > 0){
+            const randomizedVideos =  this.state.randomVideos.sort(() => Math.random() - 0.5)
+            this.setState({
+                randomVideos: randomizedVideos
+            })
+        }
     }
 
+
     getVideos = () => {
-        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=phish&key=${YT_APIKEY}`).then(response => response.json())
+        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=Phish&key=${YT_APIKEY}`).then(response => response.json())
         .then(videos => {
             videos.items.shift()
             videos.items.map(video => {
                 return this.setState(prevState => ({
                     randomVideos: [...prevState.randomVideos, video.id.videoId ]
                 }))
-               
             })
-           console.log(this.state.randomVideos)
-        
-           if(this.state.randomVideos.length > 0){
-            //    debugger
-               this.randomizeVideos(this.state.randomVideos)
-           }
-           
-           console.log(this.state.randomVideos)
-
+            this.randomizeVideos()   
         })
     }
-
-    
-    
 
     componentDidMount(){
         this.getVideos()

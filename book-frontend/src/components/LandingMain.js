@@ -18,7 +18,7 @@ export default class LandingMain extends React.Component{
         console.log(this.props.randomVideos)
         return(
             <div id="landingPage-main">
-                Random Phish Video
+                Random Phish
                 <div id="landingMain-Vids">
                     <div className="landingPageVid" id="land-vid-1">
                         <Youtube videoId={this.props.randomVideos[0]} opts={opts} />
