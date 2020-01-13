@@ -14,9 +14,11 @@ export default class Landing extends React.Component{
                     <LogInContainer />
                    
                 </div>
-                 
-                <LandingMainContainer />
-                <LandingYearsContainer />
+                <div id="landing-second-line">
+                    <LandingMainContainer />
+                    <LandingYearsContainer />
+                </div>
+                
                 
             </div>
             

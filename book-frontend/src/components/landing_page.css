@@ -44,6 +44,10 @@
         font-size: 2em;   
     }
 
+    #landing-second-line{
+        display: flex;
+    }
+
     /* MAIN WINDOW */
    
 
@@ -79,5 +83,8 @@
     #land-vid-2{
         margin-left: 15px;
     }
+
+    /* YEARS WINDOW */
+
 
     
