@@ -1,5 +1,12 @@
 class YearsController < ApplicationController
 
+
+    def create
+        year = Year.create({value:params[:year]})
+        years = Year.all
+        render json: YearSerializer(years)
+    end
+
     def index
         years = Year.all 
         options = {include: [:show_dates]}

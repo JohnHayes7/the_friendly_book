@@ -15,20 +15,31 @@ export default class LandingMain extends React.Component{
         }
         
        
-        console.log(this.props.randomVideos)
+        
         return(
-            <div id="landingPage-main">
-                Random Phish
-                <div id="landingMain-Vids">
-                    <div className="landingPageVid" id="land-vid-1">
-                        <Youtube videoId={this.props.randomVideos[0]} opts={opts} />
+            <div id="landing-main-years">
+                <div id="landingPage-main">
+                    Random Phish
+                    <div id="landingMain-Vids">
+                        <div className="landingPageVid" id="land-vid-1">
+                            <Youtube videoId={this.props.randomVideos[0]} opts={opts} />
+                        </div>
+                        <div className="landingPageVid" id="land-vid-2">
+                            <Youtube videoId={this.props.randomVideos[42]} opts={opts} />
+                        </div>
                     </div>
-                    <div className="landingPageVid" id="land-vid-2">
-                        <Youtube videoId={this.props.randomVideos[42]} opts={opts} />
+                    <div id="landing-history">
+                        Today In Phish History
                     </div>
+                
                 </div>
-                Random Setlist
+                <div id="landing-years">
+                        Years
+                        {/* {this.parseYears} */}
+                </div>
+
             </div>
+            
         )
     }
 

@@ -45,6 +45,7 @@
     }
 
     /* MAIN WINDOW */
+   
 
     #landingMainContainer{
         margin-left: 5px;
@@ -52,7 +53,12 @@
         height: 100%;
     }
 
-    #landingPage-main{        
+    #landing-main-years{
+        display: flex;
+    }
+
+    #landingPage-main{  
+              
         height: 450px;
         border: 1px solid black;
         text-align: center;
@@ -72,5 +78,9 @@
 
     #land-vid-2{
         margin-left: 15px;
+    }
+
+    #landing-years{
+        /* float: right; */
     }
 
