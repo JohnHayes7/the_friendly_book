@@ -10,9 +10,10 @@ export default class Landing extends React.Component{
                 <div id="landing-wrapper">
                     <header id="title">The Friendly Book</header>
                     <LogInContainer />
+                   
                 </div>
                  
-                 <LandingMain />
+                <LandingMain />
             </div>
             
         )
