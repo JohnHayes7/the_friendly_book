@@ -12,7 +12,12 @@ class LandingMainContainer extends React.Component {
     constructor(){
         super()
         this.state = {
-            randomVideos: []
+            randomVideos: [],
+            history: {
+                venue: "TBD",
+                date: "TBD",
+
+            }
         }
     }
 
@@ -39,29 +44,34 @@ class LandingMainContainer extends React.Component {
         })
     }
 
-    // getTodaySetlist = () => {
-    //     fetch(`https://api.phish.net/v3/setlists/tiph?apikey=${PHISHNET_APIKEY}`,{
-    //         headers:{
-    //             'Access-Control-Allow-Origin':'*'
-    //         }
-    //     }).then(response => response.json())
-    //     .then(today => {
+    todayInHistory = () => {
+        
+        fetch('https://api.relisten.net/api/v2/artists/phish/shows/today').then(response => response.json())
+        .then(show => {
+            console.log(show)
+            this.setState({
+                history: {
+                    venue: show[0].venue.name, 
+                    date: show[0].display_date
+                }
+            })
            
-    //     })
-    // }
+        })
+    }
+
 
     
 
     componentDidMount(){
         this.getVideos()
-        // this.getTodaySetlist()
+        this.todayInHistory()
        
     }
 
     render(){
         return(
             <div id="landingMainContainer">
-                <LandingMain randomVideos={this.state.randomVideos} />
+                <LandingMain randomVideos={this.state.randomVideos} todayInHistory={this.state.history} />
             </div>
         )
     }

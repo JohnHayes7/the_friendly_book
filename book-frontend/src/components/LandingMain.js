@@ -29,6 +29,11 @@ export default class LandingMain extends React.Component{
                     </div>
                     <div id="landing-history">
                         Today In Phish History
+                        <div id="history-display">
+                            {console.log(this.props)}
+                            {this.props.todayInHistory.venue}<br></br>
+                            {this.props.todayInHistory.date}
+                        </div>
                     </div>
                 
                 </div>

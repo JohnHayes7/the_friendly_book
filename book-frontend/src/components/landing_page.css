@@ -77,11 +77,20 @@
     .landingPageVid{
         width: 410px;
         height: 200px;
-        border: 1px solid black
+        border: 1px solid black;
     }
 
     #land-vid-2{
         margin-left: 15px;
+    }
+
+    /* TODAY IN HISTORY */
+
+    #history-display{
+        margin-left: 55px;
+        border: 1px solid grey;
+        width: 85%;
+        height: 160px;
     }
 
     /* YEARS WINDOW */
