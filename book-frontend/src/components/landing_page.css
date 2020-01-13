@@ -85,6 +85,12 @@
     }
 
     /* YEARS WINDOW */
+    #landing-years-display{
+        width: 142%;
+        height: 450px;
+        border: 1px solid grey;
+        overflow: scroll;
+    }
 
 
     

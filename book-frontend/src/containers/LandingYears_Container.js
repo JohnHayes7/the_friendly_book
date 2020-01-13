@@ -1,18 +1,29 @@
 import React from 'react'
 import LandingYears from '../components/LandingYears'
 
-const yearsAry = []
+
 
 class LandingYearsContainer extends React.Component{
+
+    constructor(){
+        super()
+        this.state = {
+            years:[]
+        }
+    }
     
     
     getYears = () => {
         
         fetch('https://api.relisten.net/api/v2/artists/phish/years').then(response => response.json())
         .then(years => {
+            
             years.map(year => {
-                yearsAry.push(year.year) 
+              return this.setState(prevState => ({
+                  years: [...prevState.years, year.year]
+              }))
             })
+            
         })
     }
     
@@ -46,7 +57,7 @@ class LandingYearsContainer extends React.Component{
     render(){
         return(
             <div id="landing-years-container">
-                <LandingYears years={yearsAry}/>
+              <LandingYears years={this.state.years} />
             </div>
         )
     }
