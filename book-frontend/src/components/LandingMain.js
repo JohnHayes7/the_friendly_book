@@ -24,9 +24,10 @@ export default class LandingMain extends React.Component{
                         <Youtube videoId={this.props.randomVideos[0]} opts={opts} />
                     </div>
                     <div className="landingPageVid" id="land-vid-2">
-                        <Youtube videoId={this.props.randomVideos[3]} opts={opts} />
+                        <Youtube videoId={this.props.randomVideos[42]} opts={opts} />
                     </div>
                 </div>
+                Random Setlist
             </div>
         )
     }
