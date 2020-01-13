@@ -17,7 +17,6 @@ export default class LandingMain extends React.Component{
        
         
         return(
-            <div id="landing-main-years">
                 <div id="landingPage-main">
                     Random Phish
                     <div id="landingMain-Vids">
@@ -33,12 +32,6 @@ export default class LandingMain extends React.Component{
                     </div>
                 
                 </div>
-                <div id="landing-years">
-                        Years
-                        {/* {this.parseYears} */}
-                </div>
-
-            </div>
             
         )
     }
