@@ -18,7 +18,7 @@ export default class LandingMain extends React.Component{
             width: '410'
         }
         
-       debugger
+       
         
         return(
                 <div id="landingPage-main">
