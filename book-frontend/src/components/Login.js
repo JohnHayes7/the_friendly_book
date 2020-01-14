@@ -25,11 +25,17 @@ export default class Login extends React.Component{
         })
     }
 
+    submitHandler = event => {
+        event.preventDefault()
+        this.props.login({username: event.target.elements[0].value, password: event.target.elements[1].value})
+    }
+
+
     render(){
         return(
             <div id="login-form">
                 <span id='login-label'>Log In</span>
-                <form>
+                <form onSubmit={event => this.submitHandler(event)}> 
                     <label>UserName:</label>
                     <input type="text" value={this.state.username} onChange={event => this.usernameChangeHandler(event)}/><br></br>
                     <label>Password:</label>
