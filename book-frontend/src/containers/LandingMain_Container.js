@@ -51,8 +51,17 @@ class LandingMainContainer extends React.Component {
     getSetlist = () => {
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.state.history.date}`).then(response => response.json())
         .then(show => {
-            show.sources
+            let tracks = show.sources[0].sets[0].tracks
+            tracks.map(track => {
+                
+                return this.setState(prevState => ({
+                    setlist:{
+                        set1: [...prevState.setlist.set1, track.title]
+                    }
+                }))
+            })
         })
+
     }
 
     todayInHistory = () => {
@@ -82,7 +91,7 @@ class LandingMainContainer extends React.Component {
     render(){
         return(
             <div id="landingMainContainer">
-                <LandingMain randomVideos={this.state.randomVideos} todayInHistory={this.state.history} />
+                <LandingMain randomVideos={this.state.randomVideos} todayInHistory={this.state.history} setlist={this.state.setlist} />
             </div>
         )
     }

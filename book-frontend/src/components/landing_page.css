@@ -93,6 +93,10 @@
         height: 160px;
     }
 
+    #today-setlist{
+        font-size: .7em;
+    }
+
     /* YEARS WINDOW */
     #landing-years-display{
         width: 142%;

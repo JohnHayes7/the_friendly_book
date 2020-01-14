@@ -3,7 +3,11 @@ import Youtube from 'react-youtube'
 
 export default class LandingMain extends React.Component{
 
-    
+    parseSetInfo = () => {
+      return this.props.setlist.set1.map(song => {
+           return <span> * {song} </span>
+       })
+    }
    
 
     render(){
@@ -14,7 +18,7 @@ export default class LandingMain extends React.Component{
             width: '410'
         }
         
-       
+       debugger
         
         return(
                 <div id="landingPage-main">
@@ -33,6 +37,9 @@ export default class LandingMain extends React.Component{
                             {console.log(this.props)}
                             {this.props.todayInHistory.venue}<br></br>
                             {this.props.todayInHistory.date}
+                            <div id="today-setlist">
+                                {this.parseSetInfo()}
+                            </div>
                         </div>
                     </div>
                 
