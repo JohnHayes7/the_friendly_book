@@ -11,6 +11,16 @@ export default function manageFan(state={
 }, action) {
     switch(action.type){
         case 'LOGIN_FAN':
+            fetch('http://localhost:3001/login', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(action.fan)
+            }).then(response => response.json())
+            .then(fan => {
+                debugger
+            })
             
         return state
         
