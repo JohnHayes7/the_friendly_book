@@ -12,8 +12,8 @@ export default class Login extends React.Component{
                     <label>Password:</label>
                     <input type="text"/><br></br>
                     <input type="submit"/>
-                    
-                </form>
+                </form><br></br>
+                <a href="#" >Create a profile</a>
             </div>
         )
     }

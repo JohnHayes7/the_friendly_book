@@ -39,6 +39,7 @@ export default class LandingMain extends React.Component{
                             {this.props.todayInHistory.date}
                             <div id="today-setlist">
                                 {this.parseSetInfo()}
+                                
                             </div>
                         </div>
                     </div>
