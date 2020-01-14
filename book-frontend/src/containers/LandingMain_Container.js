@@ -16,7 +16,11 @@ class LandingMainContainer extends React.Component {
             history: {
                 venue: "TBD",
                 date: "TBD",
-
+                setlist: ""
+            },
+            setlist:{
+                set1: [],
+                set2: []
             }
         }
     }
@@ -44,6 +48,13 @@ class LandingMainContainer extends React.Component {
         })
     }
 
+    getSetlist = () => {
+        fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.state.history.date}`).then(response => response.json())
+        .then(show => {
+            show.sources
+        })
+    }
+
     todayInHistory = () => {
         
         fetch('https://api.relisten.net/api/v2/artists/phish/shows/today').then(response => response.json())
@@ -55,7 +66,7 @@ class LandingMainContainer extends React.Component {
                     date: show[0].display_date
                 }
             })
-           
+           this.getSetlist() 
         })
     }
 
