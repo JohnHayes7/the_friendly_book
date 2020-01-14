@@ -1,13 +1,19 @@
 import React from 'react';
 import './App.css';
-import Landing from './components/LandingPage'
+import LandingPage from './components/LandingPage'
+import Years from './components/Years'
 import {BrowserRouter as Router, Route } from 'react-router-dom'
+
 
 function App() {
   return (
-    <div>
-      <Landing />
-    </div>
+    <Router>
+      <div>
+        
+        <Route exact path ="/" component={LandingPage} />
+        <Route exact path ="/years" component={Years} />
+      </div>
+    </Router>
   );
 }
 
