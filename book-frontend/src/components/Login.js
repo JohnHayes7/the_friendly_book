@@ -6,6 +6,7 @@ export default class Login extends React.Component{
     constructor(){
         super()
         this.state = {
+            hidden: true,
             username: "",
             password:""
         }
@@ -39,7 +40,7 @@ export default class Login extends React.Component{
                     <label>UserName:</label>
                     <input type="text" value={this.state.username} onChange={event => this.usernameChangeHandler(event)}/><br></br>
                     <label>Password:</label>
-                    <input type="text" value={this.state.password} onChange={event => this.passwordChangeHandler(event)}/><br></br>
+                    <input type={this.state.hidden ? "password" : "text"} value={this.state.password} onChange={event => this.passwordChangeHandler(event)}/><br></br>
                     <input type="submit"/>
                 </form><br></br>
                 <a href="#" >Create a profile</a>
