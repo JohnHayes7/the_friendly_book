@@ -54,7 +54,7 @@ class LandingMainContainer extends React.Component {
             let setOneTracks = show.sources[0].sets[0].tracks
             let setTwoTracks = show.sources[0].sets[1].tracks
             let encoreTracks = show.sources[0].sets[2].tracks
-            debugger
+        
             setOneTracks.map(track => {
                 this.setState(prevState => ({
                     setlist:{

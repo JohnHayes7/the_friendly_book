@@ -7,7 +7,6 @@ export default function manageFan(state={
         id: 0,
         name: "",
         username: "",
-        password: "",
         shows: [],
     }
     
@@ -22,10 +21,10 @@ export default function manageFan(state={
                 body: JSON.stringify(action.fan)
             }).then(response => response.json())
             .then(fan => {
-                
+               console.log(fan)
             })
-            
-        return < Redirect to='/fan' />
+            // debugger
+        return state
         
         default:
             return state
