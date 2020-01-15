@@ -1,3 +1,7 @@
+import React from 'react'
+import { Redirect } from 'react-router-dom'
+import Fan from '../components/Fan'
+
 export default function manageFan(state={
     fan:{
         id: 0,
@@ -5,7 +9,6 @@ export default function manageFan(state={
         username: "",
         password: "",
         shows: [],
-        memories: []
     }
     
 }, action) {
@@ -19,10 +22,10 @@ export default function manageFan(state={
                 body: JSON.stringify(action.fan)
             }).then(response => response.json())
             .then(fan => {
-                debugger
+                
             })
             
-        return state
+        return < Redirect to='/fan' />
         
         default:
             return state

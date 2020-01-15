@@ -3,11 +3,28 @@ import Youtube from 'react-youtube'
 
 export default class LandingMain extends React.Component{
 
-    parseSetInfo = () => {
-      return this.props.setlist.set1.map(song => {
-           return <span> * {song} </span>
-       })
+    parseSetOneInfo = () => {
+        if(this.props.setlist.set1){
+            return this.props.setlist.set1.map(song => {
+                return <span> * {song} </span>
+            })
+        }
     }
+
+    parseSetTwoInfo = () => {
+            return this.props.setlist.set2.map(song => {
+                return <span> * {song} </span>
+               })
+         
+      }
+
+    
+    parseEncoreInfo = () => {
+        return this.props.setlist.encore.map(song => {
+             return <span> * {song} </span>
+         })
+      }
+    
    
 
     render(){
@@ -28,7 +45,7 @@ export default class LandingMain extends React.Component{
                             <Youtube videoId={this.props.randomVideos[0]} opts={opts} />
                         </div>
                         <div className="landingPageVid" id="land-vid-2">
-                            <Youtube videoId={this.props.randomVideos[42]} opts={opts} />
+                            <Youtube videoId={this.props.randomVideos[35]} opts={opts} />
                         </div>
                     </div>
                     <div id="landing-history">
@@ -38,8 +55,9 @@ export default class LandingMain extends React.Component{
                             {this.props.todayInHistory.venue}<br></br>
                             {this.props.todayInHistory.date}
                             <div id="today-setlist">
-                                {this.parseSetInfo()}
-                                
+                                {this.parseSetOneInfo()}
+                                {/* {this.parseSetTwoInfo()}
+                                {this.parseEncoreInfo()} */}
                             </div>
                         </div>
                     </div>

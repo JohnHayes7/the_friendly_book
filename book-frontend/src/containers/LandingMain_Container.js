@@ -14,13 +14,13 @@ class LandingMainContainer extends React.Component {
         this.state = {
             randomVideos: [],
             history: {
-                venue: "TBD",
-                date: "TBD",
-                setlist: ""
+                venue: "Loading...",
+                date: "Loading...",
             },
             setlist:{
                 set1: [],
-                set2: []
+                set2: [],
+                encore:[]
             }
         }
     }
@@ -51,17 +51,34 @@ class LandingMainContainer extends React.Component {
     getSetlist = () => {
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.state.history.date}`).then(response => response.json())
         .then(show => {
-            let tracks = show.sources[0].sets[0].tracks
-            tracks.map(track => {
-                
-                return this.setState(prevState => ({
+            let setOneTracks = show.sources[0].sets[0].tracks
+            let setTwoTracks = show.sources[0].sets[1].tracks
+            let encoreTracks = show.sources[0].sets[2].tracks
+            debugger
+            setOneTracks.map(track => {
+                this.setState(prevState => ({
                     setlist:{
-                        set1: [...prevState.setlist.set1, track.title]
+                        set1: [...prevState.setlist.set1 || [], track.title]
+                    }
+                }))
+            })
+
+            setTwoTracks.map(track => {
+                this.setState(prevState => ({
+                    setlist:{
+                        set2: [...prevState.setlist.set2 || [], track.title]
+                    }
+                }))
+            })
+
+            encoreTracks.map(track => {
+                this.setState(prevState => ({
+                    setlist:{
+                        encore: [...prevState.setlist.encore || [], track.title]
                     }
                 }))
             })
         })
-
     }
 
     todayInHistory = () => {
