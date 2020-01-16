@@ -1,19 +1,12 @@
-import React from 'react'
-import { Redirect } from 'react-router-dom'
-import Fan from '../components/Fan'
-
 export default function manageFan(state={
-    fan:{
         id: 0,
         name: "",
         username: "",
-        shows: [],
-    }
-    
+        shows: []
 }, action) {
     switch(action.type){
         case 'LOGIN_FAN':
-            fetch('http://localhost:3001/login', {
+            return fetch('http://localhost:3001/login', {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
@@ -21,10 +14,15 @@ export default function manageFan(state={
                 body: JSON.stringify(action.fan)
             }).then(response => response.json())
             .then(fan => {
-               console.log(fan)
+                console.log(fan)
+               return Object.assign({}, state, {
+                   id: fan.id,
+                   name: fan.name,
+                   username: fan.username
+               })
             })
-            // debugger
-        return state
+           
+        
         
         default:
             return state

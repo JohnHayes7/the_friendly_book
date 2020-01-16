@@ -85,14 +85,18 @@ class LandingMainContainer extends React.Component {
         
         fetch('https://api.relisten.net/api/v2/artists/phish/shows/today').then(response => response.json())
         .then(show => {
-            console.log(show)
-            this.setState({
-                history: {
-                    venue: show[0].venue.name, 
-                    date: show[0].display_date
-                }
-            })
-           this.getSetlist() 
+            if(show.length > 0){
+                this.setState({
+                    history: {
+                        venue: show[0].venue.name, 
+                        date: show[0].display_date
+                    }
+                })
+               this.getSetlist() 
+            }else{
+                return <div>No Shows on This Date</div>
+            }
+            
         })
     }
 
