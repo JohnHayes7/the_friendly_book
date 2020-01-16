@@ -1,5 +1,7 @@
 import React from 'react'
 import './landing_page.css'
+import FanpageContainer from '../containers/FanPage_Container'
+import { Redirect } from 'react-router-dom'
 
 export default class Login extends React.Component{
 
@@ -29,6 +31,7 @@ export default class Login extends React.Component{
     submitHandler = event => {
         event.preventDefault()
         this.props.login({username: event.target.elements[0].value, password: event.target.elements[1].value})
+        
     }
 
 
@@ -44,6 +47,7 @@ export default class Login extends React.Component{
                     <input type="submit"/>
                 </form><br></br>
                 <a href="#" >Create a profile</a>
+                <FanpageContainer />
             </div>
         )
     }
