@@ -57,6 +57,7 @@ class LogInController extends React.Component{
 }
 
 const mapStateToProps = state => {
+    debugger
     return {
         fan: state.fan
     }
