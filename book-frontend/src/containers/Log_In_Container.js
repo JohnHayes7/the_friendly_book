@@ -4,13 +4,53 @@ import '../components/landing_page.css'
 import { connect } from 'react-redux'
 
 class LogInController extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            hidden: true,
+            username: "",
+            password:""
+        }
+    }
 
+    handleUsernameInput = event =>{
+        
+        this.setState({
+            username: event.target.value
+        })
+    }
+
+    handlePasswordInput = event => {
+        
+        this.setState({
+            password: event.target.value
+        })
+    }
+
+    submitHandler = event => {
+        event.preventDefault()
+
+        fetch('http://localhost:3001/login', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
+        }).then(response => response.json())
+        .then(fan => {
+            console.log(fan)
+            this.props.login(fan)
+        })
+
+       
+        
+    }
     
 
     render(){
         return(
             <div id="login-window">
-                <Login login={this.props.login}/>
+                <Login formData={this.state} handleUsernameInput={this.handleUsernameInput} handlePasswordInput={this.handlePasswordInput} submitHandler={this.submitHandler}/>
             </div>
         )
     }
