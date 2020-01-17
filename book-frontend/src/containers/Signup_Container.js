@@ -43,7 +43,17 @@ class SignupContainer extends React.Component{
 
     handleSubmit = event => {
         event.preventDefault()
-
+        fetch("http://localhost:3001/fans", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(this.state)
+        }).then(response => response.json())
+        .then(newFanInfo => {
+            debugger
+            console.log(newFanInfo)
+        })
     }
 
     

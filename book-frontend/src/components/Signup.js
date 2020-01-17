@@ -7,7 +7,7 @@ class Signup extends React.Component {
         return (
             <div id="signup-form-container">
                 Create a Friendly Book Account:
-                <form id="signup-form">
+                <form id="signup-form" onSubmit={event => this.props.handleSubmit(event)}>
                     <label>Username:</label>
                     <input type="text" value={this.props.formData.username} onChange={event => this.props.handleUsernameInput(event)} /><br></br>
                     <label>Email:</label>

@@ -1,8 +1,12 @@
 class FansController < ApplicationController
 
     def create
-        binding.pry
-
+        fan = Fan.new(fan_params)
+            if fan.save
+                options  = {include: [:shows, :memories]}
+                render json: FanSerializer.new(fan, options)
+            end
+        
     end
 
     def show
