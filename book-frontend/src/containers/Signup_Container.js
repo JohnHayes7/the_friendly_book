@@ -7,33 +7,51 @@ class SignupContainer extends React.Component{
         this.state = {
             hidden: true,
             username: "",
+            email: "",
             password:"",
             phoneNumber: ""
         }
     }
 
-    handleUsernameInput = event =>{   
+    handleUsernameInput = event =>{ 
+       
         this.setState({
             username: event.target.value
         })
     }
 
-    handlePasswordInput = event =>{   
+    handleEmailInput = event => {
+        console.log(this.state.email)
         this.setState({
-            password: event.target.value
+            email: event.target.value
         })
     }
 
     handlePhoneNumberInput = event =>{
+       
         this.setState({
             phoneNumber: event.target.value
         })
     }
 
+    handlePasswordInput = event =>{   
+        
+        this.setState({
+            password: event.target.value
+        })
+    }
+
+    handleSubmit = event => {
+        event.preventDefault()
+
+    }
+
+    
+
     render(){
         return(
             <div>
-               <Signup formData={this.state} handleUsernameInput={this.handleUsernameInput} handlePhoneNumberInput={this.handlePhoneNumberInput} handlePasswordInput={this.handlePasswordInput} />
+               <Signup formData={this.state} handleUsernameInput={this.handleUsernameInput} handleEmailInput={this.handleEmailInput} handlePhoneNumberInput={this.handlePhoneNumberInput} handlePasswordInput={this.handlePasswordInput} handleSubmit={this.handleSubmit} />
             </div>
         )
     }

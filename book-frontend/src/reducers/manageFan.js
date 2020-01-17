@@ -1,6 +1,7 @@
 export default function manageFan(state={
         id: 0,
         username: "",
+        email: "",
         shows: []
 }, action) {
     switch(action.type){
@@ -8,6 +9,7 @@ export default function manageFan(state={
            const fan = {
             id: action.fan.data.attributes.id,
             username: action.fan.data.attributes.username,
+            email: action.fan.data.attributes.email
            }
         return Object.assign({}, state, fan)
            

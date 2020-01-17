@@ -1,6 +1,7 @@
 class FansController < ApplicationController
 
     def create
+        binding.pry
 
     end
 
@@ -16,6 +17,12 @@ class FansController < ApplicationController
 
     def delete
 
+    end
+
+    private
+
+    def fan_params
+        params.require(:fan).permit(:username, :email, :phone_number, :password)
     end
 
 end
