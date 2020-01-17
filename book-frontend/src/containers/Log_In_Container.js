@@ -2,6 +2,7 @@ import React from 'react'
 import Login from '../components/Login'
 import '../components/landing_page.css'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class LogInController extends React.Component{
     constructor(){
@@ -37,30 +38,31 @@ class LogInController extends React.Component{
             },
             body: JSON.stringify(this.state)
         }).then(response => response.json())
-        .then(fan => {
-            console.log(fan)
-            this.props.login(fan)
+        .then(fanInfo => {
+            console.log(fanInfo)
+            this.props.login(fanInfo)
         })
-
-       
-        
     }
+
     
 
     render(){
+        console.log(this.props.fan)
         return(
             <div id="login-window">
                 <Login formData={this.state} handleUsernameInput={this.handleUsernameInput} handlePasswordInput={this.handlePasswordInput} submitHandler={this.submitHandler}/>
+                
             </div>
         )
     }
 }
 
 const mapStateToProps = state => {
-    debugger
+    
     return {
         fan: state.fan
     }
+    
 }
 
 const mapDispatchToProps = dispatch => ({
