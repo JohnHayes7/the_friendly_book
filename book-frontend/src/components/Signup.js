@@ -3,8 +3,8 @@ import React from 'react';
 const SignUp = () => {
     
     return (
-        <div>
-            <form>
+        <div id="signup-form-container">
+            <form id="signup-form">
                 <label>Username:</label>
                 <input type="text" /><br></br>
                 <label>Phone Number:</label>

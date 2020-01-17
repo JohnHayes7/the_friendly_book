@@ -105,5 +105,21 @@
         overflow: scroll;
     }
 
+    #signup-form-container{
+        border: 1px solid grey;
+        width: 650px;
+        height: 350px;
+        position: absolute;
+        left: 20%;
+        top: 15%;
+       
+    }
+
+    #signup-form{
+        padding: 20%;
+        position: relative;
+        left: 13%;
+    }
+
 
     
