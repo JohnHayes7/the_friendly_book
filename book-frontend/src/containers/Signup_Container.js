@@ -5,6 +5,7 @@ class SignupContainer extends React.Component{
     constructor(){
         super()
         this.state = {
+            hidden: true,
             username: "",
             password:"",
             phoneNumber: ""
@@ -32,7 +33,7 @@ class SignupContainer extends React.Component{
     render(){
         return(
             <div>
-                <Signup formData={this.state} handleUsernameInput={this.handleUsernameInput} handlePasswordInput={this.handlePasswordInput}  handlePhoneNumberInput={this.handlePhoneNumberInput} />
+               <Signup formData={this.state} handleUsernameInput={this.handleUsernameInput} handlePhoneNumberInput={this.handlePhoneNumberInput} handlePasswordInput={this.handlePasswordInput} />
             </div>
         )
     }
