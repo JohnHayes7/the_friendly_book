@@ -41,6 +41,7 @@ class LogInController extends React.Component{
         .then(fanInfo => {
             console.log(fanInfo)
             this.props.login(fanInfo)
+            // DATA RETURNED_HOW DO I REDIRECT?
         })
     }
 

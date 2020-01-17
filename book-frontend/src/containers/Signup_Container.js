@@ -9,7 +9,7 @@ class SignupContainer extends React.Component{
             username: "",
             email: "",
             password:"",
-            phoneNumber: ""
+            phone_number: ""
         }
     }
 
@@ -30,7 +30,7 @@ class SignupContainer extends React.Component{
     handlePhoneNumberInput = event =>{
        
         this.setState({
-            phoneNumber: event.target.value
+            phone_number: event.target.value
         })
     }
 
@@ -42,6 +42,7 @@ class SignupContainer extends React.Component{
     }
 
     handleSubmit = event => {
+    
         event.preventDefault()
         fetch("http://localhost:3001/fans", {
             method: "post",

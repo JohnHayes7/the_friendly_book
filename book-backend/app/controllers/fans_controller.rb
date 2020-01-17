@@ -2,6 +2,7 @@ class FansController < ApplicationController
 
     def create
         fan = Fan.new(fan_params)
+        binding.pry
             if fan.save
                 options  = {include: [:shows, :memories]}
                 render json: FanSerializer.new(fan, options)
@@ -26,7 +27,7 @@ class FansController < ApplicationController
     private
 
     def fan_params
-        params.require(:fan).permit(:username, :email, :phone_number, :password)
+        params.require(:fan).permit(:username, :email, :phone_number, :password )
     end
 
 end
