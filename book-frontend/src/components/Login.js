@@ -1,7 +1,6 @@
 import React from 'react'
 import './landing_page.css'
-import FanpageContainer from '../containers/FanPage_Container'
-import { Redirect } from 'react-router-dom'
+
 
 export default class Login extends React.Component{
 
