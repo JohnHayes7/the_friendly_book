@@ -54,8 +54,6 @@ class SignupContainer extends React.Component{
             body: JSON.stringify(this.state)
         }).then(response => response.json())
         .then(newFanInfo => {
-            console.log(newFanInfo)
-            // NEED TO REDIRECT TO SHOW PAGE AND SEND TO REDUX REDUCER 
             this.props.login(newFanInfo)
         })
         
@@ -64,7 +62,6 @@ class SignupContainer extends React.Component{
     
 
     render(){
-        console.log(this.props.fan)
         if(this.props.fan.loggedIn){
            return <Redirect to={`/fans/${this.props.fan.username}`} />
         }

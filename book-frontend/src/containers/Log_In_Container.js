@@ -39,16 +39,17 @@ class LogInController extends React.Component{
             body: JSON.stringify(this.state)
         }).then(response => response.json())
         .then(fanInfo => {
-            console.log(fanInfo)
             this.props.login(fanInfo)
-            // DATA RETURNED_HOW DO I REDIRECT FAN HOME PAGE?
         })
     }
 
     
 
     render(){
-        console.log(this.props.fan)
+            if(this.props.fan.loggedIn){
+                return <Redirect to={`/fans/${this.props.fan.username}`} />
+            }
+
         return(
             <div id="login-window">
                 <Login formData={this.state} handleUsernameInput={this.handleUsernameInput} handlePasswordInput={this.handlePasswordInput} submitHandler={this.submitHandler}/>
@@ -61,7 +62,7 @@ class LogInController extends React.Component{
 const mapStateToProps = state => {
     
     return {
-        fan: state.fan
+        fan: state
     }
     
 }
