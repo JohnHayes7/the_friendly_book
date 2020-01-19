@@ -1,5 +1,7 @@
 import React from 'react'
 import Signup from '../components/Signup'
+import { connect } from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 class SignupContainer extends React.Component{
     constructor(){
@@ -52,14 +54,20 @@ class SignupContainer extends React.Component{
             body: JSON.stringify(this.state)
         }).then(response => response.json())
         .then(newFanInfo => {
-            debugger
             console.log(newFanInfo)
+            // NEED TO REDIRECT TO SHOW PAGE AND SEND TO REDUX REDUCER 
+            this.props.login(newFanInfo)
         })
+        
     }
 
     
 
     render(){
+        console.log(this.props.fan)
+        if(this.props.fan.loggedIn){
+           return <Redirect to={`/fans/${this.props.fan.username}`} />
+        }
         return(
             <div>
                <Signup formData={this.state} handleUsernameInput={this.handleUsernameInput} handleEmailInput={this.handleEmailInput} handlePhoneNumberInput={this.handlePhoneNumberInput} handlePasswordInput={this.handlePasswordInput} handleSubmit={this.handleSubmit} />
@@ -68,4 +76,16 @@ class SignupContainer extends React.Component{
     }
 }
 
-export default SignupContainer
+const mapStateToProps = state => {
+    
+    return {
+        fan: state
+    }
+    
+}
+
+const mapDispatchToProps = dispatch => ({
+    login: FormData => dispatch({type: "LOGIN_FAN", fan: FormData})
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupContainer)
