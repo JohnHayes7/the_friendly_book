@@ -16,12 +16,13 @@ class LandingMainContainer extends React.Component {
             history: {
                 venue: "Loading...",
                 date: "Loading...",
+                setlist:{
+                    set1: [],
+                    set2: [],
+                    encore:[]
+                }
             },
-            setlist:{
-                set1: [],
-                set2: [],
-                encore:[]
-            }
+            
         }
     }
 
@@ -51,10 +52,11 @@ class LandingMainContainer extends React.Component {
     getSetlist = () => {
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.state.history.date}`).then(response => response.json())
         .then(show => {
+            console.log(show)
             let setOneTracks = show.sources[0].sets[0].tracks
             let setTwoTracks = show.sources[0].sets[1].tracks
             let encoreTracks = show.sources[0].sets[2].tracks
-        
+            
             setOneTracks.map(track => {
                 this.setState(prevState => ({
                     setlist:{
@@ -85,6 +87,7 @@ class LandingMainContainer extends React.Component {
         
         fetch('https://api.relisten.net/api/v2/artists/phish/shows/today').then(response => response.json())
         .then(show => {
+            console.log(show)
             if(show.length > 0){
                 this.setState({
                     history: {
@@ -94,7 +97,12 @@ class LandingMainContainer extends React.Component {
                 })
                this.getSetlist() 
             }else{
-                return <div>No Shows on This Date</div>
+               this.setState({
+                   history:{
+                       venue: "No shows today",
+                       date: "Yeah I'm suprised too"
+                   }
+               })
             }
             
         })
@@ -112,7 +120,7 @@ class LandingMainContainer extends React.Component {
     render(){
         return(
             <div id="landingMainContainer">
-                <LandingMain randomVideos={this.state.randomVideos} todayInHistory={this.state.history} setlist={this.state.setlist} />
+                <LandingMain randomVideos={this.state.randomVideos} todayInHistory={this.state.history} />
             </div>
         )
     }

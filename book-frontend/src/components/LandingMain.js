@@ -4,26 +4,35 @@ import Youtube from 'react-youtube'
 export default class LandingMain extends React.Component{
 
     parseSetOneInfo = () => {
-        if(this.props.setlist.set1){
-            return this.props.setlist.set1.map(song => {
-                return <span> * {song} </span>
-            })
-        }
+        return this.props.todayInHistory.setlist.set1.map(song => {
+            return <span><strong>Set1:</strong> * {song} </span>
+        })
+        
     }
 
     parseSetTwoInfo = () => {
-            return this.props.setlist.set2.map(song => {
-                return <span> * {song} </span>
+            return this.props.todayInHistory.setlist.set2.map(song => {
+                return <span><strong>Set2:</strong> * {song} </span>
                })
          
       }
 
     
     parseEncoreInfo = () => {
-        return this.props.setlist.encore.map(song => {
-             return <span> * {song} </span>
+        return this.props.todayInHistory.setlist.encore.map(song => {
+             return <span><strong>Encore:</strong> * {song} </span>
          })
       }
+
+    checkForMusic = () => {
+        if(this.props.todayInHistory.venue === "No shows today"){
+            return <span></span>
+        }else{
+            this.parseSetOneInfo()
+            this.parseSetTwoInfo()
+            this.parseEncoreInfo()
+        }
+    }
     
    
 
@@ -51,13 +60,10 @@ export default class LandingMain extends React.Component{
                     <div id="landing-history">
                         Today In Phish History
                         <div id="history-display">
-                            {console.log(this.props)}
                             {this.props.todayInHistory.venue}<br></br>
                             {this.props.todayInHistory.date}
                             <div id="today-setlist">
-                                {this.parseSetOneInfo()}
-                                {/* {this.parseSetTwoInfo()}
-                                {this.parseEncoreInfo()} */}
+                                
                             </div>
                         </div>
                     </div>
