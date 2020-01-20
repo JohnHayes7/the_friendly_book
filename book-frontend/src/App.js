@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import LandingPage from './components/LandingPage'
-import Years from './components/Years'
 import Fan from './components/FanPage'
 import SignupContainer from './containers/Signup_Container'
+import YearPageContainer from './containers/YearPage_Container'
 import {BrowserRouter as Router, Route } from 'react-router-dom'
 
 
@@ -13,7 +13,7 @@ function App() {
       <div>
         
         <Route exact path ="/" component={LandingPage} />
-        <Route exact path ="/years" component={Years} />
+        <Route path ="/years" component={YearPageContainer} />
         <Route path ='/fans' component={Fan}  />
         <Route path = '/signup' component={SignupContainer} />
       </div>

@@ -13,6 +13,7 @@ export default class LandingYears extends React.Component{
         return(
             <div id="landing-years-display">
                 View Shows By Year:
+                {/* STYLEIZE BULLETS IN THIS LIST */}
                 <ul>
                     {this.parseYears()}
                 </ul>
