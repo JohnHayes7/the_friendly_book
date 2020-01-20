@@ -84,7 +84,6 @@
     }
 
     /* TODAY IN HISTORY */
-
     #history-display{
         margin-left: 55px;
         border: 1px solid grey;
@@ -98,27 +97,14 @@
 
     /* YEARS WINDOW */
     #landing-years-display{
-        width: 142%;
+        width: 192%;
         height: 650px;
+        text-align: center;
         border: 1px solid grey;
         overflow: scroll;
     }
 
-    #signup-form-container{
-        border: 1px solid grey;
-        width: 650px;
-        height: 350px;
-        position: absolute;
-        left: 20%;
-        top: 15%;
-       
-    }
-
-    #signup-form{
-        padding: 20%;
-        position: relative;
-        left: 13%;
-    }
+    
 
 
     

@@ -35,14 +35,6 @@ export default class LandingMain extends React.Component{
         return newFormat
     }
 
-    // checkForMusic = () => {
-    //     if(this.props.todayInHistory.venue === "No shows today"){
-    //         return <span></span>
-    //     }
-    // }
-    
-   
-
     render(){
         
 
