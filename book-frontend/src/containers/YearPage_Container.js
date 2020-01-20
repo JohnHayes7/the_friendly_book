@@ -28,22 +28,17 @@ export default class YearPageContainer extends React.Component{
                 this.setState(prevState => ({
                     shows: [...prevState.shows, newShow]
                 }))
-           })
-          
-        //    if(newShow.date && newShow.location && newShow.venue){
-        //        
-        //    }
-        //    console.log(this.state)
+            })
+            console.log(this.state)
         })
+    }
 
-        const newShow = {
-            
-        }
+    getSetsFromYearShows = () =>{
+        this.state
     }
 
     render(){
         const year = this.props.match.params.year
-        // const showsFromYear = {}
        
         return(
             <div>
