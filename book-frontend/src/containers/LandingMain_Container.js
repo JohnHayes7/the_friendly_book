@@ -54,7 +54,7 @@ class LandingMainContainer extends React.Component {
             const setOneTitles = []
             const setTwoTitles = []
             const encoreTitles = []
-            console.log("Show " + show)
+            
             let setOne = show.sources[0].sets[0].tracks
             let setTwo = show.sources[0].sets[1].tracks
             let encore = show.sources[0].sets[2].tracks
@@ -70,10 +70,6 @@ class LandingMainContainer extends React.Component {
             encore.map( track => {
                 encoreTitles.push(track.title)
             })
-
-            console.log("set 1: " + setOneTitles)
-            console.log("set 2: " + setTwoTitles)
-            console.log("encore: " + encoreTitles)
             
             this.setState({
                 setlist: {
@@ -89,7 +85,7 @@ class LandingMainContainer extends React.Component {
         
         fetch('https://api.relisten.net/api/v2/artists/phish/shows/today').then(response => response.json())
         .then(show => {
-            console.log(show)
+            // I WANT TO RANDOMLY PICK SHOW WHEN THERE IS MORE THAN 1 SHOW ON A GIVEN DATE
             if(show.length > 0){
                 this.setState({
                     history: {

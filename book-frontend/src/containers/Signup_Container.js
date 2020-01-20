@@ -16,35 +16,30 @@ class SignupContainer extends React.Component{
     }
 
     handleUsernameInput = event =>{ 
-       
         this.setState({
             username: event.target.value
         })
     }
 
     handleEmailInput = event => {
-        console.log(this.state.email)
         this.setState({
             email: event.target.value
         })
     }
 
     handlePhoneNumberInput = event =>{
-       
         this.setState({
             phone_number: event.target.value
         })
     }
 
     handlePasswordInput = event =>{   
-        
         this.setState({
             password: event.target.value
         })
     }
 
     handleSubmit = event => {
-    
         event.preventDefault()
         fetch("http://localhost:3001/fans", {
             method: "post",
