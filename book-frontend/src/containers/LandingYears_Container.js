@@ -26,28 +26,6 @@ class LandingYearsContainer extends React.Component{
             
         })
     }
-    
-    // addYearToDb = array =>{
-    //     array.map(year => {
-    //         // debugger
-    //         fetch('http://localhost:3001/years', {
-    //             method: "POST",
-    //             body: JSON.stringify({
-    //                 year: year,
-    //                 completed: true
-    //             }),
-    //             headers: {
-    //                 "Content-type": "application/json",
-    //                 "Accept": 'application/json',
-    //                 'Access-Control-Allow-Origin': '*'
-    //             }   
-    //         }).then(response => response.json())
-    //         .then( year => {
-    //             debugger
-    //             return year
-    //         })
-    //     })
-    // }
 
     componentDidMount(){
         this.getYears()

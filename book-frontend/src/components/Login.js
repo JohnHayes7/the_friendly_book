@@ -1,31 +1,9 @@
 import React from 'react'
 import './landing_page.css'
+import { Link } from 'react-router-dom'
 
 
 export default class Login extends React.Component{
-
-    
-
-    // usernameChangeHandler = event => {
-    //     console.log(event.target.value)
-    //     this.setState({
-    //         username: event.target.value
-    //     })
-    // }
-
-    // passwordChangeHandler = event => {
-    //     console.log(event.target.value)
-    //     this.setState({
-    //         password: event.target.value
-    //     })
-    // }
-
-    // submitHandler = event => {
-    //     event.preventDefault()
-    //     this.props.login({username: event.target.elements[0].value, password: event.target.elements[1].value})
-        
-    // }
-
 
     render(){
         return(
@@ -38,7 +16,7 @@ export default class Login extends React.Component{
                     <input type={this.props.formData.hidden ? "password" : "text"} value={this.props.formData.password} onChange={event => this.props.handlePasswordInput(event)}/><br></br>
                     <input type="submit"/>
                 </form><br></br>
-                <a href="#" >Create a profile</a>
+               <Link to="/signup">Create A Profile</Link>
             </div>
         )
     }

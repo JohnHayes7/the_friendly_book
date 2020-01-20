@@ -4,9 +4,7 @@ import Youtube from 'react-youtube'
 export default class LandingMain extends React.Component{
 
     parseSetOneInfo = () => {
-        // console.log(this.props.setOne)
         return this.props.setOne.map(song => {
-            
             return<span key={song}> * {song} </span>
         })
         
@@ -14,27 +12,34 @@ export default class LandingMain extends React.Component{
 
     parseSetTwoInfo = () => {
         if(this.props.setTwo){
-            console.log("Set two " + this.props.setTwo)
             return this.props.setTwo.map(song => {
-                return <span> * {song} </span>
+                return <span key={song}> * {song} </span>
             })
         }
     }
 
     
     parseEncoreInfo = () => {
-        
-        console.log("Encore " + this.props.encore)
         return this.props.encore.map(song => {
-             return <span> * {song} </span>
+             return <span key={song}> * {song} </span>
          })
       }
 
-    checkForMusic = () => {
-        if(this.props.todayInHistory.venue === "No shows today"){
-            return <span></span>
+    formatDateForLink = () => {
+        let date = this.props.todayInHistory.date
+        let newFormat = ""
+        if(date !== "Loading..."){
+            newFormat = date.replace("-", "/") 
+            newFormat = newFormat.replace("-", "/")  
         }
+        return newFormat
     }
+
+    // checkForMusic = () => {
+    //     if(this.props.todayInHistory.venue === "No shows today"){
+    //         return <span></span>
+    //     }
+    // }
     
    
 
@@ -67,7 +72,8 @@ export default class LandingMain extends React.Component{
                             <div id="today-setlist">
                             <strong>Set1:</strong>{this.parseSetOneInfo()}<br></br>
                             <strong>Set2:</strong>{this.parseSetTwoInfo()}<br></br>
-                            <strong>Encore:</strong>{this.parseEncoreInfo()}
+                            <strong>Encore:</strong>{this.parseEncoreInfo()}<br></br><br></br>
+                            <a target="_blank" href={`https://relisten.net/phish/` + this.formatDateForLink() }>Listen on Relisten</a>
                             </div>
                         </div>
                     </div>
