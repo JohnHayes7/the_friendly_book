@@ -1,19 +1,23 @@
 import React from 'react'
 import YearPage from '../components/YearPage'
 
+const SHOWS = []
+
 export default class YearPageContainer extends React.Component{
 
     constructor(){
         super()
         this.state = {
+            loaded: false,
             shows: []
         }
     }
 
     getShowsFromYear = () => {
+
         fetch(`https://api.relisten.net/api/v2/artists/phish/years/${this.props.match.params.year}`).then(response => response.json())
         .then(shows => {
-            
+            let yearShowsAry = []
            shows.shows.map(show => {
                 const newShow = {
                     date: show.display_date,
@@ -25,16 +29,34 @@ export default class YearPageContainer extends React.Component{
                         encore: []
                     }
                 }
-                this.setState(prevState => ({
-                    shows: [...prevState.shows, newShow]
-                }))
+                yearShowsAry = [...yearShowsAry, newShow]
             })
-            console.log(this.state)
+            this.setState({
+                loaded: true,
+                shows: yearShowsAry
+            })
+           console.log(this.state)
         })
     }
 
-    getSetsFromYearShows = () =>{
-        this.state
+    displayShows = () => {
+      return  this.state.shows.map(show => {
+            return (
+                <div key={show.date}>
+                    <h3>{show.date}</h3>
+                    {show.venue}
+                    {show.location}
+                </div>
+            )
+        })
+    }
+
+    // getSetsFromYearShows = () =>{
+    //     this.state
+    // }
+
+    componentDidMount() {
+        this.getShowsFromYear()
     }
 
     render(){
@@ -43,7 +65,7 @@ export default class YearPageContainer extends React.Component{
         return(
             <div>
                 <YearPage year={year}/>
-                {this.getShowsFromYear()}
+                {this.displayShows()}
             </div>
         )
     }
