@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Years = () => {
+const Years = props => {
     
     return (
-        <div>Year SHOW Page</div>
+        <div>
+            <h1>Shows from {props.year}</h1>
+        </div>
     )
 }
 

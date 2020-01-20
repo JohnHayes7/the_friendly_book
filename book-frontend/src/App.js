@@ -13,7 +13,7 @@ function App() {
       <div>
         
         <Route exact path ="/" component={LandingPage} />
-        <Route path ="/years" component={YearPageContainer} />
+        <Route path ="/years/:year" component={YearPageContainer} />
         <Route path ='/fans' component={Fan}  />
         <Route path = '/signup' component={SignupContainer} />
       </div>
