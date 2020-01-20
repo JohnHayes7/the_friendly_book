@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header'
+import './signup.css'
 
 class Signup extends React.Component {
     render(){

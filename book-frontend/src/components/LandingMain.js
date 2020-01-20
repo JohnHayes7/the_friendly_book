@@ -58,15 +58,15 @@ export default class LandingMain extends React.Component{
                         <div className="landingPageVid" id="land-vid-2">
                             <Youtube videoId={this.props.randomVideos[35]} opts={opts} />
                         </div>
-                    </div>
+                    </div><br></br><br></br>
                     <div id="landing-history">
                         Today In Phish History
                         <div id="history-display">
                             {this.props.todayInHistory.venue}<br></br>
                             {this.props.todayInHistory.date}
                             <div id="today-setlist">
-                            <strong>Set1:</strong>{this.parseSetOneInfo()}
-                            <strong>Set2:</strong>{this.parseSetTwoInfo()}
+                            <strong>Set1:</strong>{this.parseSetOneInfo()}<br></br>
+                            <strong>Set2:</strong>{this.parseSetTwoInfo()}<br></br>
                             <strong>Encore:</strong>{this.parseEncoreInfo()}
                             </div>
                         </div>
