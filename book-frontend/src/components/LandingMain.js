@@ -4,22 +4,25 @@ import Youtube from 'react-youtube'
 export default class LandingMain extends React.Component{
 
     parseSetOneInfo = () => {
-        return this.props.todayInHistory.setlist.set1.map(song => {
-            return <span><strong>Set1:</strong> * {song} </span>
+        console.log(this.props.setOne)
+        return this.props.setOne.map(song => {
+            
+            return<span key={song}> * {song} </span>
         })
         
     }
 
     parseSetTwoInfo = () => {
-            return this.props.todayInHistory.setlist.set2.map(song => {
-                return <span><strong>Set2:</strong> * {song} </span>
-               })
-         
-      }
+        console.log("Set 2 " + this.props.setlist.set2)
+        return this.props.setlist.set2.map(song => {
+            return <span><strong>Set2:</strong> * {song} </span>
+        })
+    }
 
     
     parseEncoreInfo = () => {
-        return this.props.todayInHistory.setlist.encore.map(song => {
+        console.log("Encore " + this.props.setlist.encore)
+        return this.props.setlist.encore.map(song => {
              return <span><strong>Encore:</strong> * {song} </span>
          })
       }
@@ -27,10 +30,6 @@ export default class LandingMain extends React.Component{
     checkForMusic = () => {
         if(this.props.todayInHistory.venue === "No shows today"){
             return <span></span>
-        }else{
-            this.parseSetOneInfo()
-            this.parseSetTwoInfo()
-            this.parseEncoreInfo()
         }
     }
     
@@ -63,7 +62,7 @@ export default class LandingMain extends React.Component{
                             {this.props.todayInHistory.venue}<br></br>
                             {this.props.todayInHistory.date}
                             <div id="today-setlist">
-                                
+                            <strong>Set1:</strong>{this.parseSetOneInfo()}
                             </div>
                         </div>
                     </div>

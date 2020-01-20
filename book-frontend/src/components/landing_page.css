@@ -17,7 +17,6 @@
         background-position: center;
         background-image: url('../landing_page_images/CroppedBanner.jpg') ;
         text-align: center;
-        /* vertical-align: middle; */
         font-size: 5em;
         color: white;
         line-height: 170px;
@@ -63,7 +62,7 @@
 
     #landingPage-main{  
               
-        height: 450px;
+        height: 650px;
         border: 1px solid grey;
         text-align: center;
         font-size: 2em;
@@ -100,7 +99,7 @@
     /* YEARS WINDOW */
     #landing-years-display{
         width: 142%;
-        height: 450px;
+        height: 650px;
         border: 1px solid grey;
         overflow: scroll;
     }
