@@ -4,7 +4,7 @@ import Youtube from 'react-youtube'
 export default class LandingMain extends React.Component{
 
     parseSetOneInfo = () => {
-        console.log(this.props.setOne)
+        // console.log(this.props.setOne)
         return this.props.setOne.map(song => {
             
             return<span key={song}> * {song} </span>
@@ -13,17 +13,20 @@ export default class LandingMain extends React.Component{
     }
 
     parseSetTwoInfo = () => {
-        console.log("Set 2 " + this.props.setlist.set2)
-        return this.props.setlist.set2.map(song => {
-            return <span><strong>Set2:</strong> * {song} </span>
-        })
+        if(this.props.setTwo){
+            console.log("Set two " + this.props.setTwo)
+            return this.props.setTwo.map(song => {
+                return <span> * {song} </span>
+            })
+        }
     }
 
     
     parseEncoreInfo = () => {
-        console.log("Encore " + this.props.setlist.encore)
-        return this.props.setlist.encore.map(song => {
-             return <span><strong>Encore:</strong> * {song} </span>
+        
+        console.log("Encore " + this.props.encore)
+        return this.props.encore.map(song => {
+             return <span> * {song} </span>
          })
       }
 
@@ -63,6 +66,8 @@ export default class LandingMain extends React.Component{
                             {this.props.todayInHistory.date}
                             <div id="today-setlist">
                             <strong>Set1:</strong>{this.parseSetOneInfo()}
+                            <strong>Set2:</strong>{this.parseSetTwoInfo()}
+                            <strong>Encore:</strong>{this.parseEncoreInfo()}
                             </div>
                         </div>
                     </div>
