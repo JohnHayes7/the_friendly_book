@@ -14,7 +14,7 @@ export default class YearPageContainer extends React.Component{
     }
 
     getShowsFromYear = () => {
-
+        // THIS WORKS FOR STANDARD 3 SET SHOWS BUT NEED TO ADAPT FOR 3 SET SHOWS, OR USE "SETNAME"
         fetch(`https://api.relisten.net/api/v2/artists/phish/years/${this.props.match.params.year}`).then(response => response.json())
         .then(shows => {
             let yearShowsAry = []
