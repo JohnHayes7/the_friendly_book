@@ -72,6 +72,9 @@ export default class YearPageContainer extends React.Component{
                         <h3>{show.date}</h3>
                         {show.venue}<br></br>
                         {show.location}
+                        {show.setlist.set1}
+                        {show.setlist.set2}
+                        {show.setlist.encore}
                     </div>
                 )
             })
@@ -80,53 +83,28 @@ export default class YearPageContainer extends React.Component{
         }
     }
       
-
-    // getSetsFromYearShows = () =>{
-    //     this.state.shows.map(show => {
-    //         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${show.date}`).then(response => response.json())
-    //         .then(rxShow => {
-                
-    //             const setOneTitles = []
-    //             const setTwoTitles = []
-    //             const encoreTitles = []
-                
-    //             let setOne = rxShow.sources[0].sets[0].tracks
-    //             let setTwo = rxShow.sources[0].sets[1].tracks
-    //             let encore = rxShow.sources[0].sets[2].tracks
-                
-    //             setOne.map( track => {
-    //                 setOneTitles.push(track.title)
-    //             })
-
-    //             if(setTwo){
-    //                 setTwo.map( track => {
-    //                     setTwoTitles.push(track.title)
-    //                 })
-    //             }
-
-    //             if(encore){
-    //                 encore.map( track => {
-    //                     encoreTitles.push(track.title)
-    //                 })
-    //             }
-                
-    //         })
-            
-    //     })
-        
-    // }
-
     componentDidMount() {
         this.getShowsFromYear()
     }
 
     render(){
+        if(this.state.loaded){
+            fetch('http://localhost:3001/shows_dates',{
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(this.state.shows)
+            }).then(response => response.json())
+            .then(showDates => {
+                console.log(showDates)
+            })
+        }
         const year = this.props.match.params.year
        
         return(
             <div>
-                <YearPage year={year}/>
-                {this.displayShows()}
+                <YearPage year={year} displayShows={this.displayShows}/>
             </div>
         )
     }

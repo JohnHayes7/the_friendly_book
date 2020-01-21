@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :years, only: [:create, :index, :show, :edit]
 
-  resources :shows_dates, only: [:index, :show]
+  resources :shows_dates, only: [:index, :show, :create]
 
   resources :songs, only: [:index, :show]
 

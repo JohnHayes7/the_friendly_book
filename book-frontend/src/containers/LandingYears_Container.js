@@ -14,7 +14,7 @@ class LandingYearsContainer extends React.Component{
     
     
     getYears = () => {
-        
+        // CAN NOW CHANGE THIS TO FETCH FROM DB
         fetch('https://api.relisten.net/api/v2/artists/phish/years').then(response => response.json())
         .then(years => {
             // fetch('http://localhost:3001/years', {
@@ -35,19 +35,6 @@ class LandingYearsContainer extends React.Component{
             })
         })
     }
-
-    // addYearsToDb = () => {
-    //     fetch("http://localhost:3001/years", {
-    //         method: "post",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(this.state.years)
-    //     }).then(response => response.json())
-    //     .then(year => {
-    //         console.log(year)
-    //     })
-    // }
 
     componentDidMount(){
         this.getYears()
