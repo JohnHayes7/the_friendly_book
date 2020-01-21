@@ -8,6 +8,10 @@ export default class LandingYears extends React.Component{
            return <li key={year}><Link to={`/years/${year}`}>{year}</Link></li>
         })
     }
+
+    addYearsToDb = () => {
+        
+    }
     
     render(){
         return(

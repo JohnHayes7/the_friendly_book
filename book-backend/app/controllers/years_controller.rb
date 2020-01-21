@@ -2,9 +2,14 @@ class YearsController < ApplicationController
 
 
     def create
-        year = Year.create({value:params[:year]})
+        # binding.pry
+        params[:_json].each do |t|
+            # binding.pry
+            Year.create({value: t[:year]})
+        end
+
         years = Year.all
-        render json: YearSerializer(years)
+        render json: YearSerializer.new(years)
     end
 
     def index
