@@ -36,24 +36,61 @@ export default class YearPageContainer extends React.Component{
                 shows: yearShowsAry
             })
            console.log(this.state)
+           this.getSetsFromYearShows()
         })
     }
 
     displayShows = () => {
-      return  this.state.shows.map(show => {
-            return (
-                <div key={show.date}>
-                    <h3>{show.date}</h3>
-                    {show.venue}
-                    {show.location}
-                </div>
-            )
-        })
+        if(this.state.loaded){
+            return  this.state.shows.map(show => {
+                return (
+                    <div key={show.date}>
+                        <h3>{show.date}</h3>
+                        {show.venue}<br></br>
+                        {show.location}
+                    </div>
+                )
+            })
+        }else{
+          return  <div><h1>Loading...</h1></div>
+        }
     }
+      
 
-    // getSetsFromYearShows = () =>{
-    //     this.state
-    // }
+    getSetsFromYearShows = () =>{
+        this.state.shows.map(show => {
+            fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${show.date}`).then(response => response.json())
+            .then(rxShow => {
+                debugger
+                // const setOneTitles = []
+                // const setTwoTitles = []
+                // const encoreTitles = []
+                
+                // let setOne = rxShow.sources[0].sets[0].tracks
+                // let setTwo = rxShow.sources[0].sets[1].tracks
+                // let encore = rxShow.sources[0].sets[2].tracks
+                
+                // setOne.map( track => {
+                //     setOneTitles.push(track.title)
+                // })
+
+                // if(setTwo){
+                //     setTwo.map( track => {
+                //         setTwoTitles.push(track.title)
+                //     })
+                // }
+
+                // if(encore){
+                //     encore.map( track => {
+                //         encoreTitles.push(track.title)
+                //     })
+                // }
+                
+            })
+            
+        })
+        
+    }
 
     componentDidMount() {
         this.getShowsFromYear()
