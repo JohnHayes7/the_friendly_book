@@ -1,7 +1,8 @@
 import React from 'react'
+import './show_page.css'
 
 const ShowPage = (props) =>{
-    debugger
+    
     return(
         <div id="detailed-show-info">
 

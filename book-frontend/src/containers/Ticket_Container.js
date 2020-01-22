@@ -1,13 +1,14 @@
 import React from 'react'
 import Ticket from '../components/Ticket'
-import ShowPage from '../components/ShowPage'
+// import ShowPage from '../components/ShowPage'
+
 
 
 class TicketContainer extends React.Component{
     constructor(){
         super()
         this.state = {
-            clicked: false,
+            visible: false,
             date: "",
             venue: "",
             location: "",
@@ -16,17 +17,18 @@ class TicketContainer extends React.Component{
 
     clickHandler = event => {
       this.setState({
-          clicked: true,
+          visible: true,
           date: this.props.date,
           venue: this.props.venue,
           location: this.props.location
       })
+      
     }
 
     render(){
-        if(this.state.clicked === true){
-            return <ShowPage date={this.props.date} venue={this.props.venue} location={this.props.location} />
-        }
+        // if(this.state.clicked === true){
+        //     return <ShowPage date={this.props.date} venue={this.props.venue} location={this.props.location} />
+        // }
         return(
             <div>
                 <Ticket date={this.props.date} venue={this.props.venue} location={this.props.location} clickHandler={this.clickHandler} />

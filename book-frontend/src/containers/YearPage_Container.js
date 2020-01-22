@@ -105,7 +105,7 @@ export default class YearPageContainer extends React.Component{
         const year = this.props.match.params.year
        
         return(
-            <div id="shows-div">
+            <div>
                 <YearPage year={year} shows={this.state} displayShows={this.displayShows}/>
             </div>
         )

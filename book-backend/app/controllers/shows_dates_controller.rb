@@ -14,12 +14,13 @@ class ShowsDatesController < ApplicationController
 
             # IF DATE DOESN'T EXIST IN DB, ADD IT.
             show = ShowDate.find_by({month: month, day:day})
+            
             if !show || show.year_id != year.id
-                
-                show_date = ShowDate.new({month: month, day: day})
-                show_date.year_id= year.id
-                show_date.venue_id = 2
-                show_date.save
+                binding.pry
+                show = ShowDate.new({month: month, day: day})
+                show.year_id= year.id
+                show.venue_id = 2
+                show.save
             end
 
             # PARSE STATE
