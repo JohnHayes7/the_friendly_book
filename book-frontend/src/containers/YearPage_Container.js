@@ -59,6 +59,7 @@ export default class YearPageContainer extends React.Component{
                 loaded: true,
                 shows: yearShowsAry
             })
+           
            console.log(this.state)
           
         })
@@ -89,6 +90,7 @@ export default class YearPageContainer extends React.Component{
 
     render(){
         if(this.state.loaded){
+            // ADDS SHOW DATES TO DB
             fetch('http://localhost:3001/shows_dates',{
                 method: "post",
                 headers: {
@@ -97,8 +99,14 @@ export default class YearPageContainer extends React.Component{
                 body: JSON.stringify(this.state.shows)
             }).then(response => response.json())
             .then(showDates => {
-                console.log(showDates)
+                console.log("Show Dates " + showDates)
             })
+
+            // IS THIS WHERE I SHOULD PERSIST VENUE, CITY AND STATE?
+
+
+
+
         }
         const year = this.props.match.params.year
        
