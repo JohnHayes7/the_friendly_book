@@ -8,14 +8,18 @@ class ShowsDatesController < ApplicationController
             month = ShowDate.get_month(s[:date])
             show_year = ShowDate.get_year(s[:date])
 
-            
-
             year = Year.find_by(value: show_year)
 
-            show_date = ShowDate.new({month: month, day: day})
-            show_date.year_id= year.id
-            show_date.venue_id = 2
-            show_date.save
+            show = ShowDate.find_by({month: month, day:day})
+            if !show || show.year_id != year.id
+                
+                show_date = ShowDate.new({month: month, day: day})
+                show_date.year_id= year.id
+                show_date.venue_id = 2
+                show_date.save
+            end
+
+            
         end
         show_dates = ShowDate.all
         options = {include: [:show, :year, :venue]}
