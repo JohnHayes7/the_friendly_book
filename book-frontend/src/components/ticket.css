@@ -1,12 +1,16 @@
-/* #ticket-info{
+#ticket-display{
+    display: inline-flex;
+    margin-left: 1%;
+}
+#ticket{
     width: 350px;
     height: 125px;
-    display: inline-flex;
+    /* display: inline-flex; */
     border: 1px solid grey;
     margin: 5px;
     text-align: center;
 }
 
-#info{
+/* #info{
     padding-left: 20%;
 } */

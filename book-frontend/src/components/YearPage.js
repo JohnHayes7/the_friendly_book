@@ -1,5 +1,5 @@
 import React from 'react';
-import './year_page.css'
+// import './year_page.css'
 import Ticket from './Ticket'
 
 class YearPage extends React.Component {
@@ -7,17 +7,8 @@ class YearPage extends React.Component {
         if(this.props.shows.loaded){
             return  this.props.shows.shows.map(show => {
                 return (
-                    <div id="ticket-info" key={show.date}>
+                    <div id="ticket-display" key={show.date}>
                         <Ticket date={show.date} venue={show.venue} location={show.location} set1={show.set1} set2={show.set2} encore={show.encore} />
-                        {/* <div id="info">
-                            Phish<br></br>
-                            {show.date}<br></br>
-                            {show.venue}, {show.location}<br></br>
-                            
-                            {show.set1}
-                            {show.set2}
-                            {show.encore}
-                        </div> */}
                     </div>
                 )
             })
