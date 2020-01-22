@@ -23,37 +23,53 @@ export default class YearPageContainer extends React.Component{
             let setOne = []
             let setTwo = []
             let encore = []
+            const newShow = {
+                date: "",
+                location: "",
+                venue: "",
+                set1: [],
+                set2: [],
+                encore: []
+            }
                fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${show.display_date}`).then(response => response.json())
                .then(showSets => {
                     let firstSet = showSets.sources[0].sets[0].tracks
+                   
                     firstSet.map(songTitle => {
-                        setOne.push(songTitle.title)
+                        newShow.set1.push(songTitle.title)
                     })
                     
                     if(showSets.sources[0].sets[1]){
                         showSets.sources[0].sets[1].tracks.map(song => {
-                            setTwo.push(song.title)
+                            newShow.set2.push(song.title)
                         })
                     }
                     
                     if(showSets.sources[0].sets[2]){
                         showSets.sources[0].sets[2].tracks.map(song => {
-                            encore.push(song.title)
+                            newShow.encore.push(song.title)
                         })
                     }
 
                })
-                const newShow = {
-                    date: show.display_date,
-                    location: show.venue.location,
-                    venue: show.venue.name,
-                    setlist:{
-                        set1: setOne,
-                        set2: setTwo,
-                        encore: encore
-                    }
-                }
+
+               newShow.date = show.display_date
+               newShow.location = show.venue.location
+               newShow.venue = show.venue.name
+
+                // const newShow = {
+                //     date: ,
+                //     location: show.venue.location,
+                //     venue: show.venue.name,
+                //     setlist:{
+                //         set1: setOne,
+                //         set2: setTwo,
+                //         encore: encore
+                //     }
+                // }
+
                 yearShowsAry = [...yearShowsAry, newShow]
+            
             })
             this.setState({
                 loaded: true,
@@ -62,6 +78,7 @@ export default class YearPageContainer extends React.Component{
            console.log(this.state)
            
            if(this.state.loaded){
+            
             // ADDS SHOW DATES TO DB
             fetch('http://localhost:3001/shows_dates',{
                 method: "post",
@@ -81,13 +98,14 @@ export default class YearPageContainer extends React.Component{
         if(this.state.loaded){
             return  this.state.shows.map(show => {
                 return (
-                    <div key={show.date}>
-                        <h3>{show.date}</h3>
+                    <div id="ticket-info" key={show.date}>
+                        Phish<br></br>
+                        {show.date}<br></br>
                         {show.venue}<br></br>
                         {show.location}
-                        {show.setlist.set1}
-                        {show.setlist.set2}
-                        {show.setlist.encore}
+                        {show.set1}
+                        {show.set2}
+                        {show.encore}
                     </div>
                 )
             })
@@ -105,7 +123,7 @@ export default class YearPageContainer extends React.Component{
         const year = this.props.match.params.year
        
         return(
-            <div>
+            <div id="shows-div">
                 <YearPage year={year} displayShows={this.displayShows}/>
             </div>
         )
