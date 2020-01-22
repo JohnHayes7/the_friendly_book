@@ -1,14 +1,22 @@
 import React from 'react';
 // import './year_page.css'
-import Ticket from './Ticket'
+
+import TicketContainer from '../containers/Ticket_Container';
 
 class YearPage extends React.Component {
+
+   
+
+    clickHandler = event => {
+        debugger
+    }
+
     displayShows = () => {
         if(this.props.shows.loaded){
             return  this.props.shows.shows.map(show => {
                 return (
                     <div id="ticket-display" key={show.date}>
-                        <Ticket date={show.date} venue={show.venue} location={show.location} set1={show.set1} set2={show.set2} encore={show.encore} />
+                        <TicketContainer date={show.date} venue={show.venue} location={show.location} set1={show.set1} set2={show.set2} encore={show.encore} />
                     </div>
                 )
             })

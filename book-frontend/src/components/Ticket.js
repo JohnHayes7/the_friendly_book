@@ -6,8 +6,8 @@ const Ticket = props => {
         <div id="ticket">
             <div id="info">
                 <strong>PHISH</strong><br></br>
-                {props.date}<br></br><br></br><br></br><br></br>
-                {props.venue}, {props.location}<br></br>
+                {props.date}<br></br>
+                <span>{props.venue}, {props.location}</span><br></br>
                                 
                 {props.set1}
                 {props.set2}
