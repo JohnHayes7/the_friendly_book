@@ -2,9 +2,9 @@ import React from 'react'
 import './ticket.css'
 
 const Ticket = props => {
-    debugger
+
     return(
-        <div onClick={props.clickHandler()} id="ticket">
+        <div onClick={event => props.clickHandler(event)} id="ticket">
             <div id="info">
                 <strong>PHISH</strong><br></br>
                 {props.date}<br></br>

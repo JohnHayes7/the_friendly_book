@@ -15,12 +15,17 @@ class TicketContainer extends React.Component{
     }
 
     clickHandler = event => {
-       debugger
+      this.setState({
+          clicked: true,
+          date: this.props.date,
+          venue: this.props.venue,
+          location: this.props.location
+      })
     }
 
     render(){
         if(this.state.clicked === true){
-            return <ShowPage />
+            return <ShowPage date={this.props.date} venue={this.props.venue} location={this.props.location} />
         }
         return(
             <div>
