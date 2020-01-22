@@ -5,11 +5,6 @@ import TicketContainer from '../containers/Ticket_Container';
 
 class YearPage extends React.Component {
 
-   
-
-    clickHandler = event => {
-        debugger
-    }
 
     displayShows = () => {
         if(this.props.shows.loaded){
@@ -26,7 +21,6 @@ class YearPage extends React.Component {
     }
 
     render(){
-        debugger
         return (
             <div id="#ticket-info">
                 <h1>Shows from {this.props.year}</h1>
