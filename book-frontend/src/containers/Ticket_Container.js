@@ -16,15 +16,15 @@ class TicketContainer extends React.Component{
         }
     }
 
-    clickHandler = event => {
-      this.setState({
-          visible: true,
-          date: this.props.date,
-          venue: this.props.venue,
-          location: this.props.location
-      })
+    // clickHandler = event => {
+    //   this.setState({
+    //       visible: true,
+    //       date: this.props.date,
+    //       venue: this.props.venue,
+    //       location: this.props.location
+    //   })
       
-    }
+    // }
 
     render(){
         // if(this.state.clicked === true){
@@ -32,7 +32,7 @@ class TicketContainer extends React.Component{
         // }
         return(
             <div>
-                <Ticket date={this.props.date} venue={this.props.venue} location={this.props.location} clickHandler={this.clickHandler} />
+                <Ticket date={this.props.date} venue={this.props.venue} location={this.props.location} />
             </div>
         )
     }
