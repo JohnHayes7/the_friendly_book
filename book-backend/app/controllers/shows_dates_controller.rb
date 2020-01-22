@@ -3,7 +3,7 @@ class ShowsDatesController < ApplicationController
     def create
        
         params[:_json].each do |s|
-           
+        #    binding.pry
             # PARSE DATE
             day = ShowDate.get_day(s[:date])
             month = ShowDate.get_month(s[:date])
