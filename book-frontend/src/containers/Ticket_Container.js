@@ -1,5 +1,6 @@
 import React from 'react'
 import Ticket from '../components/Ticket'
+import { connect } from 'react-redux'
 // import ShowPage from '../components/ShowPage'
 
 
@@ -36,5 +37,6 @@ class TicketContainer extends React.Component{
         )
     }
 }
+
 
 export default TicketContainer

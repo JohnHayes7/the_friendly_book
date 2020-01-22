@@ -1,13 +1,14 @@
 import React from 'react'
 import './show_page.css'
 
-const ShowPage = (props) =>{
-    
-    return(
-        <div id="detailed-show-info">
+class ShowPage extends React.Component{
+    render(){
+        return(
+            <div>
 
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
 export default ShowPage
