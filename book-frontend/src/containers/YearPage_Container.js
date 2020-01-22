@@ -94,25 +94,7 @@ export default class YearPageContainer extends React.Component{
         })
     }
 
-    displayShows = () => {
-        if(this.state.loaded){
-            return  this.state.shows.map(show => {
-                return (
-                    <div id="ticket-info" key={show.date}>
-                        Phish<br></br>
-                        {show.date}<br></br>
-                        {show.venue}<br></br>
-                        {show.location}
-                        {show.set1}
-                        {show.set2}
-                        {show.encore}
-                    </div>
-                )
-            })
-        }else{
-          return  <div><h1>Loading...</h1></div>
-        }
-    }
+    
       
     componentDidMount() {
         this.getShowsFromYear()
@@ -124,7 +106,7 @@ export default class YearPageContainer extends React.Component{
        
         return(
             <div id="shows-div">
-                <YearPage year={year} displayShows={this.displayShows}/>
+                <YearPage year={year} shows={this.state} displayShows={this.displayShows}/>
             </div>
         )
     }
