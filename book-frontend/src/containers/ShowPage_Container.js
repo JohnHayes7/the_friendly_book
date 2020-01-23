@@ -4,7 +4,7 @@ import ShowPage from '../components/ShowPage'
 
 class ShowPageContainer extends React.Component{
     render(){
-        debugger
+        
         return(
             <div>
                 <ShowPage date={this.props.show.date} venue={this.props.show.venue} location={this.props.show.location} set1={this.props.show.set1} set2={this.props.show.set2} encore={this.props.show.encore} />
@@ -14,7 +14,7 @@ class ShowPageContainer extends React.Component{
 }
 
 const mapStateToProps = state => {
-    debugger
+    
     return {
         show: state
     }

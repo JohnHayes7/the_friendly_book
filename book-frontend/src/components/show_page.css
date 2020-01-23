@@ -1,4 +1,9 @@
-#show-page{
-    background-color: red;
-    z-index: 1;
+#show-info{
+    width: 10%;
+    border: 1px solid grey;
+}
+
+#setlist{
+    width: 100%;
+    border: 1px solid grey;
 }
