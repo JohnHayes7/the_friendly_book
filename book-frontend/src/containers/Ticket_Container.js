@@ -22,7 +22,6 @@ class TicketContainer extends React.Component{
         this.setState({
             clicked: true,
         })
-        debugger
         this.props.addShow(this.props)
     }
 
@@ -43,16 +42,11 @@ class TicketContainer extends React.Component{
     }
 }
 
-const mapPropsToState = state => {
-    debugger
-    return {
-        show: state
-    }
-}
+
 
 const mapDispatchToProps = dispatch => ({
     addShow: Data => dispatch({type: "ADD_SHOW", show: Data})
 })
 
 
-export default connect(mapPropsToState, mapDispatchToProps)(TicketContainer)
+export default connect(0, mapDispatchToProps)(TicketContainer)
