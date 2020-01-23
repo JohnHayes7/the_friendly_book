@@ -16,7 +16,6 @@ class ShowsDatesController < ApplicationController
             show = ShowDate.find_by({month: month, day:day})
             
             if !show || show.year_id != year.id
-                binding.pry
                 show = ShowDate.new({month: month, day: day})
                 show.year_id= year.id
                 show.venue_id = 2
