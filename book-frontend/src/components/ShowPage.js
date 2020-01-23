@@ -3,11 +3,13 @@ import './show_page.css'
 import { connect } from 'react-redux'
 
 class ShowPage extends React.Component{
+
+    
     render(){
 
         return(
-            <div id="show-page">
-              Show Page
+            <div>
+              {this.props.date}
             </div>
         )
     }

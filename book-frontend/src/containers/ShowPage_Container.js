@@ -4,9 +4,10 @@ import ShowPage from '../components/ShowPage'
 
 class ShowPageContainer extends React.Component{
     render(){
+        debugger
         return(
             <div>
-                Show Page Container
+                <ShowPage date={this.props.show.date} venue={this.props.show.venue} location={this.props.show.location} set1={this.props.show.set1} set2={this.props.show.set2} encore={this.props.show.encore} />
             </div>
         )
     }
