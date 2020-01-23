@@ -17,7 +17,7 @@ class YearPage extends React.Component {
             return  this.props.shows.shows.map(show => {
                 return (
                     <div id="ticket-display" key={show.date}>
-                        <TicketContainer openShow={this.openShow} date={show.date} venue={show.venue} location={show.location} set1={show.set1} set2={show.set2} encore={show.encore} />
+                        <TicketContainer  date={show.date} venue={show.venue} location={show.location} set1={show.set1} set2={show.set2} encore={show.encore} />
                     </div>
                 )
             })

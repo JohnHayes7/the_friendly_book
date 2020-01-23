@@ -18,12 +18,12 @@ class TicketContainer extends React.Component{
     }
 
     clickHandler = event => {
+        
         this.setState({
             clicked: true,
-            date: this.props.date,
-            location: this.props.location,
-            venue: this.props.venue
         })
+        debugger
+        this.props.addShow(this.props)
     }
 
     dateSlug = (date) => {
@@ -43,9 +43,16 @@ class TicketContainer extends React.Component{
     }
 }
 
+const mapPropsToState = state => {
+    debugger
+    return {
+        show: state
+    }
+}
+
 const mapDispatchToProps = dispatch => ({
-    login: Data => dispatch({type: "ADD_SHOW", fan: FormData})
+    addShow: Data => dispatch({type: "ADD_SHOW", show: Data})
 })
 
 
-export default connect(0, mapDispatchToProps)(TicketContainer)
+export default connect(mapPropsToState, mapDispatchToProps)(TicketContainer)
