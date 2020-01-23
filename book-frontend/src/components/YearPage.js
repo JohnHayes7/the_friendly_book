@@ -1,42 +1,15 @@
 import React from 'react';
 import './year_page.css'
-
 import TicketContainer from '../containers/Ticket_Container';
 
 class YearPage extends React.Component {
 
-    constructor(){
-        super()
-        this.state={
-            style: {
-                width: 350
-            }
+    constructor(props){
+        super(props)
+        this.state = {
+            visible: false
         }
-        // this.openShow = this.openShow.bind(this)
-        // this.closeShow = this.closeShow.bind(this)
     }
-
-    componentDidMount(){
-        document.addEventListener('click', this.closeShow)
-    }
-
-    componentWillUnmount(){
-        document.removeEventListener('click', this.closeShow)
-    }
-
-    // openShow(){
-    //     const style = {width: 350};
-    //     this.setState({ style });
-    //     document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)"
-    //     document.addEventListener("click", this.closeShow)
-    // }
-
-    // closeShow(){
-    //     document.removeEventListener('click', this.closeShow)
-    //     const style = {width: 0};
-    //     this.setState({ style })
-    //     document.body.style.backgroundColor = "#F3F3F3"
-    // }
 
 
     displayShows = () => {

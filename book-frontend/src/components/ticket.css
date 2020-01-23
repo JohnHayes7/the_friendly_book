@@ -11,6 +11,11 @@
     text-align: center;
 }
 
+#pop-up-page{
+    background-color: aqua;
+    z-index: 1;
+}
+
 /* #info{
     padding-left: 20%;
 } */

@@ -3,9 +3,10 @@ import './show_page.css'
 
 class ShowPage extends React.Component{
     render(){
-        return(
-            <div>
 
+        return(
+            <div onClick={this.props.hide} id="show-page">
+                {this.props.date}
             </div>
         )
     }

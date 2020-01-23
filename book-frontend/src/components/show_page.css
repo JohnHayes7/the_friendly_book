@@ -1,9 +1,4 @@
-#detailed-show-info{
-    width: 80%;
-    height: 90%;
+#show-page{
     background-color: red;
-    visibility: hidden;
     z-index: 1;
-    border: 3px solid grey;
-
 }
