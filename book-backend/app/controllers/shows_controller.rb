@@ -7,21 +7,27 @@ class ShowsController < ApplicationController
 
         show_date = ShowDate.find_by({month: month, day:day})
         venue = Venue.find_by(name: params[:venue])
+        options = {include: [:fans, :memories, :show_date, :venue, :songs]}
         if show_date.show == nil
             show = Show.new
-            set1 = ""
-            params[:set1].each do |s|
-                set1 += "#{s}, "
-            end
-            show.set1 = set1 
+            show.show_date_id = show_date.id
+            show.add_set_one(params[:set1])
+            show.add_set_two(params[:set2])
+            show.add_set_three(params[:set3])
+            show.add_encore(params[:encore])
             if venue
-                show.venue_id = venue.id
-                show.save
+                show.venue_id = venue.id    
             end
+            show.save
+            # render json: ShowSerializer.new(show,options)
+        else
+           show = Show.find(show_date.show.id)
         end
 
         binding.pry
+        render json: ShowSerializer.new(show, options)
     end
+
 
     def show
         s = Show.find(params[:id])
