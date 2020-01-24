@@ -10,10 +10,12 @@ class ShowPageContainer extends React.Component{
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(this.props.show)
+            body: JSON.stringify(this.props)
         }).then(response => response.json())
         .then(showInfo => {
             console.log(showInfo)
+           return <ShowPage showInfo={showInfo} />
+           
         })
     }
 
@@ -21,11 +23,14 @@ class ShowPageContainer extends React.Component{
         this.sendShowsToDb()
     }
 
+    
+
 
     render(){
+        
         return(
             <div>
-                <ShowPage date={this.props.show.date} venue={this.props.show.venue} location={this.props.show.location} set1={this.props.show.set1} set2={this.props.show.set2} encore={this.props.show.encore} />
+                
             </div>
         )
     }

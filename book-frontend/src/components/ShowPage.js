@@ -2,6 +2,7 @@ import React from 'react'
 import './show_page.css'
 import { connect } from 'react-redux'
 import Header from './Header'
+import Login from './Login'
 
 class ShowPage extends React.Component{
 
@@ -47,6 +48,7 @@ class ShowPage extends React.Component{
         return(
             <div>
                 <Header />
+                {/* <Login /> */}
                 <div id="show-info">
                     {this.props.date}<br></br>
                     {this.props.venue}, {this.props.location}<br></br>

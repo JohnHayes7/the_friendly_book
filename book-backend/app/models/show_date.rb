@@ -16,6 +16,13 @@ class ShowDate < ApplicationRecord
         date.split("-").first
     end
 
+    def self.format_date_for_search(date)
+        # binding.pry
+        "#{date.split("-").last}-#{date.split("-").first}-#{date.split("-")[1]}"
+    end
+
+
+
 end
 
 

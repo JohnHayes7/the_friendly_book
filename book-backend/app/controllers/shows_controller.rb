@@ -2,10 +2,12 @@ class ShowsController < ApplicationController
 
 
     def create
-        day = ShowDate.get_day(params[:date])
-        month = ShowDate.get_month(params[:date])
-
+        
+        search_date = ShowDate.format_date_for_search(params[:match][:params][:date])
+        day = ShowDate.get_day(search_date)
+        month = ShowDate.get_month(search_date)
         show_date = ShowDate.find_by({month: month, day:day})
+        binding.pry
         venue = Venue.find_by(name: params[:venue])
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
         if show_date.show == nil
@@ -24,7 +26,7 @@ class ShowsController < ApplicationController
            show = Show.find(show_date.show.id)
         end
 
-        binding.pry
+       
         render json: ShowSerializer.new(show, options)
     end
 
