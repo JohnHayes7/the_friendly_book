@@ -9,9 +9,11 @@ class ShowsController < ApplicationController
         show_date = ShowDate.find_by({month: month, day:day})
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
         
-
+        
         if show_date.show
             render json: ShowSerializer.new(show_date.show,options)
+        else
+
         end
        
         # venue = Venue.find_by(name: params[:venue])

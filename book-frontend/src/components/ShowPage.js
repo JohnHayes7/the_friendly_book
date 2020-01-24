@@ -49,13 +49,32 @@ class ShowPage extends React.Component{
     }
 
     displayInfo = () => {
+        if(this.props.showInfo.data){
+            return(
+                <div id="show-info">
+                  {this.props.showInfo.included[1].attributes.name}
+                  <div id="setlist">
+                        {this.ifSetOne()}
+                        {this.parseSetOne()}
+                        {this.ifSetTwo()}
+                        {this.parseSetTwo()}
+                        {this.ifEncore()}
+                        {this.parseEncore()}
+                    </div>
+                </div>
+
+                
+                
+                
+            )
+        }
+       
         
+                    
     }
 
 
-    // componentDidMount(){
-    //     this.displayInfo()
-    // }
+    
 
 
     render(){
@@ -64,18 +83,7 @@ class ShowPage extends React.Component{
             <div>
                 <Header />
                 {/* <Login /> */}
-                <div id="show-info">
-                    {/* {this.props.showInfo.included[1].attributes.name}<br></br> */}
-                    {/* {this.props.venue}, {this.props.location}<br></br> */}
-                    <div id="setlist">
-                        {this.ifSetOne()}
-                        {/* {this.parseSetOne()}
-                        {this.ifSetTwo()}
-                        {this.parseSetTwo()}
-                        {this.ifEncore()}
-                        {this.parseEncore()} */}
-                    </div>
-                </div>
+                {this.displayInfo()}
             </div>
         )
     }

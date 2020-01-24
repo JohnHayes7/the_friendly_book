@@ -13,7 +13,7 @@ class ShowPageContainer extends React.Component{
    
     
     sendShowsToDb = () => {
-        fetch(`http://localhost:3001/shows`, {
+       fetch(`http://localhost:3001/shows`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
@@ -21,11 +21,13 @@ class ShowPageContainer extends React.Component{
             body: JSON.stringify(this.props)
         }).then(response => response.json())
         .then(showInfo => {
+            
             console.log(showInfo)
-           this.setState({
+            this.setState({
                results: showInfo
            }) 
         })
+        
     }
 
     componentDidMount(){
@@ -36,7 +38,7 @@ class ShowPageContainer extends React.Component{
 
 
     render(){
-        let infoForShow = {}
+        
         return(
             <div>
                 <ShowPage showInfo={this.state.results} />
