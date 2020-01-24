@@ -7,22 +7,25 @@ import Login from './Login'
 class ShowPage extends React.Component{
 
     parseSetOne = () => {
-       return this.props.showInfo.data.attributes.set1.map(song => {
-           return <div>{song}</div>
+        // debugger
+       return this.props.showInfo.data.attributes.set1.split(", ").map(song => {
+            if(song !== ""){
+                return <div>{song}</div>
+            }   
         })
     }
 
-    parseSetTwo = () => {
-        return this.props.showInfo.data.attributes.set2.map(song => {
-            return <div>{song}</div>
-        })
-    }
+    // parseSetTwo = () => {
+    //     return this.props.showInfo.data.attributes.set2.map(song => {
+    //         return <div>{song}</div>
+    //     })
+    // }
 
-    parseEncore = () => {
-        return this.props.showInfo.data.attributes.set_encore.map(song => {
-            return <div>{song}</div>
-        })
-    }
+    // parseEncore = () => {
+    //     return this.props.showInfo.data.attributes.set_encore.map(song => {
+    //         return <div>{song}</div>
+    //     })
+    // }
 
     ifSetOne = () => {
         if(this.props.showInfo.data.attributes.set1.length > 0){
@@ -31,22 +34,22 @@ class ShowPage extends React.Component{
         this.parseSetOne()
     }
 
-    ifSetTwo = () => {
-        if(this.props.showInfo.data.attributes.set2.length){
-            return <div><stong>Set 2:</stong></div>
-        }
-    }
-    ifSetThree = () => {
-        if(this.props.showInfo.data.attributes.set3.length){
-            return <div><strong>Set 3:</strong></div>
-        }
-    }
+    // ifSetTwo = () => {
+    //     if(this.props.showInfo.data.attributes.set2.length){
+    //         return <div><stong>Set 2:</stong></div>
+    //     }
+    // }
+    // ifSetThree = () => {
+    //     if(this.props.showInfo.data.attributes.set3.length){
+    //         return <div><strong>Set 3:</strong></div>
+    //     }
+    // }
 
-    ifEncore = () => {
-        if(this.props.showInfo.data.attributes.set_encore.length){
-            return <div><strong>Encore:</strong></div>
-        }
-    }
+    // ifEncore = () => {
+    //     if(this.props.showInfo.data.attributes.set_encore.length){
+    //         return <div><strong>Encore:</strong></div>
+    //     }
+    // }
 
     displayInfo = () => {
         if(this.props.showInfo.data){
@@ -56,10 +59,10 @@ class ShowPage extends React.Component{
                   <div id="setlist">
                         {this.ifSetOne()}
                         {this.parseSetOne()}
-                        {this.ifSetTwo()}
+                        {/* {this.ifSetTwo()}
                         {this.parseSetTwo()}
                         {this.ifEncore()}
-                        {this.parseEncore()}
+                        {this.parseEncore()} */}
                     </div>
                 </div>
 
@@ -78,7 +81,7 @@ class ShowPage extends React.Component{
 
 
     render(){
-        debugger
+        // debugger
         return(
             <div>
                 <Header />
