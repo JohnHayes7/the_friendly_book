@@ -4,6 +4,14 @@ import ShowPage from '../components/ShowPage'
 
 class ShowPageContainer extends React.Component{
     
+    constructor(){
+        super()
+        this.state = {
+            results: {}
+        }
+    }
+   
+    
     sendShowsToDb = () => {
         fetch(`http://localhost:3001/shows`, {
             method: "post",
@@ -14,8 +22,9 @@ class ShowPageContainer extends React.Component{
         }).then(response => response.json())
         .then(showInfo => {
             console.log(showInfo)
-           return <ShowPage showInfo={showInfo} />
-           
+           this.setState({
+               results: showInfo
+           }) 
         })
     }
 
@@ -27,10 +36,10 @@ class ShowPageContainer extends React.Component{
 
 
     render(){
-        
+        let infoForShow = {}
         return(
             <div>
-                
+                <ShowPage showInfo={this.state.results} />
             </div>
         )
     }
