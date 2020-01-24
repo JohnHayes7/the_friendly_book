@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_08_162308) do
+ActiveRecord::Schema.define(version: 2020_01_24_011518) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -51,11 +51,14 @@ ActiveRecord::Schema.define(version: 2020_01_08_162308) do
   end
 
   create_table "shows", force: :cascade do |t|
-    t.text "setlist"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "show_date_id"
     t.integer "venue_id"
+    t.string "set1"
+    t.string "set2"
+    t.string "set3"
+    t.string "set_encore"
   end
 
   create_table "shows_songs", force: :cascade do |t|
