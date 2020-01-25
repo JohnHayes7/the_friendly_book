@@ -8,41 +8,43 @@ class ShowsController < ApplicationController
         month = ShowDate.get_month(search_date)
         show_date = ShowDate.find_by({month: month, day:day})
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
-        
-        
-        if show_date.show
-            render json: ShowSerializer.new(show_date.show,options)
-        else
-
-        end
        
-        # venue = Venue.find_by(name: params[:venue])
-       
-        # if show_date.show == nil
-        #     show = Show.new
-        #     show.show_date_id = show_date.id
-        #     show.add_set_one(params[:set1])
-        #     show.add_set_two(params[:set2])
-        #     show.add_set_three(params[:set3])
-        #     show.add_encore(params[:encore])
-        #     if venue
-        #         show.venue_id = venue.id    
-        #     end
-        #     show.save
+        venue = Venue.find(show_date.venue_id)
+        
+        if show_date.show == nil
+            show = Show.new
+            show.show_date_id = show_date.id
+            show.add_set_one(params[:set1])
+            show.add_set_two(params[:set2])
+            show.add_set_three(params[:set3])
+            show.add_encore(params[:encore])
+            show.venue_id = venue.id    
+            show.save
             
-        # else
-        #    show = Show.find(show_date.show.id)
-        # end
+        else
+           show = Show.find(show_date.show.id)
+        end
 
-       
-        # render json: ShowSerializer.new(show, options)
+        binding.pry
+        render json: ShowSerializer.new(show, options)
     end
 
 
     def show
-        s = Show.find(params[:id])
-        options = {include: [:fans, :memories, :show_date, :venue, :songs]}
-        render json: ShowSerializer.new(s, options)
+        if params[:id] == "undefined"
+            render json: { status: "error", code: 3000, message: "Can Not Find Show"}
+        else
+            s = Show.find(params[:id])
+            if s 
+                options = {include: [:fans, :memories, :show_date, :venue, :songs]}
+                render json: ShowSerializer.new(s, options)
+                
+            else
+                render json: { status: "error", code: 3000, message: "Can Not Find Show"}
+            end
+        end
+
+        
     end
 
     def edit

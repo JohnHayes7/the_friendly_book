@@ -12,7 +12,7 @@ class ShowPageContainer extends React.Component{
     }
    
     
-    sendShowsToDb = () => {
+    sendShowToDb = () => {
        fetch(`http://localhost:3001/shows`, {
             method: "post",
             headers: {
@@ -30,15 +30,30 @@ class ShowPageContainer extends React.Component{
         
     }
 
+    getShowFromDb = () => {
+        fetch(`http://localhost:3001/shows/${this.props.show.show.id}`).then(response => response.json())
+        .then(showInfo => {
+            if(showInfo.code === 3000){
+                this.sendShowToDb()
+            }else{
+                this.setState({
+                    results: showInfo
+                })
+            }
+            console.log(showInfo)
+        })
+    }
+
+
     componentDidMount(){
-        this.sendShowsToDb()
+        this.getShowFromDb()
+        // this.sendShowToDb()
     }
 
     
 
 
     render(){
-        
         return(
             <div>
                 <ShowPage showInfo={this.state.results} />
