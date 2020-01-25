@@ -30,8 +30,53 @@ class ShowPageContainer extends React.Component{
         
     }
 
+    searchDate = date => {
+        return date.split("-")[2] + '-' + date.split("-")[0] + '-' + date.split("-")[1]
+
+    }
+
+
+    fetchSongsfromRelisten = () => {
+        console.log(this.props)
+        fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
+            .then(showSets => {
+                let rxSets ={
+                    set1: [],
+                    set2: [],
+                    set3: [],
+                    encore: []
+                } 
+                let firstSet = showSets.sources[0].sets[0].tracks
+               
+                firstSet.map(songTitle => {
+                    rxSets.set1.push(songTitle.title)
+                })
+                
+                if(showSets.sources[0].sets[1]){
+                    showSets.sources[0].sets[1].tracks.map(song => {
+                        rxSets.set2.push(song.title)
+                    })
+                }
+                
+                if(showSets.sources[0].sets[2]){
+                    showSets.sources[0].sets[2].tracks.map(song => {
+                        rxSets.encore.push(song.title)
+                    })
+                }
+                debugger
+            })
+           
+    }
+
     getShowFromDb = () => {
-        fetch(`http://localhost:3001/shows/${this.props.show.show.id}`).then(response => response.json())
+        let search_id = ""
+        if (this.props.show.show){
+            search_id = this.props.show.show.id
+        }else{
+            search_id = this.props.show.id
+        }
+        // debugger
+        fetch(`http://localhost:3001/shows/${search_id}`).then(response => response.json())
         .then(showInfo => {
             if(showInfo.code === 3000){
                 this.sendShowToDb()
@@ -47,6 +92,7 @@ class ShowPageContainer extends React.Component{
 
     componentDidMount(){
         this.getShowFromDb()
+        this.fetchSongsfromRelisten()
         // this.sendShowToDb()
     }
 
@@ -56,7 +102,7 @@ class ShowPageContainer extends React.Component{
     render(){
         return(
             <div>
-                <ShowPage showInfo={this.state.results} />
+                <ShowPage showInfo={this.state.results} getSongs={this.fetchSongsfromRelisten} />
             </div>
         )
     }

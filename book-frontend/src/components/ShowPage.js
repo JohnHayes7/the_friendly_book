@@ -63,6 +63,13 @@ class ShowPage extends React.Component{
         }
     }
 
+    ifSets = () => {
+        if(this.props.showInfo.data.set1){
+            // PICKUP FROM HERE!
+            // this.props.getSongs
+        }
+    }
+
     displayInfo = () => {
         if(this.props.showInfo.data){
             return(

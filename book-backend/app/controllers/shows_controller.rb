@@ -24,8 +24,6 @@ class ShowsController < ApplicationController
         else
            show = Show.find(show_date.show.id)
         end
-
-        binding.pry
         render json: ShowSerializer.new(show, options)
     end
 

@@ -29,10 +29,12 @@ export default class YearPageContainer extends React.Component{
                 venue: "",
                 set1: [],
                 set2: [],
+                set3: [],
                 encore: []
             }
                fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${show.display_date}`).then(response => response.json())
                .then(showSets => {
+                   
                     let firstSet = showSets.sources[0].sets[0].tracks
                    
                     firstSet.map(songTitle => {
