@@ -36,16 +36,17 @@ class ShowPageContainer extends React.Component{
     }
 
 
-    fetchSongsfromRelisten = () => {
-        console.log(this.props)
+    fetchSongsfromRelisten = showInfo => {
+        let rxSets = {
+            set1: [],
+            set2: [],
+            set3: [],
+            encore: []
+        } 
+        
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
             .then(showSets => {
-                let rxSets ={
-                    set1: [],
-                    set2: [],
-                    set3: [],
-                    encore: []
-                } 
+                
                 let firstSet = showSets.sources[0].sets[0].tracks
                
                 firstSet.map(songTitle => {
@@ -63,9 +64,30 @@ class ShowPageContainer extends React.Component{
                         rxSets.encore.push(song.title)
                     })
                 }
-                debugger
-            })
-           
+                showInfo.data.attributes.set1 = rxSets.set1
+                showInfo.data.attributes.set2 = rxSets.set2
+                showInfo.data.attributes.set_encore = rxSets.encore
+
+                this.setState({
+                    results: showInfo
+                })
+
+                this.updateShowSetsInDb(this.state.results)
+                
+            })     
+    }
+
+    updateShowSetsInDb = show => {
+        fetch(`http://localhost:3001/shows/${show.data.id}/edit`,{
+            method: "patch",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(show)
+        }).then(response => response.json())
+        .then(updatedShow => {
+            console.log(updatedShow)
+        })
     }
 
     getShowFromDb = () => {
@@ -92,7 +114,7 @@ class ShowPageContainer extends React.Component{
 
     componentDidMount(){
         this.getShowFromDb()
-        this.fetchSongsfromRelisten()
+        // this.fetchSongsfromRelisten()
         // this.sendShowToDb()
     }
 

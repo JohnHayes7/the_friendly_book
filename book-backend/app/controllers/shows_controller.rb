@@ -46,6 +46,7 @@ class ShowsController < ApplicationController
     end
 
     def edit
+        binding.pry
 
     end
 

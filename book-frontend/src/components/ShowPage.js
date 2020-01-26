@@ -65,8 +65,16 @@ class ShowPage extends React.Component{
 
     ifSets = () => {
         if(this.props.showInfo.data.set1){
+            this.ifSetOne()
+            this.parseSetOne()
+            this.ifSetTwo()
+            this.parseSetTwo()
+            this.ifEncore()
+            this.parseEncore()            
+            
+        }else{
             // PICKUP FROM HERE!
-            // this.props.getSongs
+            this.props.getSongs(this.props.showInfo)
         }
     }
 
@@ -76,12 +84,7 @@ class ShowPage extends React.Component{
                 <div id="show-info">
                   {this.props.showInfo.included[1].attributes.name}
                   <div id="setlist">
-                        {this.ifSetOne()}
-                        {this.parseSetOne()}
-                        {this.ifSetTwo()}
-                        {this.parseSetTwo()}
-                        {this.ifEncore()}
-                        {this.parseEncore()}
+                        {this.ifSets()}
                     </div>
                 </div>
 
