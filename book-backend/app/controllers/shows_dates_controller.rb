@@ -58,8 +58,8 @@ class ShowsDatesController < ApplicationController
         show_dates = ShowDate.all
         options = {include: [:show, :year, :venue]}
         render json: ShowDateSerializer.new(show_dates, options)
-        
     end
+    
     
     def index
         sds = ShowDate.all 

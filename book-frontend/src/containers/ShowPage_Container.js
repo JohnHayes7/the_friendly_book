@@ -78,8 +78,8 @@ class ShowPageContainer extends React.Component{
     }
 
     updateShowSetsInDb = show => {
-        fetch(`http://localhost:3001/shows/${show.data.id}/edit`,{
-            method: "patch",
+        fetch(`http://localhost:3001/shows/${show.data.id}`,{
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },

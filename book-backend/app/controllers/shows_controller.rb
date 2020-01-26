@@ -45,8 +45,9 @@ class ShowsController < ApplicationController
         
     end
 
-    def edit
-        binding.pry
+    def update
+       show = Show.find(params[:data][:id])
+       binding.pry
 
     end
 
