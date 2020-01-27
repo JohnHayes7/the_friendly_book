@@ -2,30 +2,22 @@ class ShowsController < ApplicationController
 
 
     def create
-        
-        search_date = ShowDate.format_date_for_search(params[:match][:params][:date])
-        day = ShowDate.get_day(search_date)
-        month = ShowDate.get_month(search_date)
-        show_date = ShowDate.find_by({month: month, day:day})
+        day = ShowDate.get_day(params[:show][:date])
+        month = ShowDate.get_month(params[:show][:date])
+        show_date = ShowDate.find_or_create_by({month: month, day: day})
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
-       
-        venue = Venue.find(show_date.venue_id)
-        
-        if show_date.show == nil
-            show = Show.new
-            show.show_date_id = show_date.id
-            show.add_set_one(params[:set1])
-            show.add_set_two(params[:set2])
-            show.add_set_three(params[:set3])
-            show.add_encore(params[:encore])
-            show.venue_id = venue.id    
-            show.save
-            
-        else
-           show = Show.find(show_date.show.id)
+        venue = Venue.find_or_create_by(name: params[:show][:venue])
+        binding.pry
+        if !show_date.show
+            s = Show.new()
+            s.show_date_id = show_date.id
+            s.venue_id = venue.id
+            s.add_set_one(params[:show][:set1])
+            s.add_set_two(params[:show][:set2])
+            s.add_encore(params[:show][:encore])
+            s.save
         end
-        
-        render json: ShowSerializer.new(show, options)
+        binding.pry
     end
 
 
@@ -35,13 +27,17 @@ class ShowsController < ApplicationController
         show_date = ShowDate.find_by({month: month, day:day})
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
         # binding.pry
-        s = Show.find(show_date.show.id)
-       
-        if s 
-            render json: ShowSerializer.new(s, options)    
+        if show_date
+            if show_date.show
+                s = Show.find(show_date.show.id)
+                render json: ShowSerializer.new(s, options) 
+            else
+                render json: { status: "error", code: 3000, message: "Can Not Find Show"}
+            end
         else
-            render json: { status: "error", code: 3000, message: "Can Not Find Show"}
+            render json: {status: "error", code: 3030, message:"This seems to be ghost Data"}
         end
+
     end
 
     def update

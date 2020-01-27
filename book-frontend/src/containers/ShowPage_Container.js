@@ -14,7 +14,7 @@ class ShowPageContainer extends React.Component{
    
     
     addShowToDb = () => {
-        
+        debugger
        fetch(`http://localhost:3001/shows`, {
             method: "post",
             headers: {
@@ -39,45 +39,33 @@ class ShowPageContainer extends React.Component{
     }
 
 
-    fetchSongsfromRelisten = showInfo => {
-        let rxSets = {
-            set1: [],
-            set2: [],
-            set3: [],
-            encore: []
-        } 
+    fetchShowfromRelisten = () => {
         
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
             .then(showSets => {
-                
+                this.props.show.show.date = showSets.display_date
+                this.props.show.show.location = showSets.venue.location
+                this.props.show.show.venue = showSets.venue.name
+
                 let firstSet = showSets.sources[0].sets[0].tracks
                
                 firstSet.map(songTitle => {
-                    rxSets.set1.push(songTitle.title)
+                    this.props.show.show.set1.push(songTitle.title)
                 })
                 
                 if(showSets.sources[0].sets[1]){
                     showSets.sources[0].sets[1].tracks.map(song => {
-                        rxSets.set2.push(song.title)
+                        this.props.show.show.set2.push(song.title)
                     })
                 }
                 
                 if(showSets.sources[0].sets[2]){
                     showSets.sources[0].sets[2].tracks.map(song => {
-                        rxSets.encore.push(song.title)
+                        this.props.encore.push(song.title)
                     })
                 }
-                showInfo.data.attributes.set1 = rxSets.set1
-                showInfo.data.attributes.set2 = rxSets.set2
-                showInfo.data.attributes.set_encore = rxSets.encore
 
-                this.setState({
-                    loadedShow: true,
-                    results: showInfo
-                })
-
-                // this.updateShowSetsInDb(this.state.results)
-                
+                this.addShowToDb()
             })     
     }
 
@@ -97,13 +85,15 @@ class ShowPageContainer extends React.Component{
     // }
 
     getShowFromDb = () => {
-        
+        debugger
         fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
         .then(showInfo => {
             
             if(showInfo.code === 3000){
-                this.sendShowToDb()
+                debugger
+                this.fetchShowfromRelisten()
             }else{
+                console.log(showInfo)
                 this.setState({
                     loadedShow: true,
                     results: showInfo

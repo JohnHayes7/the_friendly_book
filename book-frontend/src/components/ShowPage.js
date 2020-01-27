@@ -40,6 +40,7 @@ class ShowPage extends React.Component{
     }
 
     setOne = () => {
+        debugger
         if(this.props.showInfo.data.attributes.set1.length > 0){
             return <div><strong>Set 1:</strong></div>
         }
