@@ -2,11 +2,32 @@ class ShowsController < ApplicationController
 
 
     def create
+        year_value = Year.get_year(params[:show][:date])
+        year = Year.find_or_create_by(value: year_value)
         day = ShowDate.get_day(params[:show][:date])
         month = ShowDate.get_month(params[:show][:date])
         show_date = ShowDate.find_or_create_by({month: month, day: day})
-        options = {include: [:fans, :memories, :show_date, :venue, :songs]}
+        show_date.year_id = year.id
+
+        state_initials = State.get_state_from_location(params[:show][:location])
+        state = State.find_or_create_by(initials: state_initials)
+
+        city_name = City.get_city_from_location(params[:show][:location])
+        city = City.find_or_create_by(name: city_name)
+        city.state_id = state.id 
+        city.save
+
         venue = Venue.find_or_create_by(name: params[:show][:venue])
+        venue.city_id = city.id
+        venue.state_id = state.id
+        venue.save
+
+        show_date.venue_id = venue.id
+        show_date.save
+
+
+        options = {include: [:fans, :memories, :show_date, :venue, :songs]}
+        
         binding.pry
         if !show_date.show
             s = Show.new()
@@ -17,7 +38,7 @@ class ShowsController < ApplicationController
             s.add_encore(params[:show][:encore])
             s.save
         end
-        binding.pry
+        render json: ShowSerializer.new(s, options)
     end
 
 
@@ -26,7 +47,7 @@ class ShowsController < ApplicationController
         month = ShowDate.get_month(params[:id])
         show_date = ShowDate.find_by({month: month, day:day})
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
-        # binding.pry
+        
         if show_date
             if show_date.show
                 s = Show.find(show_date.show.id)
@@ -35,7 +56,7 @@ class ShowsController < ApplicationController
                 render json: { status: "error", code: 3000, message: "Can Not Find Show"}
             end
         else
-            render json: {status: "error", code: 3030, message:"This seems to be ghost Data"}
+            render json: { status: "error", code: 3000, message: "Can Not Find Show"}
         end
 
     end

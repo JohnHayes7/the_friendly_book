@@ -69,28 +69,14 @@ class ShowPageContainer extends React.Component{
             })     
     }
 
-    // updateShowSetsInDb = show => {
-    //     fetch(`http://localhost:3001/shows/${show.data.id}`,{
-    //         method: "PATCH",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(show)
-    //     }).then(response => response.json())
-    //     .then(updatedShow => {
-    //         this.setState({
-    //             results: updatedShow
-    //         })
-    //     })
-    // }
 
     getShowFromDb = () => {
-        debugger
+        
         fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
         .then(showInfo => {
             
             if(showInfo.code === 3000){
-                debugger
+                console.log(showInfo)
                 this.fetchShowfromRelisten()
             }else{
                 console.log(showInfo)
