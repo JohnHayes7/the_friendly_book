@@ -32,11 +32,14 @@ class ShowPage extends React.Component{
     // }
 
     parseEncore = () => {
-        return this.props.showInfo.data.attributes.set_encore.split(", ").map(song => {
-            if(song !== ""){
-                return <div>{song}</div>
-            }   
-        })
+        if(this.props.showInfo.data.attributes.set_encore){
+            return this.props.showInfo.data.attributes.set_encore.split(", ").map(song => {
+                if(song !== ""){
+                    return <div>{song}</div>
+                }   
+            })
+        }
+        
     }
 
     setOne = () => {
