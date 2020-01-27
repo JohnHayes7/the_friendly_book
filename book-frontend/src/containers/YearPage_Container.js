@@ -20,9 +20,6 @@ export default class YearPageContainer extends React.Component{
             let yearShowsAry = []
             
            shows.shows.map(show => {
-            let setOne = []
-            let setTwo = []
-            let encore = []
             const newShow = {
                 date: "",
                 location: "",

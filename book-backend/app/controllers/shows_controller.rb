@@ -46,9 +46,23 @@ class ShowsController < ApplicationController
     end
 
     def update
-       show = Show.find(params[:data][:id])
-       binding.pry
+        show = Show.find(params[:data][:id])
+        show.add_set_one(params[:data][:attributes][:set1])
 
+        if params[:data][:attributes][:set2]
+            show.add_set_two(params[:data][:attributes][:set2])
+        end
+        if params[:data][:attributes][:set3]
+            show.add_set_three(params[:data][:attributes][:set3])
+        end
+        if params[:data][:attributes][:set_encore]
+            show.add_encore(params[:data][:attributes][:set_encore])
+        end
+        
+        show.save
+       
+        options = {include: [:fans, :memories, :show_date, :venue, :songs]}
+        render json: ShowSerializer.new(show, options)
     end
 
     def delete

@@ -86,7 +86,9 @@ class ShowPageContainer extends React.Component{
             body: JSON.stringify(show)
         }).then(response => response.json())
         .then(updatedShow => {
-            console.log(updatedShow)
+            this.setState({
+                results: updatedShow
+            })
         })
     }
 
@@ -100,6 +102,7 @@ class ShowPageContainer extends React.Component{
         // debugger
         fetch(`http://localhost:3001/shows/${search_id}`).then(response => response.json())
         .then(showInfo => {
+            debugger
             if(showInfo.code === 3000){
                 this.sendShowToDb()
             }else{
@@ -107,7 +110,7 @@ class ShowPageContainer extends React.Component{
                     results: showInfo
                 })
             }
-            console.log(showInfo)
+
         })
     }
 

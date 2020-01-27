@@ -10,17 +10,18 @@ class ShowsDatesController < ApplicationController
             show_year = ShowDate.get_year(s[:date])
 
             # FIND YEAR
-            year = Year.find_by(value: show_year)
+            year = Year.find_or_create_by(value: show_year)
 
             # IF DATE DOESN'T EXIST IN DB, ADD IT.
-            show = ShowDate.find_by({month: month, day:day})
-            
-            if !show || show.year_id != year.id
-                show = ShowDate.new({month: month, day: day})
-                show.year_id= year.id
-                show.venue_id = 2
-                show.save
-            end
+            show_date = ShowDate.find_or_create_by({month: month, day:day})
+            show_date.year_id = year.id
+
+            # if !show || show.year_id != year.id
+            #     show = ShowDate.new({month: month, day: day})
+            #     show.year_id= year.id
+            #     show.venue_id = 2
+            #     show.save
+            # end
 
             # PARSE STATE
             state_location = State.get_state_from_location(s[:location])
@@ -28,32 +29,37 @@ class ShowsDatesController < ApplicationController
             city_location= City.get_city_from_location(s[:location])
 
             # FIND STATE
-            state = State.find_by(initials: state_location)
-            # IF STATE NOT FOUND ADD IT TO THE DB
-            if !state
-                state = State.create(initials: state_location)
-            end
+            state = State.find_or_create_by(initials: state_location)
+            # # IF STATE NOT FOUND ADD IT TO THE DB
+            # if !state
+            #     state = State.create(initials: state_location)
+            # end
 
             # FIND CITY
-            city = City.find_by(name: city_location)
+            city = City.find_or_create_by(name: city_location)
+            city.state_id = state.id 
+            city.save
             # IF CITY NOT FOUND ADD IT TO THE DB
-            if !city
-                city = City.new(name: city_location)
-                city.state_id = state.id
-                city.save
-            end
+            # if !city
+            #     city = City.new(name: city_location)
+            #     city.state_id = state.id
+            #     city.save
+            # end
             
             #  FIND VENUE
-            venue_record = Venue.find_by(name: s[:venue])
-            if !venue_record
-                venue = Venue.new(name: s[:venue])
-                venue.city_id = city.id
-                venue.state_id = state.id
-                venue.save
-            end
-
-
-            
+            venue = Venue.find_or_create_by(name: s[:venue])
+            venue.city_id = city.id
+            venue.state_id = state.id
+            venue.save
+            show_date.venue_id = venue.id
+            show_date.save
+            binding.pry
+            # if !venue_record
+            #     venue = Venue.new(name: s[:venue])
+            #     venue.city_id = city.id
+            #     venue.state_id = state.id
+            #     venue.save
+            # end
         end
         show_dates = ShowDate.all
         options = {include: [:show, :year, :venue]}
