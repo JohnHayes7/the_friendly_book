@@ -14,7 +14,7 @@ class ShowPageContainer extends React.Component{
    
     
     addShowToDb = () => {
-        debugger
+        
        fetch(`http://localhost:3001/shows`, {
             method: "post",
             headers: {
@@ -97,10 +97,10 @@ class ShowPageContainer extends React.Component{
     // }
 
     getShowFromDb = () => {
-        debugger
+        
         fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
         .then(showInfo => {
-            debugger
+            
             if(showInfo.code === 3000){
                 this.sendShowToDb()
             }else{

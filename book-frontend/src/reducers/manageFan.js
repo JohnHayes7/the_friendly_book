@@ -33,7 +33,7 @@ export default function manageFan(state={
                set2: action.show.set2,
                encore: action.show.encore
            }
-           debugger
+           
 
         return Object.assign({}, state.show, show) 
            

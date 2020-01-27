@@ -10,7 +10,7 @@ class ShowsController < ApplicationController
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
        
         venue = Venue.find(show_date.venue_id)
-        binding.pry
+        
         if show_date.show == nil
             show = Show.new
             show.show_date_id = show_date.id
@@ -24,7 +24,7 @@ class ShowsController < ApplicationController
         else
            show = Show.find(show_date.show.id)
         end
-        binding.pry
+        
         render json: ShowSerializer.new(show, options)
     end
 
@@ -36,7 +36,7 @@ class ShowsController < ApplicationController
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
         # binding.pry
         s = Show.find(show_date.show.id)
-        binding.pry
+       
         if s 
             render json: ShowSerializer.new(s, options)    
         else

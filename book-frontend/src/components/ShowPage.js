@@ -23,13 +23,13 @@ class ShowPage extends React.Component{
         })
     }
    
-    parseSetThree = () => {
-        return this.props.showInfo.data.attributes.set3.split(", ").map(song => {
-            if(song !== ""){
-                return <div>{song}</div>
-            }   
-        })
-    }
+    // parseSetThree = () => {
+    //     return this.props.showInfo.data.attributes.set3.split(", ").map(song => {
+    //         if(song !== ""){
+    //             return <div>{song}</div>
+    //         }   
+    //     })
+    // }
 
     parseEncore = () => {
         return this.props.showInfo.data.attributes.set_encore.split(", ").map(song => {
@@ -39,42 +39,26 @@ class ShowPage extends React.Component{
         })
     }
 
-    ifSetOne = () => {
+    setOne = () => {
         if(this.props.showInfo.data.attributes.set1.length > 0){
             return <div><strong>Set 1:</strong></div>
         }
-        this.parseSetOne()
     }
 
     ifSetTwo = () => {
-        if(this.props.showInfo.data.attributes.set2.length){
-            return <div><strong>Set 2:</strong></div>
+        if(this.props.showInfo.data.attributes.set2){
+            return  <div><strong>Set 2:</strong></div>
         }
     }
-    ifSetThree = () => {
-        if(this.props.showInfo.data.attributes.set3.length){
-            return <div><strong>Set 3:</strong></div>
-        }
-    }
+    // ifSetThree = () => {
+    //     if(this.props.showInfo.data.attributes.set3){
+    //         return <div><strong>Set 3:</strong></div>
+    //     }
+    // }
 
     ifEncore = () => {
-        if(this.props.showInfo.data.attributes.set_encore.length){
+        if(this.props.showInfo.data.attributes.set_encore){
             return <div><strong>Encore:</strong></div>
-        }
-    }
-
-    ifSets = () => {
-        if(this.props.showInfo.data.set1){
-            this.ifSetOne()
-            this.parseSetOne()
-            this.ifSetTwo()
-            this.parseSetTwo()
-            this.ifEncore()
-            this.parseEncore()            
-            
-        }else{
-            // PICKUP FROM HERE!
-            this.props.getSongs(this.props.showInfo)
         }
     }
 
@@ -84,7 +68,14 @@ class ShowPage extends React.Component{
                 <div id="show-info">
                   {this.props.showInfo.included[1].attributes.name}
                   <div id="setlist">
-                        {this.ifSets()}
+                        {this.setOne()}
+                        {this.parseSetOne()}
+                        {this.ifSetTwo()}
+                        {this.parseSetTwo()}
+                        {/* {this.ifSetThree()}
+                        {this.parseSetThree()} */}
+                        {this.ifEncore()}
+                        {this.parseEncore()} 
                     </div>
                 </div>
 
@@ -92,13 +83,14 @@ class ShowPage extends React.Component{
                 
                 
             )
-        }
-       
-        
-                    
+        }             
     }
 
-
+    // componentDidMount(){
+    //     if(!this.setOne()){
+    //         this.props.getSongs()
+    //     }
+    // }
     
 
 
