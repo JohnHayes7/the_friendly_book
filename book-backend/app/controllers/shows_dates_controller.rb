@@ -53,7 +53,6 @@ class ShowsDatesController < ApplicationController
             venue.save
             show_date.venue_id = venue.id
             show_date.save
-            binding.pry
             # if !venue_record
             #     venue = Venue.new(name: s[:venue])
             #     venue.city_id = city.id

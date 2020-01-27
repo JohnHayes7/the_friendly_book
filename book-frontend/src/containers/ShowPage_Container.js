@@ -7,24 +7,27 @@ class ShowPageContainer extends React.Component{
     constructor(){
         super()
         this.state = {
+            loadedShow: false,
             results: {}
         }
     }
    
     
-    sendShowToDb = () => {
+    addShowToDb = () => {
+        debugger
        fetch(`http://localhost:3001/shows`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(this.props)
+            body: JSON.stringify(this.props.show)
         }).then(response => response.json())
         .then(showInfo => {
             
             console.log(showInfo)
             this.setState({
-               results: showInfo
+                loadedShow: true,
+                results: showInfo
            }) 
         })
         
@@ -69,54 +72,52 @@ class ShowPageContainer extends React.Component{
                 showInfo.data.attributes.set_encore = rxSets.encore
 
                 this.setState({
+                    loadedShow: true,
                     results: showInfo
                 })
 
-                this.updateShowSetsInDb(this.state.results)
+                // this.updateShowSetsInDb(this.state.results)
                 
             })     
     }
 
-    updateShowSetsInDb = show => {
-        fetch(`http://localhost:3001/shows/${show.data.id}`,{
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(show)
-        }).then(response => response.json())
-        .then(updatedShow => {
-            this.setState({
-                results: updatedShow
-            })
-        })
-    }
+    // updateShowSetsInDb = show => {
+    //     fetch(`http://localhost:3001/shows/${show.data.id}`,{
+    //         method: "PATCH",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(show)
+    //     }).then(response => response.json())
+    //     .then(updatedShow => {
+    //         this.setState({
+    //             results: updatedShow
+    //         })
+    //     })
+    // }
 
     getShowFromDb = () => {
-        let search_id = ""
-        if (this.props.show.show){
-            search_id = this.props.show.show.id
-        }else{
-            search_id = this.props.show.id
-        }
-        // debugger
-        fetch(`http://localhost:3001/shows/${search_id}`).then(response => response.json())
+        debugger
+        fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
         .then(showInfo => {
             debugger
             if(showInfo.code === 3000){
                 this.sendShowToDb()
             }else{
                 this.setState({
+                    loadedShow: true,
                     results: showInfo
                 })
             }
-
         })
     }
 
 
     componentDidMount(){
-        this.getShowFromDb()
+        if(!this.state.loadedShow){
+            this.getShowFromDb()
+        }
+       
         // this.fetchSongsfromRelisten()
         // this.sendShowToDb()
     }
@@ -134,7 +135,6 @@ class ShowPageContainer extends React.Component{
 }
 
 const mapStateToProps = state => {
-    
     return {
         show: state
     }

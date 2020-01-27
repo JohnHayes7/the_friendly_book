@@ -10,7 +10,7 @@ class ShowsController < ApplicationController
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
        
         venue = Venue.find(show_date.venue_id)
-        
+        binding.pry
         if show_date.show == nil
             show = Show.new
             show.show_date_id = show_date.id
@@ -24,25 +24,24 @@ class ShowsController < ApplicationController
         else
            show = Show.find(show_date.show.id)
         end
+        binding.pry
         render json: ShowSerializer.new(show, options)
     end
 
 
     def show
-        if params[:id] == "undefined"
-            render json: { status: "error", code: 3000, message: "Can Not Find Show"}
+        day = ShowDate.get_day(params[:id])
+        month = ShowDate.get_month(params[:id])
+        show_date = ShowDate.find_by({month: month, day:day})
+        options = {include: [:fans, :memories, :show_date, :venue, :songs]}
+        # binding.pry
+        s = Show.find(show_date.show.id)
+        binding.pry
+        if s 
+            render json: ShowSerializer.new(s, options)    
         else
-            s = Show.find(params[:id])
-            if s 
-                options = {include: [:fans, :memories, :show_date, :venue, :songs]}
-                render json: ShowSerializer.new(s, options)
-                
-            else
-                render json: { status: "error", code: 3000, message: "Can Not Find Show"}
-            end
+            render json: { status: "error", code: 3000, message: "Can Not Find Show"}
         end
-
-        
     end
 
     def update
