@@ -1,7 +1,8 @@
 #show-info{
     text-align: center;
-    width: 74.4%;
+    width: 73%;
     border: 1px solid grey;
+    margin-left: 5px;
 }
 
 #setlist{
@@ -14,10 +15,12 @@
 .set{
     width: 20%;
     border: 1px solid grey;
+    padding: 1%
 }
 
 #second-line{
     display: flex;
+    width: 102.6%;
 }
 
 .show-name-date{

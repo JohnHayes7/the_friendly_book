@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Header from './Header'
 import LogInContainer from '../containers/Log_In_Container'
 import LandingYearsContainer from '../containers/LandingYears_Container'
+import Set from './Set'
 
 class ShowPage extends React.Component{
 
@@ -75,21 +76,14 @@ class ShowPage extends React.Component{
                   <strong className="show-name-date">{this.props.showInfo.included[1].attributes.name}</strong><br></br>
                   <strong className="show-name-date">{this.props.showInfo.included[0].attributes.month}-{this.props.showInfo.included[0].attributes.day}</strong>
                   <div id="setlist">
-                      <div className="set"> 
-                        {this.setOne()}
-                        {this.parseSetOne()}
-                      </div>
-                      <div className="set">
-                        {this.ifSetTwo()}
-                        {this.parseSetTwo()}
-                      </div>
+                     
+                        <Set set={this.setOne} parseSet={this.parseSetOne} />
+                        <Set set={this.ifSetTwo} parseSet={this.parseSetTwo} />
+                        <Set set={this.ifEncore} parseSet={this.parseEncore} />
+                     
                       <div>
                         {/* {this.ifSetThree()}
                         {this.parseSetThree()} */}                          
-                      </div>
-                      <div className="set">
-                        {this.ifEncore()}
-                        {this.parseEncore()} 
                       </div>
                     </div>
                 </div>
