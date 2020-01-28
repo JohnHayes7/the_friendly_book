@@ -69,18 +69,32 @@ class ShowPage extends React.Component{
 
     displayInfo = () => {
         if(this.props.showInfo.data){
+            
             return(
                 <div id="show-info">
-                  {this.props.showInfo.included[1].attributes.name}
+                  {this.props.showInfo.included[1].attributes.name}<br></br>
+                  {this.props.showInfo.included[0].attributes.month}-{this.props.showInfo.included[0].attributes.day}
                   <div id="setlist">
+                      <div className="set"> 
                         {this.setOne()}
                         {this.parseSetOne()}
+                      </div>
+                      <div className="set">
                         {this.ifSetTwo()}
                         {this.parseSetTwo()}
+                      </div>
+                      <div>
                         {/* {this.ifSetThree()}
-                        {this.parseSetThree()} */}
+                        {this.parseSetThree()} */}                          
+                      </div>
+                      <div className="set">
                         {this.ifEncore()}
                         {this.parseEncore()} 
+                      </div>
+                        
+                        
+                       
+                        
                     </div>
                 </div>
 

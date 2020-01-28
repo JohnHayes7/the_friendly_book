@@ -1,6 +1,5 @@
 import React from 'react'
 import './ticket.css'
-import ShowPage from "./ShowPage"
 
 const Ticket = props => {
     return(

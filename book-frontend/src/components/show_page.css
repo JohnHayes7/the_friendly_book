@@ -1,9 +1,17 @@
 #show-info{
-    width: 10%;
+    text-align: center;
+    width: 74.4%;
     border: 1px solid grey;
 }
 
 #setlist{
+    
     width: 100%;
+    border: 1px solid grey;
+    display: flex;
+}
+
+.set{
+    width: 20%;
     border: 1px solid grey;
 }
