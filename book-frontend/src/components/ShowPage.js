@@ -2,7 +2,8 @@ import React from 'react'
 import './show_page.css'
 import { connect } from 'react-redux'
 import Header from './Header'
-import Login from './Login'
+import LogInContainer from '../containers/Log_In_Container'
+
 
 class ShowPage extends React.Component{
 
@@ -90,20 +91,14 @@ class ShowPage extends React.Component{
         }             
     }
 
-    // componentDidMount(){
-    //     if(!this.setOne()){
-    //         this.props.getSongs()
-    //     }
-    // }
-    
-
-
     render(){
         // debugger
         return(
             <div>
-                <Header />
-                {/* <Login /> */}
+                <div id="landing-wrapper">
+                    <Header />
+                    <LogInContainer />
+                </div>
                 {this.displayInfo()}
             </div>
         )

@@ -14,9 +14,10 @@ export default class Login extends React.Component{
                     <input type="text" value={this.props.formData.username} onChange={event => this.props.handleUsernameInput(event)}/><br></br>
                     <label>Password:</label>
                     <input type={this.props.formData.hidden ? "password" : "text"} value={this.props.formData.password} onChange={event => this.props.handlePasswordInput(event)}/><br></br>
-                    <input type="submit"/>
+                    <input type="submit"/><br></br>
+                    <Link to="/signup">Create A Profile</Link>
                 </form><br></br>
-               <Link to="/signup">Create A Profile</Link>
+               
             </div>
         )
     }
