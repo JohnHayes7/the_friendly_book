@@ -11,9 +11,13 @@ class FansController < ApplicationController
     end
 
     def show
-        f = Fan.find(params[:id])
-        options = {include: [:shows, :memories]}
-        render json: FanSerializer.new(f, options)
+        f = Fan.find_by(username: params[:id])
+        if f
+            options = {include: [:shows, :memories]}
+            render json: FanSerializer.new(f, options)
+        else
+            render json: { status: "error", code: 4000, message: "Can Not Find Fan. Please try again or create an account"}
+        end
     end
 
     def edit

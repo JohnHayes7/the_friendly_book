@@ -68,8 +68,10 @@ class ShowsController < ApplicationController
             s.add_set_one(params[:show][:set1])
             s.add_set_two(params[:show][:set2])
             s.add_encore(params[:show][:encore])
+            
             s.save
         end
+        
         render json: ShowSerializer.new(s, options)
     end
 

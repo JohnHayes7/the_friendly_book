@@ -1,9 +1,12 @@
 import React from 'react';
+import LandingYearsContainer from '../containers/LandingYears_Container';
 
-const Fan = () => {
-    
+const Fan = props => {
     return (
-        <div>Fan Home Page</div>
+        <div>
+            <h2>{props.fanData}</h2>
+            <LandingYearsContainer />
+        </div>
     )
 }
 
