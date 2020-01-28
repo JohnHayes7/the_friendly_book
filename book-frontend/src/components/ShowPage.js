@@ -3,7 +3,7 @@ import './show_page.css'
 import { connect } from 'react-redux'
 import Header from './Header'
 import LogInContainer from '../containers/Log_In_Container'
-
+import LandingYearsContainer from '../containers/LandingYears_Container'
 
 class ShowPage extends React.Component{
 
@@ -72,8 +72,8 @@ class ShowPage extends React.Component{
             
             return(
                 <div id="show-info">
-                  {this.props.showInfo.included[1].attributes.name}<br></br>
-                  {this.props.showInfo.included[0].attributes.month}-{this.props.showInfo.included[0].attributes.day}
+                  <strong className="show-name-date">{this.props.showInfo.included[1].attributes.name}</strong><br></br>
+                  <strong className="show-name-date">{this.props.showInfo.included[0].attributes.month}-{this.props.showInfo.included[0].attributes.day}</strong>
                   <div id="setlist">
                       <div className="set"> 
                         {this.setOne()}
@@ -91,10 +91,6 @@ class ShowPage extends React.Component{
                         {this.ifEncore()}
                         {this.parseEncore()} 
                       </div>
-                        
-                        
-                       
-                        
                     </div>
                 </div>
 
@@ -113,7 +109,11 @@ class ShowPage extends React.Component{
                     <Header />
                     <LogInContainer />
                 </div>
-                {this.displayInfo()}
+                <div id="second-line">
+                    {this.displayInfo()}
+                    <LandingYearsContainer />
+                </div>
+                
             </div>
         )
     }
