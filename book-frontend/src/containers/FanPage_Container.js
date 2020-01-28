@@ -3,26 +3,13 @@ import FanPage from '../components/FanPage'
 import { connect } from 'react-redux'
 
 class FanPageContainer extends React.Component{
-    
-    displayFan = () => {
-        if (this.props.fan.username){
-            return this.props.fan
-        }else{
-            this.getFanFromDb()
-        }
-    }
 
     getFanFromDb = () => {
         fetch(`http://localhost:3001/fans/${this.props.match.params.username}`).then(response => response.json())
             .then(fan => {
                 console.log(fan)
                 console.log(this.props)
-                
-                this.props.fan.username = fan.data.attributes.username
-                this.props.fan.email = fan.data.attributes.email
-                // this.props.fan.shows = []
-                // this.props.fan.memories = []
-                // return this.props.fan
+                this.props.login(fan)
             })
     }
 
@@ -33,20 +20,23 @@ class FanPageContainer extends React.Component{
     }
 
     render(){
-        debugger
         return(
             <div>
-                <FanPage fanData={this.props.fan}/>
+                <FanPage username={this.props.fan.username}/>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    
+const mapStateToProps = state => {   
     return {
         fan: state
     }
 }
 
-export default connect(mapStateToProps)(FanPageContainer)
+const mapDispatchToProps = dispatch => ({
+    login: RxData => dispatch({type: "LOGIN_FAN", fan: RxData})
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(FanPageContainer)

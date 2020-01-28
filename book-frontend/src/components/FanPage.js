@@ -4,7 +4,7 @@ import LandingYearsContainer from '../containers/LandingYears_Container';
 const Fan = props => {
     return (
         <div>
-            <h2>{props.fanData}</h2>
+            <h2>{props.username}</h2>
             <LandingYearsContainer />
         </div>
     )

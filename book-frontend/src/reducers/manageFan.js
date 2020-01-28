@@ -22,6 +22,7 @@ export default function manageFan(state={
             email: action.fan.data.attributes.email,
             loggedIn: true
            }  
+           
         return Object.assign({}, state, fan)
 
         case 'ADD_SHOW':
