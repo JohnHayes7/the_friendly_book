@@ -2,7 +2,8 @@ class SessionsController < ApplicationController
 
     def create
         fan = Fan.find_by(username: params[:username])
-        if fan
+        binding.pry
+        if fan && fan.authenticate(params[:session][:password])
             options = {include: [:shows, :memories]}
             session[:user_id] = fan.id
             render json: FanSerializer.new(fan,options)

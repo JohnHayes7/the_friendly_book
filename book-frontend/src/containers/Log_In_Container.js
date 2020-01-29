@@ -39,6 +39,7 @@ class LogInController extends React.Component{
             body: JSON.stringify(this.state)
         }).then(response => response.json())
         .then(fanInfo => {
+            debugger
             this.props.login(fanInfo)
         })
     }
