@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
         if @user && @user.authenticate(params[:session][:password])
             session[:init] = true
             session[:user_id] = @user.id
-            binding.pry
             options = {include: [:shows, :memories]}
             render json: FanSerializer.new(@user,options)
         else
