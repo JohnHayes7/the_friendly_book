@@ -40,7 +40,11 @@ class LogInController extends React.Component{
         }).then(response => response.json())
         .then(fanInfo => {
             debugger
-            this.props.login(fanInfo)
+            if(fanInfo.error){
+                alert(fanInfo.error)
+            }else{
+                this.props.login(fanInfo)
+            }   
         })
     }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_24_011518) do
+ActiveRecord::Schema.define(version: 2020_01_29_182912) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2020_01_24_011518) do
     t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "auth_token"
+    t.index ["auth_token"], name: "index_fans_on_auth_token", unique: true
   end
 
   create_table "fans_shows", id: false, force: :cascade do |t|

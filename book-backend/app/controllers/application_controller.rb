@@ -1,10 +1,12 @@
-class ApplicationController < ActionController::API
-    # skip_before_action :verify_authenticity_token
-#  helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
+class ApplicationController < ActionController::Base
+    protect_from_forgery with: :exception
+    skip_before_action :verify_authenticity_token
+    
     def login!
         session[:user_id] = @user.id
     end
     def logged_in?
+        binding.pry
         !!session[:user_id]
     end
     def current_user

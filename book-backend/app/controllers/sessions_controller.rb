@@ -1,9 +1,13 @@
 class SessionsController < ApplicationController
+    # helper_method :login!
 
     def create
+      binding.pry
         @user = Fan.find_by(username: params[:username])
         if @user && @user.authenticate(params[:session][:password])
-            login!
+            session[:init] = true
+            session[:user_id] = @user.id
+            binding.pry
             options = {include: [:shows, :memories]}
             render json: FanSerializer.new(@user,options)
         else
