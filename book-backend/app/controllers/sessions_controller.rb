@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
         if @user && @user.authenticate(params[:session][:password])
             login!
             options = {include: [:shows, :memories]}
-            render json: FanSerializer.new(fan,options)
+            render json: FanSerializer.new(@user,options)
         else
             message = {error: "Can not find user, please reenter your username"}
             render json: message
@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
     end
 
     def is_logged_in?
+      binding.pry
         if logged_in? && current_user
           render json: {
             logged_in: true,
