@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :states, only: [:index, :show]
 
-  resources :fans, only: [:create, :show, :edit, :destroy]
+  resources :fans, only: [:create, :show, :edit, :destroy]  
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
