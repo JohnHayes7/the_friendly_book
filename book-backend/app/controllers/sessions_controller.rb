@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
         if @user && @user.authenticate(params[:session][:password])
            
             session[:user_id] = @user.id
-            binding.pry
             options = {include: [:shows, :memories]}
 
             render json: FanSerializer.new(@user,options)
@@ -18,20 +17,20 @@ class SessionsController < ApplicationController
         end
     end
 
-    def is_logged_in?
+    # def is_logged_in?
       
-        if logged_in? && current_user
-          render json: {
-            logged_in: true,
-            user: current_user
-          }
-        else
-          render json: {
-            logged_in: false,
-            message: 'no such user'
-          }
-        end
-    end
+    #     if logged_in? && current_user
+    #       render json: {
+    #         logged_in: true,
+    #         user: current_user
+    #       }
+    #     else
+    #       render json: {
+    #         logged_in: false,
+    #         message: 'no such user'
+    #       }
+    #     end
+    # end
 
     def destroy
         logout!

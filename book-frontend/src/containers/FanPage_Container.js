@@ -2,12 +2,12 @@ import React from 'react'
 import FanPage from '../components/FanPage'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router-dom'
 
 class FanPageContainer extends React.Component{
 
     getFanFromDb = () => {
-        fetch(`http://localhost:3001/fans/${this.props.match.params.username}`).then(response => response.json())
+        fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
             .then(fan => {
                 console.log(fan)
                 console.log(this.props)
@@ -41,12 +41,13 @@ class FanPageContainer extends React.Component{
 
 
     render(){
-        // if(!!localStorage){
-        //    return <Redirect to={"/"} />
-        // }
+        
+        if(!localStorage.logged_in){
+           return <Redirect to={"/"} />
+        }
         return(
             <div>
-                <FanPage username={this.props.fan.username} />
+                <FanPage fanProp={this.props.fan} getFan={this.getFanFromDb}/>
             </div>
         )
     }

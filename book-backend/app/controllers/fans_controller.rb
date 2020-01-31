@@ -11,7 +11,8 @@ class FansController < ApplicationController
     end
 
     def show
-        f = Fan.find_by(username: params[:id])
+        f = Fan.find(params[:id])
+        binding.pry
         if f
             options = {include: [:shows, :memories]}
             render json: FanSerializer.new(f, options)
