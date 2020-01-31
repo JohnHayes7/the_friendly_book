@@ -42,6 +42,8 @@ class LogInController extends React.Component{
             if(fanInfo.error){
                 alert(fanInfo.error)
             }else{
+                localStorage.setItem("logged_in", 'true')
+                localStorage.setItem("user_id", fanInfo.data.id)
                 this.props.login(fanInfo)
             }   
         })

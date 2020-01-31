@@ -2,6 +2,7 @@ import React from 'react'
 import FanPage from '../components/FanPage'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import { Redirect } from 'react-router'
 
 class FanPageContainer extends React.Component{
 
@@ -14,29 +15,38 @@ class FanPageContainer extends React.Component{
             })
     }
 
-    loginStatus = () => {
-        axios.get('http://localhost:3001/logged_in', 
-       {withCredentials: true})
-        .then(response => {
-            debugger
-          if (response.data.logged_in) {
-            this.handleLogin(response)
-          } else {
-            this.handleLogout()
-          }
-        })
-        .catch(error => console.log('api errors:', error))
-      } 
+    // isLoggedIn = () => {
+    //    return !!localStorage
+    // }
+
+    // loginStatus = () => {
+    //     axios.get('http://localhost:3001/logged_in', 
+    //    {withCredentials: true})
+    //     .then(response => {
+    //         debugger
+    //       if (response.data.logged_in) {
+    //         this.handleLogin(response)
+    //       } else {
+    //         this.handleLogout()
+    //       }
+    //     })
+    //     .catch(error => console.log('api errors:', error))
+    //   } 
 
     componentDidMount(){
-        this.loginStatus()
+        // this.loginStatus()
     }
 
+    
+
+
     render(){
-        
+        // if(!!localStorage){
+        //    return <Redirect to={"/"} />
+        // }
         return(
             <div>
-                <FanPage username={this.props.fan.username}/>
+                <FanPage username={this.props.fan.username} />
             </div>
         )
     }
