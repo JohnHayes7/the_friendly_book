@@ -1,6 +1,10 @@
 import React from 'react';
 import LandingYearsContainer from '../containers/LandingYears_Container';
 import FanPageMain from './FanPageMain'
+import Header from './Header'
+import './fan_page.css'
+import './landing_page.css'
+
 
 const Fan = props => {
     if(!props.fanProp.username){
@@ -8,11 +12,17 @@ const Fan = props => {
     }
     return (
         <div>
-            <h2>{props.fanProp.username}</h2>
-            <FanPageMain fanProp={props.fanProp} />
-            <LandingYearsContainer />
+            <div id="landing-wrapper">
+                <Header />
+                {/* CREATE COMPONENT TO GO IN LOGIN SPOT */}
+            </div>
+            <div id="fan-page">
+                <FanPageMain fanProp={props.fanProp} displayShows={props.displayShows} />
+                <LandingYearsContainer />
+            </div>
         </div>
-    )
+         )
+        
 }
 
 export default Fan

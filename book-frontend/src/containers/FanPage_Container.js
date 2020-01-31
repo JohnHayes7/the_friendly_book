@@ -15,30 +15,13 @@ class FanPageContainer extends React.Component{
             })
     }
 
-    // isLoggedIn = () => {
-    //    return !!localStorage
-    // }
-
-    // loginStatus = () => {
-    //     axios.get('http://localhost:3001/logged_in', 
-    //    {withCredentials: true})
-    //     .then(response => {
-    //         debugger
-    //       if (response.data.logged_in) {
-    //         this.handleLogin(response)
-    //       } else {
-    //         this.handleLogout()
-    //       }
-    //     })
-    //     .catch(error => console.log('api errors:', error))
-    //   } 
-
-    componentDidMount(){
-        // this.loginStatus()
+    fanShowsDisplay = fan =>{
+        if(fan.shows.length < 1){
+            return(
+                <h4>You Have No Shows. Add shows to collect stubs</h4>
+            )
+        }
     }
-
-    
-
 
     render(){
         
@@ -47,7 +30,7 @@ class FanPageContainer extends React.Component{
         }
         return(
             <div>
-                <FanPage fanProp={this.props.fan} getFan={this.getFanFromDb}/>
+                <FanPage fanProp={this.props.fan} getFan={this.getFanFromDb} displayShows={this.fanShowsDisplay} />
             </div>
         )
     }

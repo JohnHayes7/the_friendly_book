@@ -12,7 +12,6 @@ class FansController < ApplicationController
 
     def show
         f = Fan.find(params[:id])
-        binding.pry
         if f
             options = {include: [:shows, :memories]}
             render json: FanSerializer.new(f, options)
