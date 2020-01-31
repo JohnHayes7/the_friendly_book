@@ -69,6 +69,7 @@ class ShowPage extends React.Component{
     }
 
     displayInfo = () => {
+        debugger
         if(this.props.showInfo.data){
             
             return(

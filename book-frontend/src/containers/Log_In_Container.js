@@ -39,7 +39,6 @@ class LogInController extends React.Component{
             body: JSON.stringify(this.state)
         }).then(response => response.json())
         .then(fanInfo => {
-            debugger
             if(fanInfo.error){
                 alert(fanInfo.error)
             }else{
@@ -52,6 +51,7 @@ class LogInController extends React.Component{
 
     render(){
             if(this.props.fan.loggedIn){
+
                 return <Redirect to={`/fans/${this.props.fan.username}`} />
             }
 

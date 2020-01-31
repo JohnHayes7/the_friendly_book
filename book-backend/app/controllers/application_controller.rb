@@ -1,13 +1,13 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
     include ActionController::Cookies
     include ActionController::RequestForgeryProtection
     
     protect_from_forgery with: :exception, unless: -> { request.format.json? }
     skip_before_action :verify_authenticity_token
     
-    def login!
-        session[:user_id] = @user.id
-    end
+    # def login!
+    #     session[:user_id] = @user.id
+    # end
     def logged_in?
         binding.pry
         !!session[:user_id]
