@@ -67,9 +67,12 @@ class ShowsController < ApplicationController
             s.add_encore(params[:show][:encore])
             
             s.save
+            render json: ShowSerializer.new(s, options)
+        else
+            render json: ShowSerializer.new(show_date.show, options)
         end
         
-        render json: ShowSerializer.new(s, options)
+        
     end
 
 
@@ -110,6 +113,10 @@ class ShowsController < ApplicationController
        
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
         render json: ShowSerializer.new(show, options)
+    end
+
+    def add_fan
+        binding.pry
     end
 
     def delete

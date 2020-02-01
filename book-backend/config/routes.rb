@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  # get 'fans/:id', to: 'fans#show'
-
-  # get 'shows/:id', to: 'shows#show'
   resources :shows, only: [:show, :create, :update]
 
   get 'venues/:id', to: 'venues#show'
@@ -23,5 +20,5 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/logged_in', to: 'sessions#is_logged_in?'
-
+  post '/add_fan_to_show', to:'shows#add_fan'
 end

@@ -5,6 +5,10 @@ import Header from './Header'
 import LogInContainer from '../containers/Log_In_Container'
 import LandingYearsContainer from '../containers/LandingYears_Container'
 import Set from './Set'
+import {Link} from 'react-router-dom'
+import Logout from './Logout'
+import Log_In_Container from '../containers/Log_In_Container'
+// import {getFanFromDb} from '../containers/FanPageContainer'
 
 class ShowPage extends React.Component{
 
@@ -68,6 +72,14 @@ class ShowPage extends React.Component{
         }
     }
 
+    ifLoggedIn = () => {
+        if(localStorage.logged_in){
+            return <Link onClick={event => this.props.addFanToShow(event)}>Add To My Shows</Link>
+        }else{
+            return <h4>Login or<Link to="/signup">Signup</Link>to add this show to your collection.</h4>
+        }
+    }
+
 
     displayInfo = () => {
         if(this.props.showInfo.data){
@@ -81,7 +93,7 @@ class ShowPage extends React.Component{
                         <Set set={this.setOne} parseSet={this.parseSetOne} />
                         <Set set={this.ifSetTwo} parseSet={this.parseSetTwo} />
                         <Set set={this.ifEncore} parseSet={this.parseEncore} />
-                     
+                        {this.ifLoggedIn()}
                       <div>
                         {/* {this.ifSetThree()}
                         {this.parseSetThree()} */}                          
@@ -96,13 +108,19 @@ class ShowPage extends React.Component{
         }             
     }
 
+    loginOrLogout = () => {
+        if(localStorage.logged_in){
+            return <Log_In_Container />
+        }
+    }
+
     render(){
         // debugger
         return(
             <div>
                 <div id="landing-wrapper">
                     <Header />
-                    <LogInContainer />
+                    {this.loginOrLogout()}
                 </div>
                 <div id="second-line">
                     {this.displayInfo()}

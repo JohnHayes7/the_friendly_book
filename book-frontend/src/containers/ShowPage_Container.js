@@ -116,7 +116,24 @@ class ShowPageContainer extends React.Component{
     }
 
     addFanToShow = event => {
-        debugger
+        const fanShowData = {
+            month: event.target.pathname.split("/")[2].split("-")[0],
+            day: event.target.pathname.split("/")[2].split("-")[1],
+            year: event.target.pathname.split("/")[2].split("-")[2],
+            fanId: localStorage.user_id
+        }
+        
+        fetch(`http://localhost:3001/add_fan_to_show`,{
+            method: 'post',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(fanShowData)
+        }).then(response => response.json())
+        .then(rxShow => {
+            debugger
+        })
+        
     }
 
 
