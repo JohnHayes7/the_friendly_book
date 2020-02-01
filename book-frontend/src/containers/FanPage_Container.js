@@ -26,6 +26,7 @@ class FanPageContainer extends React.Component{
     render(){
         
         if(!localStorage.logged_in){
+            alert("Please Login")
            return <Redirect to={"/"} />
         }
         return(

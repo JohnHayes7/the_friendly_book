@@ -1,0 +1,7 @@
+#logout-window{
+    float: right;
+    /* background-color:red ; */
+    width: 25%;
+    border: 1px solid grey;
+    background-color: rgba(245, 245, 245, 0.842);
+}
