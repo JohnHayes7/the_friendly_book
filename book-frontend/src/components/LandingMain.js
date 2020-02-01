@@ -35,6 +35,24 @@ export default class LandingMain extends React.Component{
         return newFormat
     }
 
+    displaySetOne = () => {
+        if(this.props.setOne){
+           return <strong>Set1:</strong>
+        }
+    }
+
+    displaySetTwo = () => {
+        if(this.props.setTwo){
+            return <strong>Set2:</strong>
+        }
+    }
+
+    displayEncore = () => {
+        if(this.props.encore){
+            return <strong>Encore:</strong>
+        }
+    }
+
     render(){
         
 
@@ -62,9 +80,9 @@ export default class LandingMain extends React.Component{
                             {this.props.todayInHistory.venue}<br></br>
                             {this.props.todayInHistory.date}
                             <div id="today-setlist">
-                            <strong>Set1:</strong>{this.parseSetOneInfo()}<br></br>
-                            <strong>Set2:</strong>{this.parseSetTwoInfo()}<br></br>
-                            <strong>Encore:</strong>{this.parseEncoreInfo()}<br></br><br></br>
+                            {this.displaySetOne()}{this.parseSetOneInfo()}<br></br>
+                            {this.displaySetTwo()}{this.parseSetTwoInfo()}<br></br>
+                            {this.displayEncore()}{this.parseEncoreInfo()}<br></br><br></br>
                             <a target="_blank" href={`https://relisten.net/phish/` + this.formatDateForLink() }>Listen on Relisten</a>
                             </div>
                         </div>

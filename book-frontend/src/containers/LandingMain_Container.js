@@ -56,7 +56,12 @@ class LandingMainContainer extends React.Component {
             const encoreTitles = []
 
             let setOne = show.sources[0].sets[0].tracks
-            let setTwo = show.sources[0].sets[1].tracks
+            
+            let setTwo = []
+            if(show.sources[0].sets[1]){
+                 setTwo = show.sources[0].sets[1].tracks
+            }
+            
             let encore =[]
             if(show.sources[0].sets[2]){
                 encore = show.sources[0].sets[2].tracks
