@@ -10,6 +10,7 @@ class ShowsController < ApplicationController
             day = ShowDate.get_day(params[:show][:date])
             month = ShowDate.get_month(params[:show][:date])
             show_date = ShowDate.find_or_create_by({month: month, day: day})
+            
             show_date.year_id = year.id
 
             state_initials = State.get_state_from_location(params[:show][:location])
@@ -54,10 +55,6 @@ class ShowsController < ApplicationController
             show_date.save
 
         end    
-        
-        
-
-        
 
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
         

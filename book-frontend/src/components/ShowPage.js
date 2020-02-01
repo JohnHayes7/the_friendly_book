@@ -9,7 +9,7 @@ import Set from './Set'
 class ShowPage extends React.Component{
 
     parseSetOne = () => {
-        // debugger
+        debugger
        return this.props.showInfo.data.attributes.set1.split(", ").map(song => {
             if(song !== ""){
                 return <div>{song}</div>

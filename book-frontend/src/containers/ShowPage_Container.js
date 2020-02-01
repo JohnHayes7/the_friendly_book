@@ -14,7 +14,7 @@ class ShowPageContainer extends React.Component{
    
     
     addShowToDb = () => {
-        // debugger
+        debugger
        fetch(`http://localhost:3001/shows`, {
             method: "post",
             headers: {
@@ -40,9 +40,10 @@ class ShowPageContainer extends React.Component{
 
 
     fetchShowfromRelisten = () => {
-        
+        debugger
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
             .then(showSets => {
+                debugger
                 console.log("FETCHED SHOW FROM RELISTEN")
                 console.log(this.props)
                 
@@ -52,11 +53,11 @@ class ShowPageContainer extends React.Component{
                     this.props.show.location = showSets.venue.location
                     this.props.show.venue = showSets.venue.name
                     let firstSet = showSets.sources[0].sets[0].tracks
-               
+                    debugger
                     firstSet.map(songTitle => {
                         this.props.show.set1.push(songTitle.title)
                     })
-                    
+                    debugger
                     if(showSets.sources[0].sets[1]){
                         showSets.sources[0].sets[1].tracks.map(song => {
                             this.props.show.set2.push(song.title)
@@ -97,10 +98,10 @@ class ShowPageContainer extends React.Component{
 
 
     getShowFromDb = () => {
-        
+        debugger
         fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
         .then(showInfo => {
-            
+            debugger
             if(showInfo.code === 3000){
                 console.log(showInfo)
                 this.fetchShowfromRelisten()
