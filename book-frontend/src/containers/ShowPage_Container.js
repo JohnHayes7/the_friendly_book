@@ -14,7 +14,6 @@ class ShowPageContainer extends React.Component{
    
     
     addShowToDb = () => {
-        debugger
        fetch(`http://localhost:3001/shows`, {
             method: "post",
             headers: {
@@ -98,10 +97,10 @@ class ShowPageContainer extends React.Component{
 
 
     getShowFromDb = () => {
-        debugger
+        
         fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
         .then(showInfo => {
-            debugger
+            
             if(showInfo.code === 3000){
                 console.log(showInfo)
                 this.fetchShowfromRelisten()
@@ -131,7 +130,7 @@ class ShowPageContainer extends React.Component{
             body: JSON.stringify(fanShowData)
         }).then(response => response.json())
         .then(rxShow => {
-            debugger
+           this.setState({loadedShow: true, results: rxShow})
         })
         
     }
@@ -142,6 +141,9 @@ class ShowPageContainer extends React.Component{
         this.getShowFromDb()
     }
 
+    displayFans = () => {
+        debugger
+    }
     
 
 
@@ -149,7 +151,7 @@ class ShowPageContainer extends React.Component{
         console.log("RENDERED")
         return(
             <div>
-                <ShowPage showInfo={this.state.results} getSongs={this.fetchSongsfromRelisten} addFanToShow={this.addFanToShow} />
+                <ShowPage showInfo={this.state.results} getSongs={this.fetchSongsfromRelisten} addFanToShow={this.addFanToShow} displayFans={this.displayFans} />
             </div>
         )
     }

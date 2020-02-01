@@ -49,7 +49,6 @@ class ShowPage extends React.Component{
     }
 
     setOne = () => {
-        
         if(this.props.showInfo.data.attributes.set1.length > 0){
             return <div><strong>Set 1:</strong></div>
         }
@@ -72,14 +71,15 @@ class ShowPage extends React.Component{
         }
     }
 
-    ifLoggedIn = () => {
+    ifLoggedInAddLink = () => {
         if(localStorage.logged_in){
-            return <Link onClick={event => this.props.addFanToShow(event)}>Add To My Shows</Link>
+            return <Link value="link"onClick={event => this.props.addFanToShow(event)}>Add To My Shows</Link>
         }else{
             return <h4>Login or<Link to="/signup">Signup</Link>to add this show to your collection.</h4>
         }
     }
 
+    
 
     displayInfo = () => {
         if(this.props.showInfo.data){
@@ -93,7 +93,8 @@ class ShowPage extends React.Component{
                         <Set set={this.setOne} parseSet={this.parseSetOne} />
                         <Set set={this.ifSetTwo} parseSet={this.parseSetTwo} />
                         <Set set={this.ifEncore} parseSet={this.parseEncore} />
-                        {this.ifLoggedIn()}
+                        {this.ifLoggedInAddLink()}
+                        {this.displayFans().bind(this)}
                       <div>
                         {/* {this.ifSetThree()}
                         {this.parseSetThree()} */}                          
@@ -108,11 +109,17 @@ class ShowPage extends React.Component{
         }             
     }
 
+    displayFans = () => {
+        debugger
+    }
+
     loginOrLogout = () => {
         if(localStorage.logged_in){
             return <Log_In_Container />
         }
     }
+
+    
 
     render(){
         // debugger

@@ -116,7 +116,16 @@ class ShowsController < ApplicationController
     end
 
     def add_fan
-        binding.pry
+        show_date = ShowDate.find_by({month:params[:month], day:params[:day]})
+        year = Year.find_by(value: params[:year])
+        fan = Fan.find(params[:fanId])
+        if show_date.year_id = year.id
+            show_date.show.fans << fan
+            fan.shows << show_date.show
+        end
+        options = {include: [:fans, :memories, :show_date, :venue, :songs]}
+        render json: ShowSerializer.new(show_date.show, options)
+        
     end
 
     def delete
