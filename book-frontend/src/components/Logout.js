@@ -15,7 +15,7 @@ export default class Logout extends React.Component {
     logout = () => {
         
         // this.setState({logoutToHome: true})
-        localStorage.clear()
+        // localStorage.clear()
     }
     render(){
         // const { logoutToHome } = this.state

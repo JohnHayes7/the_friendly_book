@@ -114,6 +114,10 @@ class ShowPageContainer extends React.Component{
         })
     }
 
+    addFanToShow = event => {
+        debugger
+    }
+
 
     componentDidMount(){
         console.log("MOUNTED")
@@ -127,7 +131,7 @@ class ShowPageContainer extends React.Component{
         console.log("RENDERED")
         return(
             <div>
-                <ShowPage showInfo={this.state.results} getSongs={this.fetchSongsfromRelisten} />
+                <ShowPage showInfo={this.state.results} getSongs={this.fetchSongsfromRelisten} addFanToShow={this.addFanToShow} />
             </div>
         )
     }
