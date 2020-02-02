@@ -140,10 +140,6 @@ class ShowPageContainer extends React.Component{
         console.log("MOUNTED")
         this.getShowFromDb()
     }
-
-    displayFans = () => {
-        debugger
-    }
     
 
 

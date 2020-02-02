@@ -13,7 +13,6 @@ import Log_In_Container from '../containers/Log_In_Container'
 class ShowPage extends React.Component{
 
     parseSetOne = () => {
-        debugger
        return this.props.showInfo.data.attributes.set1.split(", ").map(song => {
             if(song !== ""){
                 return <div>{song}</div>
@@ -93,8 +92,9 @@ class ShowPage extends React.Component{
                         <Set set={this.setOne} parseSet={this.parseSetOne} />
                         <Set set={this.ifSetTwo} parseSet={this.parseSetTwo} />
                         <Set set={this.ifEncore} parseSet={this.parseEncore} />
-                        {this.ifLoggedInAddLink()}
-                        {this.displayFans().bind(this)}
+                        {this.ifLoggedInAddLink()}<br></br>
+                        <h4>Fans:</h4><br></br>
+                        {this.displayFans(this) }
                       <div>
                         {/* {this.ifSetThree()}
                         {this.parseSetThree()} */}                          
@@ -109,8 +109,12 @@ class ShowPage extends React.Component{
         }             
     }
 
-    displayFans = () => {
-        debugger
+    displayFans = show => {
+      let fans = show.props.showInfo.included.filter(attr => attr.type === "fan")
+      return fans.map(fan => {
+          return <div><strong>{fan.attributes.username}</strong></div>
+
+      })
     }
 
     loginOrLogout = () => {
