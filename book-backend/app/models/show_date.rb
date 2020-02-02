@@ -21,6 +21,10 @@ class ShowDate < ApplicationRecord
         "#{date.split("-").last}-#{date.split("-").first}-#{date.split("-")[1]}"
     end
 
+    def build_display_date
+        "#{self.month}.#{self.day}.#{self.year.value}"
+    end
+
 
 
 end

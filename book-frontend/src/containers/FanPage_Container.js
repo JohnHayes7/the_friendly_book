@@ -29,7 +29,10 @@ class FanPageContainer extends React.Component{
                 <div>
                     {fan.shows.map( show => {
                         debugger
-                       return <div>-{show.attributes.set1}</div>
+                       return <div>-{show.attributes.display_date}<br></br>
+                                    {show.attributes.display_venue}<br></br>
+                                    {show.attributes.display_location}
+                       </div>
                     })}
                 </div>
             )

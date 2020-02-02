@@ -60,8 +60,13 @@ class ShowsController < ApplicationController
         
         if !show_date.show
             s = Show.new()
+           
+            s.display_date = show_date.build_display_date
             s.show_date_id = show_date.id
             s.venue_id = venue.id
+            s.display_venue = venue.name
+            s.display_location = "#{city_name}, #{state_initials}"
+            binding.pry
             s.add_set_one(params[:show][:set1])
             s.add_set_two(params[:show][:set2])
             s.add_encore(params[:show][:encore])

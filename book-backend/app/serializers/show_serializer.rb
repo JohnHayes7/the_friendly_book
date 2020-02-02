@@ -6,5 +6,5 @@ class ShowSerializer
   has_many :songs
   belongs_to :venue
 
-  attributes :set1, :set2, :set3, :set_encore
+  attributes :set1, :set2, :set3, :set_encore, :display_date, :display_venue, :display_location
 end
