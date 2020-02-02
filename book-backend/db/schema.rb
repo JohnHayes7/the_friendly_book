@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_24_011518) do
+ActiveRecord::Schema.define(version: 2020_02_02_205725) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -59,6 +59,9 @@ ActiveRecord::Schema.define(version: 2020_01_24_011518) do
     t.string "set2"
     t.string "set3"
     t.string "set_encore"
+    t.text "display_date"
+    t.text "display_venue"
+    t.text "display_location"
   end
 
   create_table "shows_songs", force: :cascade do |t|
