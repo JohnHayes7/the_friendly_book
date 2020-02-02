@@ -20,6 +20,7 @@ export default function manageFan(state={
             id: action.fan.data.attributes.id,
             username: action.fan.data.attributes.username,
             email: action.fan.data.attributes.email,
+            shows: action.fan.included.filter(attr => attr.type === "show"),
             loggedIn: true
            }  
            
