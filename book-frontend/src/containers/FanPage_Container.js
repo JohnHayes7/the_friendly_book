@@ -7,8 +7,10 @@ import { Redirect } from 'react-router-dom'
 class FanPageContainer extends React.Component{
 
     getFanFromDb = () => {
+        debugger
         fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
             .then(fan => {
+                debugger
                 console.log(fan)
                 console.log(this.props)
                 this.props.login(fan)
@@ -16,6 +18,7 @@ class FanPageContainer extends React.Component{
     }
 
     fanShowsDisplay = fan =>{
+        debugger
         if(fan.shows.length < 1){
             return(
                 <h4>You Have No Shows. Add shows to collect stubs</h4>

@@ -93,8 +93,9 @@ class ShowPage extends React.Component{
                         <Set set={this.ifSetTwo} parseSet={this.parseSetTwo} />
                         <Set set={this.ifEncore} parseSet={this.parseEncore} />
                         {this.ifLoggedInAddLink()}<br></br>
-                        <h4>Fans:</h4><br></br>
-                        {this.displayFans(this) }
+                        <ul>Fans:
+                            {this.displayFans(this)}    
+                        </ul>
                       <div>
                         {/* {this.ifSetThree()}
                         {this.parseSetThree()} */}                          
@@ -112,7 +113,7 @@ class ShowPage extends React.Component{
     displayFans = show => {
       let fans = show.props.showInfo.included.filter(attr => attr.type === "fan")
       return fans.map(fan => {
-          return <div><strong>{fan.attributes.username}</strong></div>
+          return <li>{fan.attributes.username}</li>
 
       })
     }
