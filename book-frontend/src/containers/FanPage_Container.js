@@ -3,6 +3,7 @@ import FanPage from '../components/FanPage'
 import { connect } from 'react-redux'
 import '../components/fan_page.css'
 import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import TicketContainer from './Ticket_Container'
 
 class FanPageContainer extends React.Component{
@@ -24,10 +25,19 @@ class FanPageContainer extends React.Component{
     }
 
     displayLink = date =>{
-         return <a target="_blank" href={`https://relisten.net/phish/` + this.formatDateForLink(date) }>Listen on Relisten</a>
+         return <Link target="_blank" to={`https://relisten.net/phish/` + this.formatDateForLink(date) }>Listen on Relisten</Link>
 
     }
 
+    displayRemove = () => {
+        return <Link onClick={this.removeFromFanShows} className="removal" to={"#"}>Remove from your stubs</Link>
+    }
+
+    removeFromFanShows = event => {
+        debugger
+        // Click Handler
+    }
+ 
     fanShowsDisplay = fan =>{
         if(fan.shows.length < 1){
             return(
@@ -37,7 +47,8 @@ class FanPageContainer extends React.Component{
             return(
                 <div>
                     {fan.shows.map( show => {
-                       return <TicketContainer date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink}/> 
+                        
+                       return <TicketContainer date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} displayRemove={this.displayRemove}  /> 
                     })}
                 </div>
             )

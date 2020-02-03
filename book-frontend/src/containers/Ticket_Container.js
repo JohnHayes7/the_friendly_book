@@ -37,7 +37,7 @@ class TicketContainer extends React.Component{
         }
         return(
             <div>
-                <Ticket  date={this.props.date} location={this.props.location} venue={this.props.venue} displayLink={this.props.displayLink} clickHandler={event => this.clickHandler(event)}/>
+                <Ticket key={this.props.mediaId} date={this.props.date} location={this.props.location} venue={this.props.venue} displayLink={this.props.displayLink} displayRemove={this.props.displayRemove} clickHandler={event => this.clickHandler(event)} removeFromFanShows={this.props.removeFromFanShows} />
             </div>
         )
     }

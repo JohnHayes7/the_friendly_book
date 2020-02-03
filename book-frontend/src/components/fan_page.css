@@ -12,6 +12,11 @@
 
 #fan-show-display{
     display: flex;
+    font-size: .5em;  
+}
+
+.removal{
     font-size: .5em;
-   
+    position: relative;
+    bottom: -25px;
 }
