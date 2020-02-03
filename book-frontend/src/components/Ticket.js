@@ -15,9 +15,8 @@ const Ticket = props => {
 
                 {props.displayLink ? props.displayLink(props.date) : ""}<br></br>
                 
-                <div key={props.key} onClick={event => props.removeFromFanShows(event)}>
-                    {props.displayRemove ? props.displayRemove() : ""}
-                </div>
+               
+                {props.displayRemove ? props.displayRemove() : ""}
                 
             </div>
         </div>

@@ -29,14 +29,9 @@ class FanPageContainer extends React.Component{
 
     }
 
-    displayRemove = () => {
-        return <Link onClick={this.removeFromFanShows} className="removal" to={"#"}>Remove from your stubs</Link>
-    }
+    
 
-    removeFromFanShows = event => {
-        debugger
-        // Click Handler
-    }
+    
  
     fanShowsDisplay = fan =>{
         if(fan.shows.length < 1){
@@ -47,8 +42,8 @@ class FanPageContainer extends React.Component{
             return(
                 <div>
                     {fan.shows.map( show => {
-                        
-                       return <TicketContainer date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} displayRemove={this.displayRemove}  /> 
+                        debugger
+                       return <TicketContainer key={show.id} mediaid={show.id} date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink}  /> 
                     })}
                 </div>
             )

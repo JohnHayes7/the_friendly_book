@@ -130,7 +130,11 @@ class ShowsController < ApplicationController
         end
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
         render json: ShowSerializer.new(show_date.show, options)
-        
+    end
+
+    def remove_fan
+        binding.pry
+
     end
 
     def delete
