@@ -50,15 +50,16 @@ class FanPageContainer extends React.Component{
 
     
  
-    fanShowsDisplay = fan =>{
-        if(fan.shows.length < 1){
+    fanShowsDisplay = shows =>{
+        
+        if(shows.length < 1){
             return(
                 <h5>You Have No Shows. Add shows to collect stubs</h5>
             )
         }else{
             return(
                 <div>
-                    {fan.shows.map( show => {
+                    {shows.map( show => {
                        return <TicketContainer key={show.id} mediaid={show.id} date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} removeFromFanShows={this.removeFromFanShows}  /> 
                     })}
                 </div>
