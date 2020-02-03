@@ -9,3 +9,9 @@
     text-align: center;
     font-size: 2em;
 }
+
+#fan-show-display{
+    display: flex;
+    font-size: .5em;
+   
+}

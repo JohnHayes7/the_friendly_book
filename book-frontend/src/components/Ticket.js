@@ -2,6 +2,7 @@ import React from 'react'
 import './ticket.css'
 
 const Ticket = props => {
+    
     return(
         <div onClick={props.clickHandler} id="ticket">
             <div id="info">
@@ -12,6 +13,8 @@ const Ticket = props => {
                 {props.set1}
                 {props.set2}
                 {props.encore}
+
+                {props.displayLink ? props.displayLink(props.date) : ""}
             </div>
         </div>
     )

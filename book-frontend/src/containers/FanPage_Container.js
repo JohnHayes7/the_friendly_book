@@ -1,8 +1,9 @@
 import React from 'react'
 import FanPage from '../components/FanPage'
 import { connect } from 'react-redux'
-import axios from 'axios'
+import '../components/fan_page.css'
 import { Redirect } from 'react-router-dom'
+import TicketContainer from './Ticket_Container'
 
 class FanPageContainer extends React.Component{
 
@@ -17,6 +18,16 @@ class FanPageContainer extends React.Component{
             })
     }
 
+    formatDateForLink = date =>{
+        return date.split(".")[2] + "/" + date.split(".")[0] + "/" + date.split(".")[1]
+
+    }
+
+    displayLink = date =>{
+         return <a target="_blank" href={`https://relisten.net/phish/` + this.formatDateForLink(date) }>Listen on Relisten</a>
+
+    }
+
     fanShowsDisplay = fan =>{
         if(fan.shows.length < 1){
             return(
@@ -26,11 +37,7 @@ class FanPageContainer extends React.Component{
             return(
                 <div>
                     {fan.shows.map( show => {
-                        debugger
-                       return <div>-{show.attributes.display_date}<br></br>
-                                    {show.attributes.display_venue}<br></br>
-                                    {show.attributes.display_location}
-                       </div>
+                       return <TicketContainer date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink}/> 
                     })}
                 </div>
             )
@@ -60,6 +67,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     login: RxData => dispatch({type: "LOGIN_FAN", fan: RxData})
 })
+                                    
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(FanPageContainer)

@@ -31,12 +31,13 @@ class TicketContainer extends React.Component{
     }
 
     render(){
+        
         if(this.state.clicked){
            return <Redirect to={`/shows/${this.dateSlug(this.props.date)}`} />
         }
         return(
             <div>
-                <Ticket  date={this.props.date} location={this.props.location} venue={this.props.venue} clickHandler={event => this.clickHandler(event)}/>
+                <Ticket  date={this.props.date} location={this.props.location} venue={this.props.venue} displayLink={this.props.displayLink} clickHandler={event => this.clickHandler(event)}/>
             </div>
         )
     }

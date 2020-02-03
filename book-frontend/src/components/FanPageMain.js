@@ -6,7 +6,10 @@ const FanPageMain = props => {
     return(
         <div id="fan-page-main">
             {props.fanProp.username}
-            {props.displayShows(props.fanProp)}
+            <div id="fan-show-display">
+                {props.displayShows(props.fanProp)}
+            </div>
+            
         </div>
     )
 }
