@@ -18,11 +18,9 @@ class FanPageContainer extends React.Component{
     }
 
     fanShowsDisplay = fan =>{
-        // debugger
-        // Shows should be returned just need to display
         if(fan.shows.length < 1){
             return(
-                <h4>You Have No Shows. Add shows to collect stubs</h4>
+                <h5>You Have No Shows. Add shows to collect stubs</h5>
             )
         }else{
             return(

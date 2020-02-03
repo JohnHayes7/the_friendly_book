@@ -104,6 +104,10 @@
         overflow: scroll;
     }
 
+    li {
+        list-style-image: url('/landing_page_images/Donut_bullet.psd');
+    }
+
     
 
 
