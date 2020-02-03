@@ -20,27 +20,15 @@ class TicketContainer extends React.Component{
     }
 
     displayRemove = () => {
-        return <Link mediaid={this.props.mediaId} onClick={this.removeFromFanShows} className="removal" to={"#"}>Remove from your stubs</Link>
+        
+        if(this.props.mediaid){
+            return <span key={this.props.mediaid} onClick={this.props.removeFromFanShows} className="removal">Remove from your stubs</span>
+        }else{
+           return null
+        }
     }
 
-    removeFromFanShows = show => {
-        debugger
-        const fanShowData = {
-            fanId: localStorage.user_id,
-            showId: show.props.mediaId
-        }
-        debugger
-        fetch(`http://localhost:3001/remove_show_from_fan`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(fanShowData)
-        }).then(response => response.json())
-        .then(rxInfo => {
-            debugger
-        })
-    }
+    
 
 
 

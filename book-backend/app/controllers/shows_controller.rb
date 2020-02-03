@@ -132,11 +132,6 @@ class ShowsController < ApplicationController
         render json: ShowSerializer.new(show_date.show, options)
     end
 
-    def remove_fan
-        binding.pry
-
-    end
-
     def delete
 
     end

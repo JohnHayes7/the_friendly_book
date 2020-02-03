@@ -24,9 +24,21 @@ class FansController < ApplicationController
 
     end
 
+    def remove_show
+        fan = Fan.find(params[:fanId].to_i)
+        show = Show.find(params[:showId].to_i)
+        fan.shows.delete(show)
+        show.fans.delete(fan)
+
+        options = {include: [:shows, :memories]}
+        render json: FanSerializer.new(fan, options)
+    end
+
     def delete
 
     end
+
+
 
     private
 

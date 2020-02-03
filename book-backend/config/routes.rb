@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/logged_in', to: 'sessions#is_logged_in?'
   post '/add_fan_to_show', to:'shows#add_fan'
-  post '/remove_show_from_fan', to: 'shows#remove_fan'
+  post '/remove_show_from_fan', to: 'fans#remove_show'
 end
