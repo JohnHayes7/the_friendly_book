@@ -11,10 +11,6 @@
     text-align: center;
 }
 
-#pop-up-page{
-    background-color: aqua;
-    z-index: 1;
-}
 
 .removal{
     border: 1px solid grey;
@@ -23,6 +19,16 @@
     left: 32%;
     background-color: grey;
     color: white;
+    bottom: -15px;
+}
+#add-memory{
+    border: 1px solid grey;
+    width: 125px;
+    position: relative;
+    left: 32%;
+    /* background-color: grey; */
+    /* color: white; */
+    bottom: -10px;
 }
 
 /* #info{

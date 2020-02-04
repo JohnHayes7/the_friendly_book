@@ -2,6 +2,7 @@ import React from 'react'
 import './ticket.css'
 
 const Ticket = props => {
+    debugger
     return(
         <div onClick={props.clickHandler} id="ticket">
             <div id="info">
@@ -15,6 +16,7 @@ const Ticket = props => {
 
                 {props.displayLink ? props.displayLink(props.date) : ""}<br></br>
                 
+                {props.addMemoryToShow ? props.addMemoryToShow() : ""}
                
                 {props.displayRemove ? props.displayRemove() : ""}
                 

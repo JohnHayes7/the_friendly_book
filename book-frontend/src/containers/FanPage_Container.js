@@ -5,13 +5,15 @@ import '../components/fan_page.css'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import TicketContainer from './Ticket_Container'
+import MemoryContainer from './Memory_Container'
 
 class FanPageContainer extends React.Component{
 
     constructor(){
         super()
         this.state = {
-            logged_in: !!localStorage.user_id
+            logged_in: !!localStorage.user_id,
+            canAddMemory: false
         }
     }
 
@@ -62,6 +64,24 @@ class FanPageContainer extends React.Component{
         })
     }
 
+    addMemoryToShow = () => {
+        return(
+            <div id="add-memory" onClick={event => this.addMemoryHandler(event)}>Add Memory</div>
+        )
+    }
+
+    addMemoryHandler = event =>{
+        let showId = event._targetInst.sibling.key
+        let fanId = localStorage.user_id
+        
+        this.memoryAddDisplay(showId, fanId)
+        debugger
+    }
+
+    memoryAddDisplay = (showId, fanId) => {
+        return <MemoryContainer showId={showId} fanId={fanId} />
+    }
+
     
  
     fanShowsDisplay = shows =>{
@@ -75,7 +95,7 @@ class FanPageContainer extends React.Component{
                 return(
                     <div>
                         {shows.map( show => {
-                           return <TicketContainer key={show.id} mediaid={show.id} date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} removeFromFanShows={this.removeFromFanShows}  /> 
+                           return <TicketContainer key={show.id} mediaid={show.id} date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} removeFromFanShows={this.removeFromFanShows} addMemoryToShow={this.addMemoryToShow} /> 
                         })}
                     </div>
                 )
@@ -88,16 +108,16 @@ class FanPageContainer extends React.Component{
     }
 
     render(){
-        debugger
+        // debugger
         if(!this.state.logged_in){
-            debugger
+            // debugger
             // alert("Please Login")
            return this.props.history.push("/")
         }else{
-            debugger
+            // debugger
             return(
                 <div>
-                    <FanPage fanProp={this.props.fan} getFan={this.getFanFromDb} displayShows={this.fanShowsDisplay} logout={this.logout} />
+                    <FanPage fanProp={this.props.fan} getFan={this.getFanFromDb} displayShows={this.fanShowsDisplay} logout={this.logout} canAddMemory={this.state.canAddMemory} />
                 </div>
             )
         }
