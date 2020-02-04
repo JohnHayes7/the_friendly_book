@@ -13,7 +13,9 @@ class FanPageContainer extends React.Component{
         super()
         this.state = {
             logged_in: !!localStorage.user_id,
-            canAddMemory: false
+            showMemoryDiv: false,
+            showMemoryFanId: "",
+            showMemoryShowId: ""
         }
     }
 
@@ -72,15 +74,15 @@ class FanPageContainer extends React.Component{
 
     addMemoryHandler = event =>{
         event.preventDefault()
-        let showId = event._targetInst.sibling.key
-        let fanId = localStorage.user_id
-        
-        this.memoryAddDisplay(showId, fanId)
+        this.setState({
+            showMemoryDiv: true,
+            showMemoryFanId: localStorage.user_id,
+            showMemoryShowId: event._targetInst.sibling.key
+        })        
     }
 
-    memoryAddDisplay = (showId, fanId) => {
-        debugger
-        return <MemoryContainer showId={showId} fanId={fanId} />
+    memoryAddDisplay = () => {
+        return this.state.showMemoryDiv ? <MemoryContainer showId={this.state.showId} fanId={this.state.fanId} /> : null
     }
 
     
@@ -97,9 +99,9 @@ class FanPageContainer extends React.Component{
                     <div>
                         {shows.map( show => {
                            return(
-                                <div>
+                                <div id="ticket-mem">
                                     <TicketContainer key={show.id} mediaid={show.id} date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} removeFromFanShows={this.removeFromFanShows} addMemoryBtn={this.addMemoryBtn} /> 
-                                    <div>TEST ESTT STTE TEST</div>
+                                    {this.memoryAddDisplay()}
                                 </div>
                            ) 
                         })}

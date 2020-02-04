@@ -20,3 +20,7 @@
     position: relative;
     bottom: -25px;
 }
+
+#ticket-mem{
+    display: flex;
+}
