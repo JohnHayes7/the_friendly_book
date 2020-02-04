@@ -16,6 +16,15 @@
     z-index: 1;
 }
 
+.removal{
+    border: 1px solid grey;
+    width: 125px;
+    position: relative;
+    left: 32%;
+    background-color: grey;
+    color: white;
+}
+
 /* #info{
     padding-left: 20%;
 } */

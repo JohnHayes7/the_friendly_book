@@ -22,7 +22,7 @@ class TicketContainer extends React.Component{
     displayRemove = () => {
         
         if(this.props.mediaid){
-            return <span key={this.props.mediaid} onClick={this.props.removeFromFanShows} className="removal">Remove from your stubs</span>
+            return <div key={this.props.mediaid} onClick={this.props.removeFromFanShows} className="removal">X Remove from your stubs</div>
         }else{
            return null
         }

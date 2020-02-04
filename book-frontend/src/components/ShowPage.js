@@ -85,8 +85,8 @@ class ShowPage extends React.Component{
             
             return(
                 <div id="show-info">
-                  <strong className="show-name-date">{this.props.showInfo.included[1].attributes.name}</strong><br></br>
-                  <strong className="show-name-date">{this.props.showInfo.included[0].attributes.month}-{this.props.showInfo.included[0].attributes.day}</strong>
+                  <strong className="show-name-date">{this.props.showInfo.data.attributes.display_date}</strong><br></br>
+                  <strong className="show-name-date">{this.props.showInfo.data.attributes.display_venue}-{this.props.showInfo.data.attributes.display_location}</strong>
                   <div id="setlist">
                      
                         <Set set={this.setOne} parseSet={this.parseSetOne} />

@@ -30,12 +30,12 @@ class FanPageContainer extends React.Component{
     }
 
     removeFromFanShows = event => {
-        debugger
+        
         const fanShowData = {
             fanId: localStorage.user_id,
             showId: event._targetInst.key
         }
-        debugger
+        
         fetch(`http://localhost:3001/remove_show_from_fan`, {
             method: 'POST',
             headers: {
@@ -51,20 +51,26 @@ class FanPageContainer extends React.Component{
     
  
     fanShowsDisplay = shows =>{
-        
-        if(shows.length < 1){
-            return(
-                <h5>You Have No Shows. Add shows to collect stubs</h5>
-            )
+        if(shows){
+            
+            if(shows.length < 1){
+                return(
+                    <h5>You Have No Shows. Add shows to collect stubs</h5>
+                )
+            }else{
+                return(
+                    <div>
+                        {shows.map( show => {
+                           return <TicketContainer key={show.id} mediaid={show.id} date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} removeFromFanShows={this.removeFromFanShows}  /> 
+                        })}
+                    </div>
+                )
+            }
         }else{
-            return(
-                <div>
-                    {shows.map( show => {
-                       return <TicketContainer key={show.id} mediaid={show.id} date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} removeFromFanShows={this.removeFromFanShows}  /> 
-                    })}
-                </div>
-            )
+            
+            return <h5>Whats Going on here?</h5>
         }
+        
     }
 
     render(){

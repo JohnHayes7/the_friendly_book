@@ -17,6 +17,23 @@ export default class Logout extends React.Component {
         // this.setState({logoutToHome: true})
         // localStorage.clear()
     }
+
+    displayInfo = () => {
+        if(this.props.fanProp.shows){
+            return(
+                <div>
+                    <h2>Welcome back, {this.props.fanProp.username}</h2>
+                    You Have {this.props.fanProp.shows.length} stubs in your hand<br></br>
+                    <Link onClick={this.logout}> Logout </Link>
+                </div>
+            ) 
+        }else{
+            return <div>Loading...</div>
+        }
+        
+    
+    }
+
     render(){
         // const { logoutToHome } = this.state
         // if (logoutToHome){
@@ -25,9 +42,7 @@ export default class Logout extends React.Component {
         // debugger
         return(
             <div id="logout-window">
-                <h2>Welcome back, {this.props.fanProp.username}</h2>
-                You Have {this.props.fanProp.shows.length} stubs in your hand<br></br>
-                <Link onClick={this.logout}> Logout </Link>
+                {this.displayInfo()}
             </div>
         )
     }
