@@ -33,7 +33,7 @@ class TicketContainer extends React.Component{
 
 
     clickHandler = event => {
-        
+        event.preventDefault()
         this.setState({
             clicked: true,
         })
@@ -46,13 +46,13 @@ class TicketContainer extends React.Component{
     }
 
     render(){
-        debugger
+        
         if(this.state.clicked){
            return <Redirect to={`/shows/${this.dateSlug(this.props.date)}`} />
         }
         return(
             <div>
-                <Ticket key={this.props.key} date={this.props.date} location={this.props.location} venue={this.props.venue} displayLink={this.props.displayLink} displayRemove={this.displayRemove} clickHandler={event => this.clickHandler(event)} removeFromFanShows={this.props.removeFromFanShows} addMemoryToShow={this.props.addMemoryToShow} />
+                <Ticket key={this.props.key} date={this.props.date} location={this.props.location} venue={this.props.venue} displayLink={this.props.displayLink} displayRemove={this.displayRemove} clickHandler={event => this.clickHandler(event)} removeFromFanShows={this.props.removeFromFanShows} addMemoryBtn={this.props.addMemoryBtn} />
             </div>
         )
     }

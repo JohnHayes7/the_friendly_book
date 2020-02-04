@@ -16,7 +16,7 @@ const Ticket = props => {
 
                 {props.displayLink ? props.displayLink(props.date) : ""}<br></br>
                 
-                {props.addMemoryToShow ? props.addMemoryToShow() : ""}
+                {props.addMemoryBtn ? props.addMemoryBtn() : ""}
                
                 {props.displayRemove ? props.displayRemove() : ""}
                 

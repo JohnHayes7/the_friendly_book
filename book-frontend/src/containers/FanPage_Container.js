@@ -38,7 +38,7 @@ class FanPageContainer extends React.Component{
     }
 
     removeFromFanShows = event => {
-        
+        event.preventDefault()
         const fanShowData = {
             fanId: localStorage.user_id,
             showId: event._targetInst.key
@@ -64,21 +64,22 @@ class FanPageContainer extends React.Component{
         })
     }
 
-    addMemoryToShow = () => {
+    addMemoryBtn = () => {
         return(
             <div id="add-memory" onClick={event => this.addMemoryHandler(event)}>Add Memory</div>
         )
     }
 
     addMemoryHandler = event =>{
+        event.preventDefault()
         let showId = event._targetInst.sibling.key
         let fanId = localStorage.user_id
         
         this.memoryAddDisplay(showId, fanId)
-        debugger
     }
 
     memoryAddDisplay = (showId, fanId) => {
+        debugger
         return <MemoryContainer showId={showId} fanId={fanId} />
     }
 
@@ -95,7 +96,12 @@ class FanPageContainer extends React.Component{
                 return(
                     <div>
                         {shows.map( show => {
-                           return <TicketContainer key={show.id} mediaid={show.id} date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} removeFromFanShows={this.removeFromFanShows} addMemoryToShow={this.addMemoryToShow} /> 
+                           return(
+                                <div>
+                                    <TicketContainer key={show.id} mediaid={show.id} date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} removeFromFanShows={this.removeFromFanShows} addMemoryBtn={this.addMemoryBtn} /> 
+                                    <div>TEST ESTT STTE TEST</div>
+                                </div>
+                           ) 
                         })}
                     </div>
                 )

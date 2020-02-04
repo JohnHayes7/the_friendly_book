@@ -20,6 +20,7 @@ const Fan = props => {
             </div>
             <div id="fan-page">
                 <FanPageMain fanProp={props.fanProp} displayShows={props.displayShows} />
+                {props.memoryDisplay}
                 <LandingYearsContainer />
             </div>
         </div>
