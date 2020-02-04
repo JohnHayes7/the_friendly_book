@@ -9,7 +9,6 @@ import TicketContainer from './Ticket_Container'
 class FanPageContainer extends React.Component{
 
     getFanFromDb = () => {
-        // debugger
         fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
             .then(fan => {
                 

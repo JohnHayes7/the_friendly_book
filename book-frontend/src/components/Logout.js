@@ -13,9 +13,8 @@ export default class Logout extends React.Component {
     // }
 
     logout = () => {
-        
-        // this.setState({logoutToHome: true})
-        // localStorage.clear()
+      return  <Redirect to="/" />
+       
     }
 
     displayInfo = () => {
@@ -35,11 +34,9 @@ export default class Logout extends React.Component {
     }
 
     render(){
-        // const { logoutToHome } = this.state
-        // if (logoutToHome){
-        //     return <Redirect to={"/"} />
+        // if(!localStorage.logged_in){
+        //    return <Redirect to={"/"} />
         // }
-        // debugger
         return(
             <div id="logout-window">
                 {this.displayInfo()}
