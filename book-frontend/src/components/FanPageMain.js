@@ -2,7 +2,6 @@ import React from 'react'
 import './fan_page.css'
 
 const FanPageMain = props => {
-    debugger
     return(
         <div id="fan-page-main">
             {props.fanProp.username}

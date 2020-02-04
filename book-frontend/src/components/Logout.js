@@ -8,14 +8,18 @@ export default class Logout extends React.Component {
     // constructor(){
     //     super()
     //     this.state = {
-    //         logoutToHome: false
+    //         logged_in: localStorage.logged_in
     //     }
     // }
 
-    logout = () => {
-      return  <Redirect to="/" />
-       
-    }
+    // logout = () => {
+    //     debugger
+    //     this.setState({
+    //         logged_in: false
+    //     })
+    //     debugger 
+    //     localStorage.clear()
+    // }
 
     displayInfo = () => {
         if(this.props.fanProp.shows){
@@ -23,7 +27,7 @@ export default class Logout extends React.Component {
                 <div>
                     <h2>Welcome back, {this.props.fanProp.username}</h2>
                     You Have {this.props.fanProp.shows.length} stubs in your hand<br></br>
-                    <Link onClick={this.logout}> Logout </Link>
+                    <button id="logout-btn" onClick={event => this.props.logout(event)}> Logout </button>
                 </div>
             ) 
         }else{
@@ -34,13 +38,12 @@ export default class Logout extends React.Component {
     }
 
     render(){
-        // if(!localStorage.logged_in){
-        //    return <Redirect to={"/"} />
-        // }
-        return(
-            <div id="logout-window">
-                {this.displayInfo()}
-            </div>
-        )
+            return(
+                <div id="logout-window">
+                    {this.displayInfo()}
+                </div>
+            )
+        
+        
     }
 }

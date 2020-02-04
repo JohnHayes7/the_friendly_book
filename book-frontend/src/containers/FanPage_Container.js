@@ -8,6 +8,13 @@ import TicketContainer from './Ticket_Container'
 
 class FanPageContainer extends React.Component{
 
+    constructor(){
+        super()
+        this.state = {
+            logged_in: !!localStorage.user_id
+        }
+    }
+
     getFanFromDb = () => {
         fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
             .then(fan => {
@@ -47,6 +54,14 @@ class FanPageContainer extends React.Component{
         })
     }
 
+
+    logout = () => {
+         localStorage.clear()
+        this.setState({
+            logged_in: localStorage.user_id
+        })
+    }
+
     
  
     fanShowsDisplay = shows =>{
@@ -67,22 +82,26 @@ class FanPageContainer extends React.Component{
             }
         }else{
             
-            return <h5>Whats Going on here?</h5>
+            return <h5>You'll Never Get Out Of This Maze</h5>
         }
         
     }
 
     render(){
-        
-        if(!localStorage.logged_in){
+        debugger
+        if(!this.state.logged_in){
+            debugger
             // alert("Please Login")
-           return <Redirect to={"/"} />
+           return this.props.history.push("/")
+        }else{
+            debugger
+            return(
+                <div>
+                    <FanPage fanProp={this.props.fan} getFan={this.getFanFromDb} displayShows={this.fanShowsDisplay} logout={this.logout} />
+                </div>
+            )
         }
-        return(
-            <div>
-                <FanPage fanProp={this.props.fan} getFan={this.getFanFromDb} displayShows={this.fanShowsDisplay} />
-            </div>
-        )
+        
     }
 }
 
