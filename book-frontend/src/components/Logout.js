@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import {Redirect} from 'react-router-dom'
 import './logout.css'
 
 export default class Logout extends React.Component {
@@ -20,6 +18,8 @@ export default class Logout extends React.Component {
     //     debugger 
     //     localStorage.clear()
     // }
+
+    
 
     displayInfo = () => {
         if(this.props.fanProp.shows){

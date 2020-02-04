@@ -1,8 +1,6 @@
 import React from 'react'
 import './show_page.css'
-import { connect } from 'react-redux'
 import Header from './Header'
-import LogInContainer from '../containers/Log_In_Container'
 import LandingYearsContainer from '../containers/LandingYears_Container'
 import Set from './Set'
 import {Link} from 'react-router-dom'
@@ -93,7 +91,7 @@ class ShowPage extends React.Component{
                         <Set set={this.ifSetTwo} parseSet={this.parseSetTwo} />
                         <Set set={this.ifEncore} parseSet={this.parseEncore} />
                         {this.ifLoggedInAddLink()}<br></br>
-                        <ul>Fans:
+                        <ul>{localStorage.logged_in ? "Fans:" : ""}<br></br>
                             {this.displayFans(this)}    
                         </ul>
                       <div>
@@ -113,7 +111,8 @@ class ShowPage extends React.Component{
     displayFans = show => {
       let fans = show.props.showInfo.included.filter(attr => attr.type === "fan")
       return fans.map(fan => {
-          return <li>{fan.attributes.username}</li>
+          
+          return <Link key={fan.id} to={`/fans/${fan.attributes.username}`}>{fan.attributes.username}</Link>
 
       })
     }
@@ -127,12 +126,12 @@ class ShowPage extends React.Component{
     
 
     render(){
-        // debugger
+        debugger
         return(
             <div>
                 <div id="landing-wrapper">
                     <Header />
-                    {this.loginOrLogout()}
+                    {/* {localStorage.logged_in ? <Logout /> : <Log_In_Container />} */}
                 </div>
                 <div id="second-line">
                     {this.displayInfo()}
