@@ -24,3 +24,19 @@
 #ticket-mem{
     display: flex;
 }
+
+#memory-form{
+    height: 200px;
+    width: 450px;
+    border: 2px solid grey;
+    text-align: left;
+}
+
+.grey-out{
+    color: grey;
+}
+
+#memory-text{
+    width: 442px;
+    height: 175px;
+}

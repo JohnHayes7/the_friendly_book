@@ -82,7 +82,7 @@ class FanPageContainer extends React.Component{
     }
 
     memoryAddDisplay = () => {
-        return this.state.showMemoryDiv ? <MemoryContainer showId={this.state.showId} fanId={this.state.fanId} /> : null
+        return this.state.showMemoryDiv ? <MemoryContainer fan={this.props.fan} /> : null
     }
 
     
@@ -99,7 +99,7 @@ class FanPageContainer extends React.Component{
                     <div>
                         {shows.map( show => {
                            return(
-                                <div id="ticket-mem">
+                                <div key={show.id} id="ticket-mem">
                                     <TicketContainer key={show.id} mediaid={show.id} date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} removeFromFanShows={this.removeFromFanShows} addMemoryBtn={this.addMemoryBtn} /> 
                                     {this.memoryAddDisplay()}
                                 </div>
