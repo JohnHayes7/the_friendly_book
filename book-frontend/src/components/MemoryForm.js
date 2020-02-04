@@ -8,7 +8,7 @@ const MemoryForm = props => {
                 <label className="grey-out">{props.fan.username} says:</label><br></br>
                 <textarea id="memory-text" type="text" value={props.text} onChange={event => props.changeHandler(event)}></textarea>
                 
-                <input on type="submit" />
+                <input type="submit" />
             </form>
         </div>
     )
