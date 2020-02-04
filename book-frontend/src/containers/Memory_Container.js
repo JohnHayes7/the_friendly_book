@@ -12,7 +12,6 @@ export default class MemoryContainer extends React.Component{
 
     changeHandler = event => {
         event.preventDefault()
-        console.log(this.state.text)
         this.setState({
             text: event.target.value
         })
@@ -22,7 +21,7 @@ export default class MemoryContainer extends React.Component{
     render(){
         return(
             <div>
-                <MemoryForm fan={this.props.fan} text={this.state.text} changeHandler={this.changeHandler} />
+                <MemoryForm fan={this.props.fan} text={this.state.text} changeHandler={this.changeHandler} memorySubmit={this.props.memorySubmit} />
             </div>
         )
     }

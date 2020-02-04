@@ -82,7 +82,12 @@ class FanPageContainer extends React.Component{
     }
 
     memoryAddDisplay = () => {
-        return this.state.showMemoryDiv ? <MemoryContainer fan={this.props.fan} /> : null
+        return this.state.showMemoryDiv ? <MemoryContainer fan={this.props.fan} memorySubmit={this.memorySubmit} /> : null
+    }
+
+    memorySubmit = event => {
+        event.preventDefault()
+        debugger
     }
 
     
