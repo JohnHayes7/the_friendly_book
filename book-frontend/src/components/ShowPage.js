@@ -13,7 +13,8 @@ class ShowPage extends React.Component{
     constructor() {
         super()
         this.state = {
-            memories: []
+            memories: [],
+            fans: []
         }
     }
 
@@ -117,12 +118,13 @@ class ShowPage extends React.Component{
             )
         }             
     }
-    // START FROM HERE THE FETCH LINK IS RETURNING INCORRECT
+    
     getShowMemories = show => {
         fetch(`http://localhost:3001/memories/${show.props.showInfo.data.id}`).then(response => response.json())
         .then(rxShow => {
           this.setState({
-              memories: rxShow.data
+              memories: rxShow.data,
+              fans: rxShow.included
           })
         })
         
@@ -131,7 +133,12 @@ class ShowPage extends React.Component{
     parseMemories = () => { 
         if(this.state.memories.length > 0){
             return this.state.memories.map(mem => {
-                return <div>{mem.attributes.text}</div>
+                let fanObj = {}
+                if(mem.relationships.fan.data){
+                    fanObj = this.state.fans.find(fan => fan.id === mem.relationships.fan.data.id)
+                    return <div>{fanObj.attributes.username} says {mem.attributes.text}</div>
+                }
+                
             })
         }else{
             return <div>No Memories Yet.  Be the first!</div>
