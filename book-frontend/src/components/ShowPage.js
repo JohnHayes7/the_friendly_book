@@ -10,6 +10,13 @@ import Log_In_Container from '../containers/Log_In_Container'
 
 class ShowPage extends React.Component{
 
+    constructor() {
+        super()
+        this.state = {
+            memories: []
+        }
+    }
+
     parseSetOne = () => {
        return this.props.showInfo.data.attributes.set1.split(", ").map(song => {
             if(song !== ""){
@@ -101,6 +108,7 @@ class ShowPage extends React.Component{
                     </div>
                     Memories:
                     {this.getShowMemories(this)}
+                    {this.parseMemories()}
                 </div>
 
                 
@@ -113,14 +121,16 @@ class ShowPage extends React.Component{
     getShowMemories = show => {
         fetch(`http://localhost:3001/memories/${show.props.showInfo.data.id}`).then(response => response.json())
         .then(rxShow => {
-           return this.parseMemories(rxShow)
+          this.setState({
+              memories: rxShow.data
+          })
         })
         
     }
 
-    parseMemories = (showMems) => { 
-        if(!showMems.data){
-            return showMems.data.map(mem => {
+    parseMemories = () => { 
+        if(this.state.memories.length > 0){
+            return this.state.memories.map(mem => {
                 return <div>{mem.attributes.text}</div>
             })
         }else{
