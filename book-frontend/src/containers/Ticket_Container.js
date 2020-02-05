@@ -34,20 +34,23 @@ class TicketContainer extends React.Component{
 
     clickHandler = event => {
         event.preventDefault()
-        this.setState({
-            clicked: true,
-        })
+        this.setState(prevState => ({
+            clicked: !prevState.clicked,
+        }))
+        debugger
         this.props.addShow(this.props)
     }
 
     dateSlug = (date) => {
         let splitDate = date.split("-")
+        debugger
         return splitDate[1] + "-" + splitDate[2] + "-" + splitDate[0]
     }
 
     render(){
         
         if(this.state.clicked){
+            debugger
            return <Redirect to={`/shows/${this.dateSlug(this.props.date)}`} />
         }
         return(

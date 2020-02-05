@@ -81,23 +81,23 @@ class ShowsController < ApplicationController
     end
 
 
-    def show
-        day = ShowDate.get_day(params[:id])
-        month = ShowDate.get_month(params[:id])
-        show_date = ShowDate.find_by({month: month, day:day})
-        options = {include: [:fans, :memories, :show_date, :venue, :songs]}
-        
-        if show_date
-            if show_date.show
-                s = Show.find(show_date.show.id)
-                render json: ShowSerializer.new(s, options) 
+    def show 
+            day = ShowDate.get_day(params[:id])
+            month = ShowDate.get_month(params[:id])
+            show_date = ShowDate.find_by({month: month, day:day})
+            options = {include: [:fans, :memories, :show_date, :venue, :songs]}
+            
+            if show_date
+                if show_date.show
+                    s = Show.find(show_date.show.id)
+                    render json: ShowSerializer.new(s, options) 
+                else
+                    render json: { status: "error", code: 3000, message: "Can Not Find Show"}
+                end
             else
                 render json: { status: "error", code: 3000, message: "Can Not Find Show"}
             end
-        else
-            render json: { status: "error", code: 3000, message: "Can Not Find Show"}
-        end
-
+        
     end
 
     def update

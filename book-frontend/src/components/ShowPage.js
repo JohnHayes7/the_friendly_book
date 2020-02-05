@@ -99,6 +99,8 @@ class ShowPage extends React.Component{
                         {this.parseSetThree()} */}                          
                       </div>
                     </div>
+                    Memories:
+                    {this.getShowMemories(this)}
                 </div>
 
                 
@@ -106,6 +108,18 @@ class ShowPage extends React.Component{
                 
             )
         }             
+    }
+
+    getShowMemories = show => {
+        debugger
+        fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
+        .then(rxShow => {
+            debugger
+        })
+    }
+
+    parseMemories = (show) => { 
+        debugger
     }
 
     displayFans = show => {
@@ -126,7 +140,6 @@ class ShowPage extends React.Component{
     
 
     render(){
-        debugger
         return(
             <div>
                 <div id="landing-wrapper">
