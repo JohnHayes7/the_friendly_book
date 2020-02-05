@@ -109,17 +109,24 @@ class ShowPage extends React.Component{
             )
         }             
     }
-
+    // START FROM HERE THE FETCH LINK IS RETURNING INCORRECT
     getShowMemories = show => {
-        debugger
-        fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
+        fetch(`http://localhost:3001/memories/${show.props.showInfo.data.id}`).then(response => response.json())
         .then(rxShow => {
-            debugger
+           return this.parseMemories(rxShow)
         })
+        
     }
 
-    parseMemories = (show) => { 
-        debugger
+    parseMemories = (showMems) => { 
+        if(!showMems.data){
+            return showMems.data.map(mem => {
+                return <div>{mem.attributes.text}</div>
+            })
+        }else{
+            return <div>No Memories Yet.  Be the first!</div>
+        }
+        
     }
 
     displayFans = show => {
