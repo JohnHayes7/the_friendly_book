@@ -26,10 +26,12 @@
 }
 
 #memory-form{
-    height: 200px;
+    height: 150px;
     width: 450px;
+    margin: 1%;
     border: 2px solid grey;
     text-align: left;
+    background-color: rgb(196, 196, 196, .3);
 }
 
 .grey-out{
@@ -38,5 +40,14 @@
 
 #memory-text{
     width: 442px;
-    height: 175px;
+    height: 100px;
+}
+
+#memories-display-div{
+    height: 125px;
+    width: 442px;
+    margin-top: 1.2%;
+    /* padding: 1%; */
+    overflow: scroll;
+    border: 1px dotted
 }

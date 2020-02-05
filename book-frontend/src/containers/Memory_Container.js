@@ -28,7 +28,7 @@ export default class MemoryContainer extends React.Component{
         let memObj= {
             text: this.state.text,
             fanId: this.props.fanId,
-            showId: this.props.showId
+            showId: this.props.selectedShowId
         }
 
         fetch('http://localhost:3001/memories',{
@@ -45,10 +45,9 @@ export default class MemoryContainer extends React.Component{
     }
 
     parseFanMemories = (show, fan) => {
-        
         let fanShowMemories = fan.memories.filter(mem => mem.relationships.show.data.id === show.id)
         return fanShowMemories.map(mem => {
-            return <div><span className="grey-out">You said: </span>{mem.attributes.text}</div>
+            return <div><span className="grey-out">You added: </span>{mem.attributes.text}</div>
         })
     }
  

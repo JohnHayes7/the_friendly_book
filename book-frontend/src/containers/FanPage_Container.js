@@ -73,7 +73,7 @@ class FanPageContainer extends React.Component{
     }
 
     addMemoryHandler = event =>{
-        // event.preventDefault()
+        event.preventDefault()
         this.setState({
             showMemoryDiv: true,
             showMemoryFanId: localStorage.user_id,

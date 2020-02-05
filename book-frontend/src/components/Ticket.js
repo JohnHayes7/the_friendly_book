@@ -2,7 +2,6 @@ import React from 'react'
 import './ticket.css'
 
 const Ticket = props => {
-    debugger
     return(
         <div onClick={props.clickHandler} id="ticket">
             <div id="info">
