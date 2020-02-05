@@ -21,6 +21,7 @@ export default function manageFan(state={
             username: action.fan.data.attributes.username,
             email: action.fan.data.attributes.email,
             shows: action.fan.included.filter(attr => attr.type === "show"),
+            memories: action.fan.included.filter(attr => attr.type === "memory"),
             loggedIn: localStorage.logged_in
            }  
            

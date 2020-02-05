@@ -1,12 +1,14 @@
 import React from 'react'
 import MemoryForm from '../components/MemoryForm'
+import MemoryDisplay from '../components/MemoryDisplay'
+import '../components/fan_page.css'
 
 export default class MemoryContainer extends React.Component{
 
     constructor(){
         super()
         this.state = {
-            text: ""
+            text: "",
         }
     }
 
@@ -37,9 +39,20 @@ export default class MemoryContainer extends React.Component{
             body: JSON.stringify(memObj)
         }).then(response => response.json())
         .then(rxObj => {
-            debugger
+            this.props.toggleMemoryDisplay()
+            this.props.updateFan(rxObj)
         })
     }
+
+    parseFanMemories = (show, fan) => {
+        
+        let fanShowMemories = fan.memories.filter(mem => mem.relationships.show.data.id === show.id)
+        return fanShowMemories.map(mem => {
+            return <div><span className="grey-out">You said: </span>{mem.attributes.text}</div>
+        })
+    }
+ 
+
 
     
 
@@ -48,7 +61,7 @@ export default class MemoryContainer extends React.Component{
        
         return(
             <div>
-                <MemoryForm fan={this.props.fan} text={this.state.text} changeHandler={this.changeHandler} memorySubmit={this.memorySubmit} />
+                {this.props.canAddShow ? <MemoryForm fan={this.props.fan} text={this.state.text} changeHandler={this.changeHandler} memorySubmit={this.memorySubmit} /> : <MemoryDisplay show={this.props.show} parseFanMemories={this.parseFanMemories} fan={this.props.fan} />}
             </div>
         )
     }
