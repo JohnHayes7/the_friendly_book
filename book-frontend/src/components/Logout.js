@@ -11,17 +11,6 @@ export default class Logout extends React.Component {
         }
     }
 
-    // logout = () => {
-    //     debugger
-    //     this.setState({
-    //         logged_in: false
-    //     })
-    //     debugger 
-    //     localStorage.clear()
-    // }
-
-    
-
     displayInfo = () => {
         
         return(

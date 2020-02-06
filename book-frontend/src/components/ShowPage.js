@@ -10,6 +10,14 @@ import Log_In_Container from '../containers/Log_In_Container'
 
 class ShowPage extends React.Component{
 
+    constructor(){
+        super()
+        this.state = {
+            logged_in: localStorage.logged_in
+        }
+    }
+    
+
     parseSetOne = () => {
        return this.props.showInfo.data.attributes.set1.split(", ").map(song => {
             if(song !== ""){
@@ -92,7 +100,7 @@ class ShowPage extends React.Component{
                         <Set set={this.ifEncore} parseSet={this.parseEncore} />
                         {this.ifLoggedInAddLink()}<br></br>
                         <ul>{localStorage.logged_in ? "Fans:" : ""}<br></br>
-                            {this.displayFans(this)}    
+                            {localStorage.logged_in ? this.displayFans(this) : ""}    
                         </ul>
                       <div>
                         {/* {this.ifSetThree()}
@@ -113,7 +121,6 @@ class ShowPage extends React.Component{
         let fans = this.props.showInfo.included.filter(element => element.type === "fan")
         if(memories.length > 0){
             return memories.map(mem => {
-                debugger
                 let fanObj = {}
                 if(mem.relationships.fan.data){
                     fanObj = fans.find(fan => fan.id === mem.relationships.fan.data.id)
@@ -137,13 +144,15 @@ class ShowPage extends React.Component{
     }
 
 
-    loginOrLogout = () => {
-        if(localStorage.logged_in){
-            return <Log_In_Container />
-        }
-    }
+    // loginOrLogout = () => {
+        
+    //     if(localStorage.logged_in){
+    //         return <Log_In_Container />
+    //     }
+    // }
 
     render(){
+        debugger
         return(
             <div>
                 <div id="landing-wrapper">

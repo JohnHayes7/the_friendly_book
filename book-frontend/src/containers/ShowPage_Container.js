@@ -107,7 +107,7 @@ class ShowPageContainer extends React.Component{
                 this.fetchShowfromRelisten()
             }else{
                 console.log(showInfo)
-                debugger
+                
                 this.setState({
                     
                     loadedShow: true,

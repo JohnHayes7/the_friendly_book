@@ -97,7 +97,7 @@
 
     /* YEARS WINDOW */
     #landing-years-display{
-        width: 192%;
+        /* width: 200%; */
         height: 650px;
         text-align: center;
         border: 1px solid grey;

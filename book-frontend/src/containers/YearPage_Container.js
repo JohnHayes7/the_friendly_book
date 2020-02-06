@@ -1,7 +1,7 @@
 import React from 'react'
 import YearPage from '../components/YearPage'
 
-const SHOWS = []
+
 
 export default class YearPageContainer extends React.Component{
 
@@ -31,9 +31,11 @@ export default class YearPageContainer extends React.Component{
             }
                fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${show.display_date}`).then(response => response.json())
                .then(showSets => {
-                   
+                    // debugger
+                    let sets = showSets.sources[0].sets
+                    let alsoFirstSet = sets.find(set => set.name === "Set 1" )
                     let firstSet = showSets.sources[0].sets[0].tracks
-                   
+                    debugger
                     firstSet.map(songTitle => {
                         newShow.set1.push(songTitle.title)
                     })
@@ -56,16 +58,7 @@ export default class YearPageContainer extends React.Component{
                newShow.location = show.venue.location
                newShow.venue = show.venue.name
 
-                // const newShow = {
-                //     date: ,
-                //     location: show.venue.location,
-                //     venue: show.venue.name,
-                //     setlist:{
-                //         set1: setOne,
-                //         set2: setTwo,
-                //         encore: encore
-                //     }
-                // }
+           
 
                 yearShowsAry = [...yearShowsAry, newShow]
             
