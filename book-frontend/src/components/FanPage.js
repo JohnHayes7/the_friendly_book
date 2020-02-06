@@ -16,7 +16,8 @@ const Fan = props => {
         <div>
             <div id="landing-wrapper">
                 <Header />
-               <Logout fanProp={props.fanProp} logout={props.logout} />
+               {/* <Logout fanProp={props.fanProp} /> */}
+               <Logout />
             </div>
             <div id="fan-page">
                 <FanPageMain fanProp={props.fanProp} displayShows={props.displayShows} />

@@ -70,7 +70,7 @@ class ShowPage extends React.Component{
 
     ifLoggedInAddLink = () => {
         if(localStorage.logged_in){
-            return <Link value="link"onClick={event => this.props.addFanToShow(event)}>Add To My Shows</Link>
+            return <span id="add-show-link"><Link value="link"onClick={event => this.props.addFanToShow(event)}>Add To My Shows</Link></span>
         }else{
             return <h4>Login or<Link to="/signup">Signup</Link>to add this show to your collection.</h4>
         }
@@ -148,7 +148,7 @@ class ShowPage extends React.Component{
             <div>
                 <div id="landing-wrapper">
                     <Header />
-                    {/* {localStorage.logged_in ? <Logout /> : <Log_In_Container />} */}
+                    {localStorage.logged_in ? <Logout /> : <Log_In_Container />}
                 </div>
                 <div id="second-line">
                     {this.displayInfo()}
