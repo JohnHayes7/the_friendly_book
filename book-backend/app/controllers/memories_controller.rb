@@ -27,9 +27,10 @@ class MemoriesController < ApplicationController
         render json: MemorySerializer.new(mem)
     end
 
-    def delete
-        
-
+    def destroy
+        mem = Memory.find(params[:id])
+        mem.destroy
+        render json: {code: 3000, message:"Memory Deleted"}
     end
 
 end

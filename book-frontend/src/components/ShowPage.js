@@ -117,7 +117,7 @@ class ShowPage extends React.Component{
                 let fanObj = {}
                 if(mem.relationships.fan.data){
                     fanObj = fans.find(fan => fan.id === mem.relationships.fan.data.id)
-                return <div className="fan-mem">{fanObj.attributes.username} : {mem.attributes.text}{fanObj.id === localStorage.user_id ?<span className="edit-mem"><Link to={`/memories/${mem.id}/edit`}> edit</Link></span> : ""}</div>
+                return <div className="fan-mem">{fanObj.attributes.username}: <div className="mem-text"> {mem.attributes.text}{fanObj.id === localStorage.user_id ?<span className="edit-mem"><Link to={`/memories/${mem.id}/edit`}> edit</Link></span> : ""}</div></div>
                 }
                 
             })

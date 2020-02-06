@@ -48,7 +48,9 @@ export default class MemoryEdit extends React.Component {
                 "Content-Type": "application/json"
             }
         }).then(response => response.json()).then(message => {
-            
+            if(message.code === 3000){
+                window.history.back()
+            }    
         })
     }
 
@@ -69,7 +71,7 @@ export default class MemoryEdit extends React.Component {
                     <textarea id="memory-text" type="text" value={this.state.text} onChange={event => this.updateMemory(event)}></textarea><br></br>
                     <input id="submit" type="submit" />
                 </form>
-                <div id="delete-memory-div" onClick={this.deleteHandler}>
+                <div id="delete-memory-div" onClick={this.deleteMemory}>
                     Delete Comment
                 </div>
             </div>
