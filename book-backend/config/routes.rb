@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :fans, only: [:create, :show, :edit, :destroy]
   
-  resources :memories, only:[:create, :show, :edit, :destroy]
+  resources :memories, only:[:create, :show, :update, :destroy]
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

@@ -66,7 +66,7 @@ class ShowsController < ApplicationController
             s.venue_id = venue.id
             s.display_venue = venue.name
             s.display_location = "#{city_name}, #{state_initials}"
-            binding.pry
+            # binding.pry
             s.add_set_one(params[:show][:set1])
             s.add_set_two(params[:show][:set2])
             s.add_encore(params[:show][:encore])

@@ -51,11 +51,7 @@ export default class MemoryContainer extends React.Component{
         })
     }
  
-
-
     
-
-
     render(){
        
         return(

@@ -15,10 +15,13 @@ class MemoriesController < ApplicationController
     end
 
     def show
-        show = Show.find(params[:id])
-        memories = show.memories
-        options = {include: [:fan]}
-        render json: MemorySerializer.new(memories, options)
+        memory = Memory.find(params[:id])
+        options = {include: [:fan, :show]}
+        render json: MemorySerializer.new(memory, options) 
+    end
+
+    def update
+        binding.pry
     end
 
 end

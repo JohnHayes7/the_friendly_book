@@ -10,14 +10,6 @@ import Log_In_Container from '../containers/Log_In_Container'
 
 class ShowPage extends React.Component{
 
-    // constructor() {
-    //     super()
-    //     this.state = {
-    //         memories: [],
-    //         fans: []
-    //     }
-    // }
-
     parseSetOne = () => {
        return this.props.showInfo.data.attributes.set1.split(", ").map(song => {
             if(song !== ""){
@@ -111,17 +103,11 @@ class ShowPage extends React.Component{
                         <span id="mem-title">Memories:</span>
                         {this.parseMemories()}
                     </div>
-                </div>
-
-                
-                
-                
+                </div> 
             )
         }             
     }
     
-    
-
     parseMemories = () => {
         let memories = this.props.showInfo.included.filter(element => element.type === "memory")
         let fans = this.props.showInfo.included.filter(element => element.type === "fan")
@@ -131,15 +117,15 @@ class ShowPage extends React.Component{
                 let fanObj = {}
                 if(mem.relationships.fan.data){
                     fanObj = fans.find(fan => fan.id === mem.relationships.fan.data.id)
-                return <div className="fan-mem">{fanObj.attributes.username} : {mem.attributes.text}{fanObj.id === localStorage.user_id ?<span className="edit-mem"><Link to={`/memories/${mem.id}`}> edit</Link></span> : ""}</div>
+                return <div className="fan-mem">{fanObj.attributes.username} : {mem.attributes.text}{fanObj.id === localStorage.user_id ?<span className="edit-mem"><Link to={`/memories/${mem.id}/edit`}> edit</Link></span> : ""}</div>
                 }
                 
             })
         }else{
             return <div>No Memories Yet.  Be the first!</div>
         }
-        
     }
+
 
     displayFans = show => {
       let fans = show.props.showInfo.included.filter(attr => attr.type === "fan")
@@ -150,13 +136,12 @@ class ShowPage extends React.Component{
       })
     }
 
+
     loginOrLogout = () => {
         if(localStorage.logged_in){
             return <Log_In_Container />
         }
     }
-
-    
 
     render(){
         return(

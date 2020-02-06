@@ -138,16 +138,16 @@ class ShowPageContainer extends React.Component{
         
     }
 
-    getShowMemories = show => {
-        fetch(`http://localhost:3001/memories/${show.props.showInfo.data.id}`).then(response => response.json())
-        .then(rxShow => {
-          this.setState({
-              memories: rxShow.data,
-              fans: rxShow.included
-          })
-        })
+    // getShowMemories = show => {
+    //     fetch(`http://localhost:3001/memories/${show.props.showInfo.data.id}`).then(response => response.json())
+    //     .then(rxShow => {
+    //       this.setState({
+    //           memories: rxShow.data,
+    //           fans: rxShow.included
+    //       })
+    //     })
         
-    }
+    // }
 
 
     componentDidMount(){
