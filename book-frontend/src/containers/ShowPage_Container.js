@@ -15,6 +15,7 @@ class ShowPageContainer extends React.Component{
    
     
     addShowToDb = () => {
+        debugger
        fetch(`http://localhost:3001/shows`, {
             method: "post",
             headers: {
@@ -40,10 +41,10 @@ class ShowPageContainer extends React.Component{
 
 
     fetchShowfromRelisten = () => {
-        debugger
+        
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
             .then(showSets => {
-                debugger
+                
                 console.log("FETCHED SHOW FROM RELISTEN")
                 console.log(this.props)
 
@@ -57,8 +58,8 @@ class ShowPageContainer extends React.Component{
                 
                 if(!this.props.show.show){
                     
-                    debugger
-                    firstSet.map(songTitle => {
+                    
+                    firstSet.tracks.map(songTitle => {
                         this.props.show.set1.push(songTitle.title)
                     })
                     
@@ -83,13 +84,13 @@ class ShowPageContainer extends React.Component{
                     
                     
                 }else{
-                    debugger
+                    
                     // this.props.show.show.date = showSets.display_date
                     // this.props.show.show.location = showSets.venue.location
                     // this.props.show.show.venue = showSets.venue.name
                     // let firstSet = showSets.sources[0].sets[0].tracks
                
-                    firstSet.map(songTitle => {
+                    firstSet.tracks.map(songTitle => {
                         this.props.show.show.set1.push(songTitle.title)
                     })
 
@@ -107,6 +108,7 @@ class ShowPageContainer extends React.Component{
                     // }
 
                     if(thirdSet){
+                        debugger
                         thirdSet.tracks.map(song => {
                             this.props.show.show.set3.push(song.title)
                         })

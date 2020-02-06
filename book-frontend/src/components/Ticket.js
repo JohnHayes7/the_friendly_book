@@ -9,10 +9,7 @@ const Ticket = props => {
                 {props.date}<br></br>
                 <span>{props.venue}, {props.location}</span><br></br>
                                 
-                {props.set1}
-                {props.set2}
-                {props.encore}
-
+                
                 {props.displayLink ? props.displayLink(props.date) : ""}<br></br>
                 
                 {props.addMemoryBtn ? props.addMemoryBtn() : ""}

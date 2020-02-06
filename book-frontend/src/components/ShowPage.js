@@ -34,13 +34,14 @@ class ShowPage extends React.Component{
         })
     }
    
-    // parseSetThree = () => {
-    //     return this.props.showInfo.data.attributes.set3.split(", ").map(song => {
-    //         if(song !== ""){
-    //             return <div>{song}</div>
-    //         }   
-    //     })
-    // }
+    parseSetThree = () => {
+        debugger
+        return this.props.showInfo.data.attributes.set3.split(", ").map(song => {
+            if(song !== ""){
+                return <div>{song}</div>
+            }   
+        })
+    }
 
     parseEncore = () => {
         if(this.props.showInfo.data.attributes.set_encore){
@@ -64,11 +65,11 @@ class ShowPage extends React.Component{
             return  <div><strong>Set 2:</strong></div>
         }
     }
-    // ifSetThree = () => {
-    //     if(this.props.showInfo.data.attributes.set3){
-    //         return <div><strong>Set 3:</strong></div>
-    //     }
-    // }
+    ifSetThree = () => {
+        if(this.props.showInfo.data.attributes.set3){
+            return <div><strong>Set 3:</strong></div>
+        }
+    }
 
     ifEncore = () => {
         if(this.props.showInfo.data.attributes.set_encore){
@@ -97,14 +98,14 @@ class ShowPage extends React.Component{
                      
                         <Set set={this.setOne} parseSet={this.parseSetOne} />
                         <Set set={this.ifSetTwo} parseSet={this.parseSetTwo} />
+                        <Set set={this.ifSetThree} parseSet={this.parseSetThree} />
                         <Set set={this.ifEncore} parseSet={this.parseEncore} />
                         {this.ifLoggedInAddLink()}<br></br>
                         <ul>{localStorage.logged_in ? "Fans:" : ""}<br></br>
                             {localStorage.logged_in ? this.displayFans(this) : ""}    
                         </ul>
                       <div>
-                        {/* {this.ifSetThree()}
-                        {this.parseSetThree()} */}                          
+                                               
                       </div>
                     </div>
                     <div id="memories-div">
@@ -152,7 +153,7 @@ class ShowPage extends React.Component{
     // }
 
     render(){
-        debugger
+       
         return(
             <div>
                 <div id="landing-wrapper">

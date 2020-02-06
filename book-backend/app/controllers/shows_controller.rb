@@ -69,6 +69,7 @@ class ShowsController < ApplicationController
             # binding.pry
             s.add_set_one(params[:show][:set1])
             s.add_set_two(params[:show][:set2])
+            s.add_set_three(params[:show][:set3])
             s.add_encore(params[:show][:encore])
             
             s.save

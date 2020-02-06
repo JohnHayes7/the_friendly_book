@@ -10,6 +10,7 @@ export default function manageFan(state={
             venue: "",
             set1: [],
             set2: [],
+            set3: [],
             encore: []
         }
         
@@ -34,6 +35,7 @@ export default function manageFan(state={
                location: action.show.location,
                set1: action.show.set1,
                set2: action.show.set2,
+               set3: action.show.set3,
                encore: action.show.encore
            }
            
