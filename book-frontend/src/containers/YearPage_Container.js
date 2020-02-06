@@ -21,7 +21,7 @@ export default class YearPageContainer extends React.Component{
             
            shows.shows.map(show => {
             const newShow = {
-                date: "",
+                date: "", 
                 location: "",
                 venue: "",
                 set1: [],
@@ -33,36 +33,48 @@ export default class YearPageContainer extends React.Component{
                .then(showSets => {
                     // debugger
                     let sets = showSets.sources[0].sets
-                    let alsoFirstSet = sets.find(set => set.name === "Set 1" )
-                    let firstSet = showSets.sources[0].sets[0].tracks
-                    debugger
-                    firstSet.map(songTitle => {
-                        newShow.set1.push(songTitle.title)
-                    })
+                    let firstSet = sets.find(set => set.name === "Set 1" ) || null
+                    let secondSet = sets.find(set => set.name === "Set 2") || null
+                    let thirdSet = sets.find(set => set.name === "Set 3") || null
+                    let encore = sets.find(set => set.name === "Encore") || null
+                  
+                   
+                    if(firstSet){
+                        firstSet.tracks.map(song => {
+                            newShow.set1.push(song.title)
+                        })
+                    }
+                   
+                   
                     
-                    if(showSets.sources[0].sets[1]){
-                        showSets.sources[0].sets[1].tracks.map(song => {
+                    if(secondSet){
+                        secondSet.tracks.map(song => {
                             newShow.set2.push(song.title)
                         })
                     }
+
+                    if(thirdSet){
+                        thirdSet.tracks.map(song => {
+                            newShow.set3.push(song.title)
+                        } )
+                    }
                     
-                    if(showSets.sources[0].sets[2]){
-                        showSets.sources[0].sets[2].tracks.map(song => {
+                    if(encore){
+                        encore.tracks.map(song => {
                             newShow.encore.push(song.title)
                         })
                     }
-
+                    
                })
-
-               newShow.date = show.display_date
-               newShow.location = show.venue.location
-               newShow.venue = show.venue.name
-
-           
+              
+                newShow.date = show.display_date
+                newShow.location = show.venue.location
+                newShow.venue = show.venue.name
 
                 yearShowsAry = [...yearShowsAry, newShow]
-            
+                
             })
+
             this.setState({
                 loaded: true,
                 shows: yearShowsAry
