@@ -8,7 +8,8 @@ class ShowPageContainer extends React.Component{
         super()
         this.state = {
             loadedShow: false,
-            results: {}
+            results: {},
+            memories: []
         }
     }
    
@@ -106,7 +107,9 @@ class ShowPageContainer extends React.Component{
                 this.fetchShowfromRelisten()
             }else{
                 console.log(showInfo)
+                debugger
                 this.setState({
+                    
                     loadedShow: true,
                     results: showInfo
                 })
@@ -131,6 +134,17 @@ class ShowPageContainer extends React.Component{
         }).then(response => response.json())
         .then(rxShow => {
            this.setState({loadedShow: true, results: rxShow})
+        })
+        
+    }
+
+    getShowMemories = show => {
+        fetch(`http://localhost:3001/memories/${show.props.showInfo.data.id}`).then(response => response.json())
+        .then(rxShow => {
+          this.setState({
+              memories: rxShow.data,
+              fans: rxShow.included
+          })
         })
         
     }

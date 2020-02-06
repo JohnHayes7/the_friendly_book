@@ -26,3 +26,24 @@
 .show-name-date{
     font-size: 1.5em;
 }
+
+#memories-div{
+    text-align: left;
+    width: 50%;
+    padding-left: 1%;
+}
+
+#mem-title{
+    font-size: 2em;
+}
+
+.edit-mem{
+    text-align: right;
+}
+
+.fan-mem{
+    border: 1px solid grey;
+    margin: 5px;
+    padding: 1%;
+}
+

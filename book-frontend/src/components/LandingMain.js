@@ -53,6 +53,15 @@ export default class LandingMain extends React.Component{
         }
     }
 
+    formatDisplayDate = () =>{
+       let year = this.props.todayInHistory.date.split("-")[0]
+       let month = this.props.todayInHistory.date.split("-")[1]
+       let day = this.props.todayInHistory.date.split("-")[2]
+
+       return `${month}.${day}.${year}`
+       
+    }
+
     render(){
         
 
@@ -78,7 +87,7 @@ export default class LandingMain extends React.Component{
                         Today In Phish History
                         <div id="history-display">
                             {this.props.todayInHistory.venue}<br></br>
-                            {this.props.todayInHistory.date}
+                            {this.formatDisplayDate()}
                             <div id="today-setlist">
                             {this.displaySetOne()}{this.parseSetOneInfo()}<br></br>
                             {this.displaySetTwo()}{this.parseSetTwoInfo()}<br></br>

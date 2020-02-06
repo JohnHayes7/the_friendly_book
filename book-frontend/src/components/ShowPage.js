@@ -10,13 +10,13 @@ import Log_In_Container from '../containers/Log_In_Container'
 
 class ShowPage extends React.Component{
 
-    constructor() {
-        super()
-        this.state = {
-            memories: [],
-            fans: []
-        }
-    }
+    // constructor() {
+    //     super()
+    //     this.state = {
+    //         memories: [],
+    //         fans: []
+    //     }
+    // }
 
     parseSetOne = () => {
        return this.props.showInfo.data.attributes.set1.split(", ").map(song => {
@@ -107,9 +107,10 @@ class ShowPage extends React.Component{
                         {this.parseSetThree()} */}                          
                       </div>
                     </div>
-                    Memories:
-                    {this.getShowMemories(this)}
-                    {this.parseMemories()}
+                    <div id="memories-div">
+                        <span id="mem-title">Memories:</span>
+                        {this.parseMemories()}
+                    </div>
                 </div>
 
                 
@@ -119,24 +120,18 @@ class ShowPage extends React.Component{
         }             
     }
     
-    getShowMemories = show => {
-        fetch(`http://localhost:3001/memories/${show.props.showInfo.data.id}`).then(response => response.json())
-        .then(rxShow => {
-          this.setState({
-              memories: rxShow.data,
-              fans: rxShow.included
-          })
-        })
-        
-    }
+    
 
-    parseMemories = () => { 
-        if(this.state.memories.length > 0){
-            return this.state.memories.map(mem => {
+    parseMemories = () => {
+        let memories = this.props.showInfo.included.filter(element => element.type === "memory")
+        let fans = this.props.showInfo.included.filter(element => element.type === "fan")
+        if(memories.length > 0){
+            return memories.map(mem => {
+                debugger
                 let fanObj = {}
                 if(mem.relationships.fan.data){
-                    fanObj = this.state.fans.find(fan => fan.id === mem.relationships.fan.data.id)
-                    return <div>{fanObj.attributes.username} says {mem.attributes.text}</div>
+                    fanObj = fans.find(fan => fan.id === mem.relationships.fan.data.id)
+                return <div className="fan-mem">{fanObj.attributes.username} : {mem.attributes.text}{fanObj.id === localStorage.user_id ?<span className="edit-mem"><Link to={`/memories/${mem.id}`}> edit</Link></span> : ""}</div>
                 }
                 
             })
