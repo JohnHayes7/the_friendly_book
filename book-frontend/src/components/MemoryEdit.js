@@ -10,6 +10,7 @@ export default class MemoryEdit extends React.Component {
         }
         this.patchMemory = this.patchMemory.bind(this)
         this.fetchMemory = this.fetchMemory.bind(this)
+        this.deleteMemory = this.deleteMemory.bind(this)
     }
 
     fetchMemory() {
@@ -35,12 +36,23 @@ export default class MemoryEdit extends React.Component {
             },
             body: JSON.stringify(this.state)
         }).then(response => response.json()).then(mem => {
-            debugger
+            window.history.back()
         })
-       
-      
-        
     }
+
+    deleteMemory(e){
+        e.preventDefault()
+        fetch(`http://localhost:3001/memories/${this.props.match.params.id}`, {
+            method: 'DELETE',
+            headers:{
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json()).then(message => {
+            
+        })
+    }
+
+
 
     componentDidMount(){
         this.fetchMemory()
@@ -55,8 +67,11 @@ export default class MemoryEdit extends React.Component {
                 Edit Comment:
                 <form onSubmit={this.patchMemory}>
                     <textarea id="memory-text" type="text" value={this.state.text} onChange={event => this.updateMemory(event)}></textarea><br></br>
-                    <input type="submit" />
+                    <input id="submit" type="submit" />
                 </form>
+                <div id="delete-memory-div" onClick={this.deleteHandler}>
+                    Delete Comment
+                </div>
             </div>
         )
     }

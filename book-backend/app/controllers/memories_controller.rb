@@ -21,7 +21,15 @@ class MemoriesController < ApplicationController
     end
 
     def update
-        binding.pry
+        mem = Memory.find(params[:id])
+        mem.text = params[:memory][:text]
+        mem.save
+        render json: MemorySerializer.new(mem)
+    end
+
+    def delete
+        
+
     end
 
 end

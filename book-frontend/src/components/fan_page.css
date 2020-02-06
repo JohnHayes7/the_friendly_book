@@ -51,3 +51,13 @@
     overflow: scroll;
     border: 1px dotted
 }
+
+
+#delete-memory-div{
+    border: 1px dashed red;
+    width: 125px;
+    padding: .5%;
+    background-color: red;
+    color: white;
+    margin-left: 10%;
+}
