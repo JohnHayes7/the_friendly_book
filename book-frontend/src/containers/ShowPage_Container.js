@@ -46,48 +46,74 @@ class ShowPageContainer extends React.Component{
                 debugger
                 console.log("FETCHED SHOW FROM RELISTEN")
                 console.log(this.props)
-                
-                if(!this.props.show.show){
-                    
+
                     this.props.show.date = showSets.display_date
                     this.props.show.location = showSets.venue.location
                     this.props.show.venue = showSets.venue.name
-                    let firstSet = showSets.sources[0].sets[0].tracks
+                    let firstSet = showSets.sources[0].sets.find(set => set.name === "Set 1")
+                    let secondSet = showSets.sources[0].sets.find(set => set.name === "Set 2")
+                    let thirdSet = showSets.sources[0].sets.find(set => set.name === "Set 3")
+                    let encore = showSets.sources[0].sets.find(set => set.name === "Encore")
+                
+                if(!this.props.show.show){
+                    
                     debugger
                     firstSet.map(songTitle => {
                         this.props.show.set1.push(songTitle.title)
                     })
-                    debugger
-                    if(showSets.sources[0].sets[1]){
-                        showSets.sources[0].sets[1].tracks.map(song => {
+                    
+                    if(secondSet){
+                        secondSet.tracks.map(song => {
                             this.props.show.set2.push(song.title)
                         })
                     }
                     
-                    if(showSets.sources[0].sets[2]){
-                        showSets.sources[0].sets[2].tracks.map(song => {
-                            this.props.show.encore.push(song.title)
+                    if(thirdSet){
+                        thirdSet.tracks.map(song => {
+                            this.props.show.set3.push(song.title)
                         })
                     }
                     
+                    if(encore){
+                        encore.tracks.map(song => {
+                            this.props.show.encore.push(song.title)
+                        })
+                    }
+
+                    
+                    
                 }else{
-                    this.props.show.show.date = showSets.display_date
-                    this.props.show.show.location = showSets.venue.location
-                    this.props.show.show.venue = showSets.venue.name
-                    let firstSet = showSets.sources[0].sets[0].tracks
+                    debugger
+                    // this.props.show.show.date = showSets.display_date
+                    // this.props.show.show.location = showSets.venue.location
+                    // this.props.show.show.venue = showSets.venue.name
+                    // let firstSet = showSets.sources[0].sets[0].tracks
                
                     firstSet.map(songTitle => {
                         this.props.show.show.set1.push(songTitle.title)
                     })
-                    
-                    if(showSets.sources[0].sets[1]){
-                        showSets.sources[0].sets[1].tracks.map(song => {
+
+                    if(secondSet){
+                        secondSet.tracks.map(song => {
                             this.props.show.show.set2.push(song.title)
                         })
                     }
                     
-                    if(showSets.sources[0].sets[2]){
-                        showSets.sources[0].sets[2].tracks.map(song => {
+                    // OLD SECOND SET FUNCTION
+                    // if(showSets.sources[0].sets[1]){
+                    //     showSets.sources[0].sets[1].tracks.map(song => {
+                    //         this.props.show.show.set2.push(song.title)
+                    //     })
+                    // }
+
+                    if(thirdSet){
+                        thirdSet.tracks.map(song => {
+                            this.props.show.show.set3.push(song.title)
+                        })
+                    }
+                    
+                    if(encore){
+                        encore.tracks.map(song => {
                             this.props.show.show.encore.push(song.title)
                         })
                     }
@@ -107,7 +133,7 @@ class ShowPageContainer extends React.Component{
                 this.fetchShowfromRelisten()
             }else{
                 console.log(showInfo)
-                
+                debugger
                 this.setState({
                     
                     loadedShow: true,
