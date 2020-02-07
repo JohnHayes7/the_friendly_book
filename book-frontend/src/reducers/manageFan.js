@@ -25,8 +25,15 @@ export default function manageFan(state={
             memories: action.fan.included.filter(attr => attr.type === "memory"),
             loggedIn: localStorage.logged_in
            }  
-           
+           debugger
         return Object.assign({}, state, fan)
+
+        case 'LOGOUT_FAN':
+           const logoutFan ={
+               loggedIn: localStorage.loggedIn
+           }
+           debugger
+        return Object.assign({}, state, logoutFan )
 
         case 'ADD_SHOW':
            const show = {

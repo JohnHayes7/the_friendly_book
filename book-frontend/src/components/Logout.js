@@ -1,7 +1,9 @@
 import React from 'react'
 import './logout.css'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export default class Logout extends React.Component {
+class Logout extends React.Component {
 
     constructor(){
         super()
@@ -23,10 +25,9 @@ export default class Logout extends React.Component {
     }
 
     logout = () => {
-        localStorage.clear()
-       this.setState({
-           logged_in: localStorage.user_id
-       })
+        debugger
+        localStorage.clear();
+        this.props.logout()
    }
 
    getFan = () => {
@@ -39,23 +40,29 @@ export default class Logout extends React.Component {
        })
    }
 
-    
-
-
-
-
-
     componentWillMount(){
         this.getFan()
     }
 
     render(){
+
             return(
                 <div id="logout-window">
                     {this.displayInfo()}
                 </div>
             )
-        
-        
     }
 }
+
+const mapStateToProps = state => {
+    
+    return {
+        fan: state
+    } 
+}
+
+const mapDispatchToProps = dispatch => ({
+    logout: FormData => dispatch({type: "LOGOUT_FAN", fan: FormData})
+})
+
+export default connect (mapStateToProps, mapDispatchToProps)(Logout)

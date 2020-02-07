@@ -59,12 +59,12 @@ class FanPageContainer extends React.Component{
     }
 
 
-    logout = () => {
-         localStorage.clear()
-        this.setState({
-            logged_in: localStorage.user_id
-        })
-    }
+    // logout = () => {
+    //      localStorage.clear()
+    //     this.setState({
+    //         logged_in: localStorage.user_id
+    //     })
+    // }
 
     addMemoryBtn = () => {
         return(
@@ -121,15 +121,15 @@ class FanPageContainer extends React.Component{
 
     render(){
         // debugger
-        if(!this.state.logged_in){
+        if(!this.props.fan.logged_in){
             // debugger
             // alert("Please Login")
-           return this.props.history.push("/")
+           return <Redirect to={"/"} />
         }else{
             // debugger
             return(
                 <div>
-                    <FanPage fanProp={this.props.fan} getFan={this.getFanFromDb} displayShows={this.fanShowsDisplay} logout={this.logout} canAddMemory={this.state.canAddMemory} />
+                    <FanPage fanProp={this.props.fan} getFan={this.getFanFromDb} displayShows={this.fanShowsDisplay} canAddMemory={this.state.canAddMemory} />
                 </div>
             )
         }
