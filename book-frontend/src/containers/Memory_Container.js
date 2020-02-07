@@ -22,6 +22,9 @@ export default class MemoryContainer extends React.Component{
     memorySubmit = event => {
         event.preventDefault()
         this.addMemoryToDb()
+        this.setState({
+            text: ""
+        })
     }
 
     addMemoryToDb = () => {
