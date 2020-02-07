@@ -41,7 +41,7 @@ class ShowPageContainer extends React.Component{
 
 
     fetchShowfromRelisten = () => {
-        
+        debugger
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
             .then(showSets => {
                 
@@ -55,7 +55,7 @@ class ShowPageContainer extends React.Component{
                     let secondSet = showSets.sources[0].sets.find(set => set.name === "Set 2")
                     let thirdSet = showSets.sources[0].sets.find(set => set.name === "Set 3")
                     let encore = showSets.sources[0].sets.find(set => set.name === "Encore")
-                
+                    debugger
                 if(!this.props.show.show){
                     
                     
@@ -126,18 +126,18 @@ class ShowPageContainer extends React.Component{
 
 
     getShowFromDb = () => {
-        
+        debugger
         fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
         .then(showInfo => {
-            
+            debugger
             if(showInfo.code === 3000){
+                debugger
                 console.log(showInfo)
                 this.fetchShowfromRelisten()
             }else{
-                console.log(showInfo)
                 debugger
+                console.log(showInfo)
                 this.setState({
-                    
                     loadedShow: true,
                     results: showInfo
                 })
@@ -186,7 +186,7 @@ class ShowPageContainer extends React.Component{
 
 
     render(){
-        console.log("RENDERED")
+        debugger
         return(
             <div>
                 <ShowPage showInfo={this.state.results} getSongs={this.fetchSongsfromRelisten} addFanToShow={this.addFanToShow} displayFans={this.displayFans} />

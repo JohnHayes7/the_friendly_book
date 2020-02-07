@@ -19,6 +19,7 @@ class ShowPage extends React.Component{
     
 
     parseSetOne = () => {
+        debugger
        return this.props.showInfo.data.attributes.set1.split(", ").map(song => {
             if(song !== ""){
                 return <div>{song}</div>
@@ -27,6 +28,7 @@ class ShowPage extends React.Component{
     }
 
     parseSetTwo = () => {
+        debugger
         return this.props.showInfo.data.attributes.set2.split(", ").map(song => {
             if(song !== ""){
                 return <div>{song}</div>
@@ -44,6 +46,7 @@ class ShowPage extends React.Component{
     }
 
     parseEncore = () => {
+        debugger
         if(this.props.showInfo.data.attributes.set_encore){
             return this.props.showInfo.data.attributes.set_encore.split(", ").map(song => {
                 if(song !== ""){
@@ -55,6 +58,7 @@ class ShowPage extends React.Component{
     }
 
     setOne = () => {
+        debugger
         if(this.props.showInfo.data.attributes.set1.length > 0){
             return <div><strong>Set 1:</strong></div>
         }
@@ -88,8 +92,9 @@ class ShowPage extends React.Component{
     
 
     displayInfo = () => {
+        debugger
         if(this.props.showInfo.data){
-            
+            debugger
             return(
                 <div id="show-info">
                   <strong className="show-name-date">{this.props.showInfo.data.attributes.display_date}</strong><br></br>

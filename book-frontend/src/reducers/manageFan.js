@@ -39,7 +39,7 @@ export default function manageFan(state={
                encore: action.show.encore
            }
            
-
+           debugger
         return Object.assign({}, state.show, show) 
            
         

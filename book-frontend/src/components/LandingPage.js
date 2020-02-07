@@ -4,6 +4,7 @@ import LandingMainContainer from '../containers/LandingMain_Container'
 import LandingYearsContainer from '../containers/LandingYears_Container'
 import Header from './Header'
 import './landing_page.css'
+import Logout from './Logout'
 
 export default class Landing extends React.Component{
     render(){
@@ -11,7 +12,7 @@ export default class Landing extends React.Component{
             <div id="whole-window">
                 <div id="landing-wrapper">
                     <Header />
-                    <LogInContainer />
+                    {localStorage.logged_in ? <Logout /> : <LogInContainer />}
                    
                 </div>
                 <div id="landing-second-line">

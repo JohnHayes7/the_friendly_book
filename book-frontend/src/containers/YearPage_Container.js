@@ -14,10 +14,11 @@ export default class YearPageContainer extends React.Component{
     }
 
     getShowsFromYear = () => {
+
         fetch(`https://api.relisten.net/api/v2/artists/phish/years/${this.props.match.params.year}`).then(response => response.json())
         .then(shows => {
             let yearShowsAry = []
-            debugger
+            
            shows.shows.map(show => {
             const newShow = {
                 date: "", 
@@ -30,7 +31,7 @@ export default class YearPageContainer extends React.Component{
             }
                fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${show.display_date}`).then(response => response.json())
                .then(showSets => {
-                    // debugger
+                    debugger
                     let sets = showSets.sources[0].sets
                     let firstSet = sets.find(set => set.name === "Set 1" ) || null
                     let secondSet = sets.find(set => set.name === "Set 2") || null
@@ -78,7 +79,6 @@ export default class YearPageContainer extends React.Component{
                 loaded: true,
                 shows: yearShowsAry
             })
-           console.log(this.state)
            
            if(this.state.loaded){
             
