@@ -55,10 +55,10 @@ class LogInController extends React.Component{
     
 
     render(){
-            if(this.props.fan.loggedIn){
+            // if(this.props.fan.loggedIn){
 
-                return <Redirect to={`/fans/${this.props.fan.username}`} />
-            }
+            //     return <Redirect to={`/fans/${this.props.fan.username}`} />
+            // }
 
         return(
             <div id="login-window">
@@ -73,8 +73,7 @@ const mapStateToProps = state => {
     
     return {
         fan: state
-    }
-    
+    } 
 }
 
 const mapDispatchToProps = dispatch => ({

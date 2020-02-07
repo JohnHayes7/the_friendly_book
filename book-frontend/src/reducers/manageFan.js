@@ -28,6 +28,7 @@ export default function manageFan(state={
            debugger
         return Object.assign({}, state, fan)
 
+
         case 'LOGOUT_FAN':
            const logoutFan ={
                loggedIn: localStorage.loggedIn
@@ -35,6 +36,7 @@ export default function manageFan(state={
            debugger
         return Object.assign({}, state, logoutFan )
 
+        
         case 'ADD_SHOW':
            const show = {
                date: action.show.date,

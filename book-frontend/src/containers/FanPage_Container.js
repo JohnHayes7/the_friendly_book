@@ -12,7 +12,6 @@ class FanPageContainer extends React.Component{
     constructor(){
         super()
         this.state = {
-            logged_in: !!localStorage.user_id,
             showMemoryDiv: false,
             showMemoryFanId: "",
             showMemoryShowId: ""
@@ -20,13 +19,16 @@ class FanPageContainer extends React.Component{
     }
 
     getFanFromDb = () => {
-        fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
+        debugger
+        if(this.props.fan.loggedIn){
+            fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
             .then(fan => {
-                
                 console.log(fan)
                 console.log(this.props)
                 this.props.login(fan)
             })
+        }
+        
     }
 
     formatDateForLink = date =>{
@@ -120,10 +122,10 @@ class FanPageContainer extends React.Component{
     }
 
     render(){
-        // debugger
-        if(!this.props.fan.logged_in){
-            // debugger
-            // alert("Please Login")
+        debugger
+        if(!this.props.fan.loggedIn){
+        //     // debugger
+        //     // alert("Please Login")
            return <Redirect to={"/"} />
         }else{
             // debugger

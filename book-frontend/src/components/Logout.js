@@ -31,14 +31,17 @@ class Logout extends React.Component {
    }
 
    getFan = () => {
-       fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
-       .then(rxFan => {
-           this.setState({
-               username: rxFan.data.attributes.username,
-               shows: rxFan.included.filter(data => data.type === "show")
-           })
-       })
-   }
+       debugger
+       if(this.props.fan.loggedIn){
+            fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
+            .then(rxFan => {
+                this.setState({
+                    username: rxFan.data.attributes.username,
+                    shows: rxFan.included.filter(data => data.type === "show")
+                })
+            })
+        }   
+    }
 
     componentWillMount(){
         this.getFan()

@@ -5,24 +5,40 @@ import LandingYearsContainer from '../containers/LandingYears_Container'
 import Header from './Header'
 import './landing_page.css'
 import Logout from './Logout'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export default class Landing extends React.Component{
+class Landing extends React.Component{
     render(){
-        return(
-            <div id="whole-window">
-                <div id="landing-wrapper">
-                    <Header />
-                    {localStorage.logged_in ? <Logout /> : <LogInContainer />}
-                   
-                </div>
-                <div id="landing-second-line">
-                    <LandingMainContainer />
-                    <LandingYearsContainer />
+        debugger
+        if(!!this.props.fan.loggedIn){
+            return <Redirect to={`/fans/${this.props.fan.username}`} />
+        }else{
+            debugger
+            return(
+                <div id="whole-window">
+                    <div id="landing-wrapper">
+                        <Header />
+                        {this.props.fan.logged_in ? <Logout /> : <LogInContainer />}
+                       
+                    </div>
+                    <div id="landing-second-line">
+                        <LandingMainContainer />
+                        <LandingYearsContainer />
+                    </div>
+                    
+                    
                 </div>
                 
-                
-            </div>
-            
-        )
+            )
+        }
     }
 }
+
+const mapStateToProps = state => {
+        return {
+            fan: state
+        }
+}
+
+export default connect (mapStateToProps)(Landing)
