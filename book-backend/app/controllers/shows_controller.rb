@@ -4,9 +4,9 @@ class ShowsController < ApplicationController
     def create
         
         if params[:show][:date] 
-            binding.pry
+            # binding.pry
             if params[:show][:date].length > 0
-                binding.pry
+                # binding.pry
                 year_value = Year.get_year(params[:show][:date])
                 year = Year.find_or_create_by(value: year_value)
                 day = ShowDate.get_day(params[:show][:date])
@@ -29,11 +29,11 @@ class ShowsController < ApplicationController
                 venue.save
 
                 show_date.venue_id = venue.id
-                binding.pry
+                # binding.pry
                 show_date.save
-                binding.pry
+                # binding.pry
             else
-                binding.pry
+                # binding.pry
                 year_value = Year.get_year(params[:date])
                 year = Year.find_or_create_by(value: year_value)
                 day = ShowDate.get_day(params[:date])
@@ -56,10 +56,10 @@ class ShowsController < ApplicationController
     
                 show_date.venue_id = venue.id
                 show_date.save
-                binding.pry
+                # binding.pry
             end
         else
-            binding.pry
+            # binding.pry
             year_value = Year.get_year(params[:date])
             year = Year.find_or_create_by(value: year_value)
             day = ShowDate.get_day(params[:date])
@@ -82,7 +82,7 @@ class ShowsController < ApplicationController
 
             show_date.venue_id = venue.id
             show_date.save
-            binding.pry
+            # binding.pry
         end    
 
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
@@ -95,12 +95,12 @@ class ShowsController < ApplicationController
             s.venue_id = venue.id
             s.display_venue = venue.name
             s.display_location = "#{city_name}, #{state_initials}"
-            binding.pry
+            # binding.pry
             s.add_set_one(params[:show][:set1])
             s.add_set_two(params[:show][:set2])
             s.add_set_three(params[:show][:set3])
             s.add_encore(params[:show][:encore])
-            binding.pry
+            # binding.pry
             s.save
             render json: ShowSerializer.new(s, options)
         else
@@ -112,24 +112,24 @@ class ShowsController < ApplicationController
 
 
     def show 
-        binding.pry
+        # binding.pry
             day = ShowDate.get_day(params[:id])
             month = ShowDate.get_month(params[:id])
             show_date = ShowDate.find_by({month: month, day:day})
             options = {include: [:fans, :memories, :show_date, :venue, :songs]}
-            binding.pry
+            # binding.pry
             if show_date
-                binding.pry
+                # binding.pry
                 if show_date.show
                     s = Show.find(show_date.show.id)
-                    binding.pry
+                    # binding.pry
                     render json: ShowSerializer.new(s, options) 
                 else
-                    binding.pry
+                    # binding.pry
                     render json: { status: "error", code: 3000, message: "Can Not Find Show"}
                 end
             else
-                binding.pry
+                # binding.pry
                 render json: { status: "error", code: 3000, message: "Can Not Find Show"}
             end
         

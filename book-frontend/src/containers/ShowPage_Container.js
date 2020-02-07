@@ -41,7 +41,7 @@ class ShowPageContainer extends React.Component{
 
 
     fetchShowfromRelisten = () => {
-        debugger
+        // debugger
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
             .then(showSets => {
                 
@@ -56,26 +56,28 @@ class ShowPageContainer extends React.Component{
                     let thirdSet = showSets.sources[0].sets.find(set => set.name === "Set 3")
                     let encore = showSets.sources[0].sets.find(set => set.name === "Encore")
                     debugger
+
                 if(!this.props.show.show){
                     
+                    if(firstSet && firstSet.tracks.length == 0){
+                        firstSet.tracks.map(songTitle => {
+                            this.props.show.set1.push(songTitle.title)
+                        })
+                    }
                     
-                    firstSet.tracks.map(songTitle => {
-                        this.props.show.set1.push(songTitle.title)
-                    })
-                    
-                    if(secondSet){
+                    if(secondSet && secondSet.tracks.length == 0){
                         secondSet.tracks.map(song => {
                             this.props.show.set2.push(song.title)
                         })
                     }
                     
-                    if(thirdSet){
+                    if(thirdSet && thirdSet.tracks.length == 0){
                         thirdSet.tracks.map(song => {
                             this.props.show.set3.push(song.title)
                         })
                     }
                     
-                    if(encore){
+                    if(encore && encore.tracks.length == 0 ){
                         encore.tracks.map(song => {
                             this.props.show.encore.push(song.title)
                         })
@@ -89,12 +91,14 @@ class ShowPageContainer extends React.Component{
                     // this.props.show.show.location = showSets.venue.location
                     // this.props.show.show.venue = showSets.venue.name
                     // let firstSet = showSets.sources[0].sets[0].tracks
-               
-                    firstSet.tracks.map(songTitle => {
-                        this.props.show.show.set1.push(songTitle.title)
-                    })
+                    if(firstSet && firstSet.tracks.length == 0){
+                        firstSet.tracks.map(songTitle => {
+                            this.props.show.show.set1.push(songTitle.title)
+                        })
+                    }
+                    
 
-                    if(secondSet){
+                    if(secondSet && secondSet.tracks.length == 0){
                         secondSet.tracks.map(song => {
                             this.props.show.show.set2.push(song.title)
                         })
@@ -107,14 +111,14 @@ class ShowPageContainer extends React.Component{
                     //     })
                     // }
 
-                    if(thirdSet){
+                    if(thirdSet && thirdSet.tracks.length == 0){
                         debugger
                         thirdSet.tracks.map(song => {
                             this.props.show.show.set3.push(song.title)
                         })
                     }
                     
-                    if(encore){
+                    if(encore && encore.tracks.length == 0){
                         encore.tracks.map(song => {
                             this.props.show.show.encore.push(song.title)
                         })
