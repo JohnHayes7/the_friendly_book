@@ -25,14 +25,13 @@ class Logout extends React.Component {
     }
 
     logout = () => {
-        debugger
         localStorage.clear();
         this.props.logout()
    }
 
    getFan = () => {
        debugger
-       if(this.props.fan.loggedIn){
+       if(localStorage.logged_in){
            debugger
             fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
             .then(rxFan => {
