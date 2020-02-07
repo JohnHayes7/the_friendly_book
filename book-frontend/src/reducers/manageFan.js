@@ -17,7 +17,7 @@ export default function manageFan(state={
 }, action) {
     switch(action.type){
         case 'LOGIN_FAN':
-           const fan = {
+           const loginFan = {
             id: action.fan.data.attributes.id,
             username: action.fan.data.attributes.username,
             email: action.fan.data.attributes.email,
@@ -26,17 +26,16 @@ export default function manageFan(state={
             loggedIn: localStorage.logged_in
            }  
            debugger
-        return Object.assign({}, state, fan)
+        return Object.assign({}, state, loginFan)
 
-
+        
         case 'LOGOUT_FAN':
            const logoutFan ={
-               loggedIn: localStorage.loggedIn
+               loggedIn: localStorage.logged_in
            }
            debugger
         return Object.assign({}, state, logoutFan )
 
-        
         case 'ADD_SHOW':
            const show = {
                date: action.show.date,

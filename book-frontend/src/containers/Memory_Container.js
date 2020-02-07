@@ -40,6 +40,7 @@ export default class MemoryContainer extends React.Component{
         }).then(response => response.json())
         .then(rxObj => {
             this.props.toggleMemoryDisplay()
+            debugger
             this.props.updateFan(rxObj)
         })
     }

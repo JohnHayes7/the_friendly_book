@@ -3,20 +3,18 @@ import './ticket.css'
 
 const Ticket = props => {
     return(
-        <div onClick={props.clickHandler} id="ticket">
-            <div id="info">
+        <div id="ticket">
+            <div id="info" onClick={props.clickHandler}>
                 <strong>PHISH</strong><br></br>
                 {props.date}<br></br>
                 <span>{props.venue}, {props.location}</span><br></br>
                                 
-                
-                {props.displayLink ? props.displayLink(props.date) : ""}<br></br>
-                
-                {props.addMemoryBtn ? props.addMemoryBtn() : ""}
-               
-                {props.displayRemove ? props.displayRemove() : ""}
-                
             </div>
+            {props.displayLink ? props.displayLink(props.date) : ""}<br></br>
+                
+            {props.addMemoryBtn ? props.addMemoryBtn() : ""}
+               
+            {props.displayRemove ? props.displayRemove() : ""}
         </div>
     )
 }

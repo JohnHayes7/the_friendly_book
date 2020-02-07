@@ -2,9 +2,8 @@ import React from 'react'
 import Login from '../components/Login'
 import '../components/landing_page.css'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 
-class LogInController extends React.Component{
+class LogInContainer extends React.Component{
     constructor(){
         super()
         this.state = {
@@ -15,14 +14,12 @@ class LogInController extends React.Component{
     }
 
     handleUsernameInput = event =>{
-        
         this.setState({
             username: event.target.value
         })
     }
 
     handlePasswordInput = event => {
-        
         this.setState({
             password: event.target.value
         })
@@ -42,7 +39,6 @@ class LogInController extends React.Component{
             if(fanInfo.error){
                 alert(fanInfo.error)
             }else{
-                debugger
                 localStorage.setItem("logged_in", 'true')
                 localStorage.setItem("user_id", fanInfo.data.id)
                 localStorage.setItem("username", fanInfo.data.attributes.username)
@@ -55,11 +51,6 @@ class LogInController extends React.Component{
     
 
     render(){
-            // if(this.props.fan.loggedIn){
-
-            //     return <Redirect to={`/fans/${this.props.fan.username}`} />
-            // }
-
         return(
             <div id="login-window">
                 <Login formData={this.state} handleUsernameInput={this.handleUsernameInput} handlePasswordInput={this.handlePasswordInput} submitHandler={this.submitHandler}/>
@@ -80,4 +71,4 @@ const mapDispatchToProps = dispatch => ({
     login: FormData => dispatch({type: "LOGIN_FAN", fan: FormData})
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogInController)
+export default connect(mapStateToProps, mapDispatchToProps)(LogInContainer)

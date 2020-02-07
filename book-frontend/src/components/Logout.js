@@ -1,7 +1,7 @@
 import React from 'react'
 import './logout.css'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import LoginContainer from '../containers/Log_In_Container'
 
 class Logout extends React.Component {
 
@@ -33,6 +33,7 @@ class Logout extends React.Component {
    getFan = () => {
        debugger
        if(this.props.fan.loggedIn){
+           debugger
             fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
             .then(rxFan => {
                 this.setState({
@@ -40,6 +41,8 @@ class Logout extends React.Component {
                     shows: rxFan.included.filter(data => data.type === "show")
                 })
             })
+        }else{
+            return <LoginContainer />
         }   
     }
 

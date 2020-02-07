@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 class Landing extends React.Component{
     render(){
         debugger
-        if(!!this.props.fan.loggedIn){
+        if(this.props.fan.loggedIn){
             return <Redirect to={`/fans/${this.props.fan.username}`} />
         }else{
             debugger

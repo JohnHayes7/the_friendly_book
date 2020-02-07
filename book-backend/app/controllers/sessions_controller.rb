@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
             render json: FanSerializer.new(@user,options)
         else
-          binding.pry
+        #   binding.pry
             message = {error: "Can not find user, please reenter your username"}
             render json: message
         end

@@ -70,7 +70,7 @@
     /* VIDEOS */
     #landingMain-Vids{
         display: flex;
-        margin-left: 10px;
+        margin-left: 50px;
     }
 
     .landingPageVid{
@@ -85,9 +85,9 @@
 
     /* TODAY IN HISTORY */
     #history-display{
-        margin-left: 55px;
+        margin-left: 50px;
         border: 1px solid grey;
-        width: 85%;
+        width: 88%;
         height: 250px;
     }
 
@@ -97,7 +97,7 @@
 
     /* YEARS WINDOW */
     #landing-years-display{
-        /* width: 200%; */
+        width: 320px;
         height: 650px;
         text-align: center;
         border: 1px solid grey;

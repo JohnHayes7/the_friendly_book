@@ -2,9 +2,6 @@ import React from 'react'
 import Ticket from '../components/Ticket'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {  Link } from 'react-router-dom'
-import ShowPage from '../components/ShowPage'
-
 
 
 class TicketContainer extends React.Component{
@@ -19,18 +16,13 @@ class TicketContainer extends React.Component{
         }
     }
 
-    displayRemove = () => {
-        
+    displayRemove = () => {  
         if(this.props.mediaid){
             return <div key={this.props.mediaid} onClick={this.props.removeFromFanShows} className="removal">X Remove from your stubs</div>
         }else{
            return null
         }
     }
-
-    
-
-
 
     clickHandler = event => {
         event.preventDefault()
@@ -48,7 +40,6 @@ class TicketContainer extends React.Component{
     }
 
     render(){
-        
         if(this.state.clicked){
             debugger
            return <Redirect to={`/shows/${this.dateSlug(this.props.date)}`} />

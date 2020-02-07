@@ -109,21 +109,19 @@ class FanPageContainer extends React.Component{
                                     <TicketContainer key={show.id} mediaid={show.id} date={show.attributes.display_date} venue={show.attributes.display_venue} location={show.attributes.display_location} displayLink={this.displayLink} removeFromFanShows={this.removeFromFanShows} addMemoryBtn={this.addMemoryBtn} /> 
                                     {this.memoryAddDisplay(show)}
                                 </div>
-                           ) 
+                            ) 
                         })}
                     </div>
                 )
             }
         }else{
-            
             return <h5>You'll Never Get Out Of This Maze</h5>
-        }
-        
+        } 
     }
 
     render(){
         debugger
-        if(!this.props.fan.loggedIn){
+        if(!localStorage.logged_in){
         //     // debugger
         //     // alert("Please Login")
            return <Redirect to={"/"} />
