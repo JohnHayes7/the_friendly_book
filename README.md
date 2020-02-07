@@ -8,4 +8,4 @@ The Friendly Book is an app built using React and a Rails API backend.  To start
 
 To initialize the app navigate to "book-backend" and start the rails server on port 3001. "rails s -p 3001"
 
-The to start the front end server, navigate to "book-backend" and start the npm server using "npm start" in
+The to start the front end server, navigate to "book-backend" and start the npm server issuing the "npm start" command.
