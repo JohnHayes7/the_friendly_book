@@ -4,6 +4,7 @@ class Show < ApplicationRecord
     belongs_to :show_date
     has_and_belongs_to_many :songs
     belongs_to :venue
+    belongs_to :year
     
     def add_set_one(set_one)
         set1_text = ""

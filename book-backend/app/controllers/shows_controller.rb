@@ -11,8 +11,9 @@ class ShowsController < ApplicationController
                 year = Year.find_or_create_by(value: year_value)
                 day = ShowDate.get_day(params[:show][:date])
                 month = ShowDate.get_month(params[:show][:date])
-                show_date = ShowDate.find_or_create_by({month: month, day: day})
-                
+                # binding.pry
+                show_date = ShowDate.find_or_create_by({month: month, day: day, year_id: year.id})
+                # binding.pry
                 show_date.year_id = year.id
 
                 state_initials = State.get_state_from_location(params[:show][:location])
@@ -64,8 +65,9 @@ class ShowsController < ApplicationController
             year = Year.find_or_create_by(value: year_value)
             day = ShowDate.get_day(params[:date])
             month = ShowDate.get_month(params[:date])
-            show_date = ShowDate.find_or_create_by({month: month, day: day})
-            show_date.year_id = year.id
+            show_date = ShowDate.find_or_create_by({month: month, day: day, year_id: year.id})
+            # binding.pry
+            # show_date.year_id = year.id
             
             state_initials = State.get_state_from_location(params[:location])
             state = State.find_or_create_by(initials: state_initials)
@@ -81,6 +83,7 @@ class ShowsController < ApplicationController
             venue.save
 
             show_date.venue_id = venue.id
+            binding.pry
             show_date.save
             # binding.pry
         end    
@@ -112,21 +115,21 @@ class ShowsController < ApplicationController
 
 
     def show 
-        # binding.pry
+        binding.pry
             year_value = ShowDate.get_year(params[:id])
             # Need to find the search date within the year.
             year = Year.find_by({value: year_value})
             day = ShowDate.get_day(params[:id])
             month = ShowDate.get_month(params[:id])
             binding.pry
-            show_date = ShowDate.find_by({month: month, day:day})
+            show_date = ShowDate.find_by({month: month, day: day, year_id: year.id})
             options = {include: [:fans, :memories, :show_date, :venue, :songs]}
-            # binding.pry
+            binding.pry
             if show_date
-                # binding.pry
+                binding.pry
                 if show_date.show
                     s = Show.find(show_date.show.id)
-                    # binding.pry
+                    binding.pry
                     render json: ShowSerializer.new(s, options) 
                 else
                     # binding.pry
