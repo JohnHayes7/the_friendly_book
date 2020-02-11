@@ -23,6 +23,7 @@ class FanPageContainer extends React.Component{
         if(localStorage.logged_in){
             fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
             .then(fan => {
+                debugger
                 // console.log(fan)
                 // console.log(this.props)
                 debugger

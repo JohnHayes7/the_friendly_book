@@ -138,7 +138,9 @@ class ShowPageContainer extends React.Component{
                 debugger
                 console.log(showInfo)
                 this.fetchShowfromRelisten()
-            }else{
+            }else if(showInfo.data.attributes.set1.length === 0){
+                this.fetchShowfromRelisten()
+            }else{ 
                 debugger
                 console.log(showInfo)
                 this.setState({

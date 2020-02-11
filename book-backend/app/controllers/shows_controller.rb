@@ -2,10 +2,10 @@ class ShowsController < ApplicationController
 
 
     def create
-        
-        if params[:show][:date] 
+        binding.pry
+        if params[:show][:date] && params[:show][:date].length > 0
             # binding.pry
-            if params[:show][:date].length > 0
+            # if params[:show][:date].length > 0
                 # binding.pry
                 year_value = Year.get_year(params[:show][:date])
                 year = Year.find_or_create_by(value: year_value)
@@ -32,34 +32,34 @@ class ShowsController < ApplicationController
                 # binding.pry
                 show_date.save
                 # binding.pry
-            else
-                # binding.pry
-                year_value = Year.get_year(params[:date])
-                year = Year.find_or_create_by(value: year_value)
-                day = ShowDate.get_day(params[:date])
-                month = ShowDate.get_month(params[:date])
-                show_date = ShowDate.find_or_create_by({month: month, day: day})
-                show_date.year_id = year.id
+            # else
+            #     # binding.pry
+            #     year_value = Year.get_year(params[:date])
+            #     year = Year.find_or_create_by(value: year_value)
+            #     day = ShowDate.get_day(params[:date])
+            #     month = ShowDate.get_month(params[:date])
+            #     show_date = ShowDate.find_or_create_by({month: month, day: day})
+            #     show_date.year_id = year.id
                 
-                state_initials = State.get_state_from_location(params[:location])
-                state = State.find_or_create_by(initials: state_initials)
+            #     state_initials = State.get_state_from_location(params[:location])
+            #     state = State.find_or_create_by(initials: state_initials)
     
-                city_name = City.get_city_from_location(params[:location])
-                city = City.find_or_create_by(name: city_name)
-                city.state_id = state.id 
-                city.save
+            #     city_name = City.get_city_from_location(params[:location])
+            #     city = City.find_or_create_by(name: city_name)
+            #     city.state_id = state.id 
+            #     city.save
     
-                venue = Venue.find_or_create_by(name: params[:venue])
-                venue.city_id = city.id
-                venue.state_id = state.id
-                venue.save
+            #     venue = Venue.find_or_create_by(name: params[:venue])
+            #     venue.city_id = city.id
+            #     venue.state_id = state.id
+            #     venue.save
     
-                show_date.venue_id = venue.id
-                show_date.save
-                # binding.pry
-            end
+            #     show_date.venue_id = venue.id
+            #     show_date.save
+            #     # binding.pry
+            # end
         else
-            # binding.pry
+            binding.pry
             year_value = Year.get_year(params[:date])
             year = Year.find_or_create_by(value: year_value)
             day = ShowDate.get_day(params[:date])
@@ -113,8 +113,12 @@ class ShowsController < ApplicationController
 
     def show 
         # binding.pry
+            year_value = ShowDate.get_year(params[:id])
+            # Need to find the search date within the year.
+            year = Year.find_by({value: year_value})
             day = ShowDate.get_day(params[:id])
             month = ShowDate.get_month(params[:id])
+            binding.pry
             show_date = ShowDate.find_by({month: month, day:day})
             options = {include: [:fans, :memories, :show_date, :venue, :songs]}
             # binding.pry

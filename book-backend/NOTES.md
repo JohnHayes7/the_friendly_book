@@ -31,3 +31,9 @@ https://api.relisten.net/api/v2/artists/phish/years/
 
 <!-- **** RETURNS ALL SHOWS IN A GIVEN YEAR -->
 https://api.relisten.net/api/v2/artists/phish/years/${year}
+
+
+REFACTOR SHOW CREATE ACTION
+Split up redundencies by "input"
+
+REFACTOR SHOW DISPLAY
