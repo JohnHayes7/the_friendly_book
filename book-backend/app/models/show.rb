@@ -4,7 +4,7 @@ class Show < ApplicationRecord
     belongs_to :show_date
     has_and_belongs_to_many :songs
     belongs_to :venue
-    belongs_to :year
+    # belongs_to :year
     
     def add_set_one(set_one)
         set1_text = ""
@@ -45,7 +45,9 @@ class Show < ApplicationRecord
             set_encore.each do |s|
                 encore_text += "#{s}, "
             end
-           self.set_encore = encore_text
+            self.set_encore = encore_text
+        else
+            self.set_encore = ""
         end
     end
 

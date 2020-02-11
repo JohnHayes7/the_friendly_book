@@ -2,7 +2,7 @@ class ShowsController < ApplicationController
 
 
     def create
-        binding.pry
+        # binding.pry
         if params[:show][:date] && params[:show][:date].length > 0
             # binding.pry
             # if params[:show][:date].length > 0
@@ -60,7 +60,7 @@ class ShowsController < ApplicationController
             #     # binding.pry
             # end
         else
-            binding.pry
+            # binding.pry
             year_value = Year.get_year(params[:date])
             year = Year.find_or_create_by(value: year_value)
             day = ShowDate.get_day(params[:date])
@@ -83,7 +83,7 @@ class ShowsController < ApplicationController
             venue.save
 
             show_date.venue_id = venue.id
-            binding.pry
+            # binding.pry
             show_date.save
             # binding.pry
         end    
@@ -92,7 +92,6 @@ class ShowsController < ApplicationController
         
         if !show_date.show
             s = Show.new()
-           
             s.display_date = show_date.build_display_date
             s.show_date_id = show_date.id
             s.venue_id = venue.id
@@ -105,6 +104,8 @@ class ShowsController < ApplicationController
             s.add_encore(params[:show][:encore])
             # binding.pry
             s.save
+            show_date.save
+            # binding.pry
             render json: ShowSerializer.new(s, options)
         else
             render json: ShowSerializer.new(show_date.show, options)
@@ -115,21 +116,21 @@ class ShowsController < ApplicationController
 
 
     def show 
-        binding.pry
+        # binding.pry
             year_value = ShowDate.get_year(params[:id])
             # Need to find the search date within the year.
             year = Year.find_by({value: year_value})
             day = ShowDate.get_day(params[:id])
             month = ShowDate.get_month(params[:id])
-            binding.pry
+            # binding.pry
             show_date = ShowDate.find_by({month: month, day: day, year_id: year.id})
             options = {include: [:fans, :memories, :show_date, :venue, :songs]}
-            binding.pry
+            # binding.pry
             if show_date
-                binding.pry
+                # binding.pry
                 if show_date.show
                     s = Show.find(show_date.show.id)
-                    binding.pry
+                    # binding.pry
                     render json: ShowSerializer.new(s, options) 
                 else
                     # binding.pry
