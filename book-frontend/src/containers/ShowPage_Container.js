@@ -39,6 +39,7 @@ class ShowPageContainer extends React.Component{
     fetchShowfromRelisten = () => {
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
             .then(showSets => {
+                debugger
                 this.parseShowFromRelisten(showSets)
             })     
     }

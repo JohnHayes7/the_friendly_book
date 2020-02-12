@@ -5,9 +5,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
+import thunk from 'redux-thunk'
 import manageFan from './reducers/manageFan'
 
-let store = createStore(manageFan)
+let store = createStore(manageFan, applyMiddleware(thunk))
 
 ReactDOM.render(
     <Provider store={store}>
