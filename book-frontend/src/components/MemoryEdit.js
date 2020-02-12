@@ -16,7 +16,6 @@ export default class MemoryEdit extends React.Component {
     fetchMemory() {
         fetch(`http://localhost:3001/memories/${this.props.match.params.id}`).then(response => response.json())
         .then(memory => {
-            // let show = memory.included.find(mem => mem.type === "show")
             this.setState({text: memory.data.attributes.text})
         })
     }

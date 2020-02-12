@@ -19,14 +19,9 @@ class FanPageContainer extends React.Component{
     }
 
     getFanFromDb = () => {
-        debugger
         if(localStorage.logged_in){
             fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
             .then(fan => {
-                debugger
-                // console.log(fan)
-                // console.log(this.props)
-                debugger
                 this.props.login(fan)
             })
         }
@@ -62,14 +57,6 @@ class FanPageContainer extends React.Component{
         })
     }
 
-
-    // logout = () => {
-    //      localStorage.clear()
-    //     this.setState({
-    //         logged_in: localStorage.user_id
-    //     })
-    // }
-
     addMemoryBtn = () => {
         return(
             <div id="add-memory" onClick={event => this.addMemoryHandler(event)}>Add Memory</div>
@@ -97,7 +84,6 @@ class FanPageContainer extends React.Component{
  
     fanShowsDisplay = shows =>{
         if(shows){
-            
             if(shows.length < 1){
                 return(
                     <h5>You Have No Shows. Add shows to collect stubs</h5>
@@ -122,13 +108,9 @@ class FanPageContainer extends React.Component{
     }
 
     render(){
-        debugger
         if(!localStorage.logged_in){
-        //     // debugger
-        //     // alert("Please Login")
            return <Redirect to={"/"} />
         }else{
-            // debugger
             return(
                 <div>
                     <FanPage fanProp={this.props.fan} getFan={this.getFanFromDb} displayShows={this.fanShowsDisplay} canAddMemory={this.state.canAddMemory} />

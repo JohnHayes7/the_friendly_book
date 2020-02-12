@@ -63,8 +63,6 @@ export default class LandingMain extends React.Component{
     }
 
     render(){
-        
-
         const opts = {
             height: '200',
             width: '410'

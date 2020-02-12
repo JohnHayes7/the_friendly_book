@@ -14,7 +14,6 @@ class LandingYearsContainer extends React.Component{
     
     
     getYears = () => {
-        // CAN NOW CHANGE THIS TO FETCH FROM DB
         fetch('https://api.relisten.net/api/v2/artists/phish/years').then(response => response.json())
         .then(years => {
             years.map(year => {

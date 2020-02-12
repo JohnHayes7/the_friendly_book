@@ -30,9 +30,9 @@ class Logout extends React.Component {
    }
 
    getFan = () => {
-       debugger
+
        if(localStorage.logged_in){
-           debugger
+ 
             fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
             .then(rxFan => {
                 this.setState({
