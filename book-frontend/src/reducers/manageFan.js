@@ -42,8 +42,12 @@ export default function manageFan(state={
                     }
                 }
             }
-            let memories = state.memories.push(memory)
-        return Object.assign({}, state, memories)
+            // let memories = state.memories.push(memory)
+        // return Object.assign({}, state, memories)
+        return {
+            ...state,
+            memories: [...state.memories, memory]
+        }
 
         
         case 'LOGOUT_FAN':
