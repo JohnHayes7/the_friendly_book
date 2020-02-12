@@ -49,9 +49,12 @@ class SignupContainer extends React.Component{
             body: JSON.stringify(this.state)
         }).then(response => response.json())
         .then(newFanInfo => {
+            localStorage.setItem("logged_in", 'true')
+            localStorage.setItem("user_id", newFanInfo.data.id)
+            localStorage.setItem("username", newFanInfo.data.attributes.username)
+            debugger
             this.props.login(newFanInfo)
         })
-        
     }
 
     
@@ -69,11 +72,9 @@ class SignupContainer extends React.Component{
 }
 
 const mapStateToProps = state => {
-    
     return {
         fan: state
     }
-    
 }
 
 const mapDispatchToProps = dispatch => ({

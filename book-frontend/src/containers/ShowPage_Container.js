@@ -23,20 +23,17 @@ class ShowPageContainer extends React.Component{
             },
             body: JSON.stringify(this.props.show)
         }).then(response => response.json())
-        .then(showInfo => {
-            
+        .then(showInfo => {   
             console.log(showInfo)
             this.setState({
                 loadedShow: true,
                 results: showInfo
            }) 
-        })
-        
+        })  
     }
 
     searchDate = date => {
         return date.split("-")[2] + '-' + date.split("-")[0] + '-' + date.split("-")[1]
-
     }
 
 
@@ -44,9 +41,6 @@ class ShowPageContainer extends React.Component{
         // debugger
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
             .then(showSets => {
-                
-                console.log("FETCHED SHOW FROM RELISTEN")
-                console.log(this.props)
 
                     this.props.show.date = showSets.display_date
                     this.props.show.location = showSets.venue.location
@@ -58,67 +52,53 @@ class ShowPageContainer extends React.Component{
                     debugger
 
                 if(!this.props.show.show){
-                    
-                    if(firstSet && firstSet.tracks.length == 0){
+                    if(firstSet && firstSet.tracks.length === 0){
                         firstSet.tracks.map(songTitle => {
                             this.props.show.set1.push(songTitle.title)
                         })
                     }
                     
-                    if(secondSet && secondSet.tracks.length == 0){
+                    if(secondSet && secondSet.tracks.length === 0){
                         secondSet.tracks.map(song => {
                             this.props.show.set2.push(song.title)
                         })
                     }
                     
-                    if(thirdSet && thirdSet.tracks.length == 0){
+                    if(thirdSet && thirdSet.tracks.length === 0){
                         thirdSet.tracks.map(song => {
                             this.props.show.set3.push(song.title)
                         })
                     }
                     
-                    if(encore && encore.tracks.length == 0 ){
+                    if(encore && encore.tracks.length === 0 ){
                         encore.tracks.map(song => {
                             this.props.show.encore.push(song.title)
                         })
                     }
 
-                    
-                    
                 }else{
-                    
-                    // this.props.show.show.date = showSets.display_date
-                    // this.props.show.show.location = showSets.venue.location
-                    // this.props.show.show.venue = showSets.venue.name
-                    // let firstSet = showSets.sources[0].sets[0].tracks
-                    if(firstSet && firstSet.tracks.length == 0){
+
+                    if(firstSet && firstSet.tracks.length === 0){
                         firstSet.tracks.map(songTitle => {
                             this.props.show.show.set1.push(songTitle.title)
                         })
                     }
                     
 
-                    if(secondSet && secondSet.tracks.length == 0){
+                    if(secondSet && secondSet.tracks.length === 0){
                         secondSet.tracks.map(song => {
                             this.props.show.show.set2.push(song.title)
                         })
                     }
-                    
-                    // OLD SECOND SET FUNCTION
-                    // if(showSets.sources[0].sets[1]){
-                    //     showSets.sources[0].sets[1].tracks.map(song => {
-                    //         this.props.show.show.set2.push(song.title)
-                    //     })
-                    // }
 
-                    if(thirdSet && thirdSet.tracks.length == 0){
+                    if(thirdSet && thirdSet.tracks.length === 0){
                         debugger
                         thirdSet.tracks.map(song => {
                             this.props.show.show.set3.push(song.title)
                         })
                     }
                     
-                    if(encore && encore.tracks.length == 0){
+                    if(encore && encore.tracks.length === 0){
                         encore.tracks.map(song => {
                             this.props.show.show.encore.push(song.title)
                         })
@@ -130,18 +110,14 @@ class ShowPageContainer extends React.Component{
 
 
     getShowFromDb = () => {
-        debugger
         fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
         .then(showInfo => {
-            debugger
             if(showInfo.code === 3000){
-                debugger
                 console.log(showInfo)
                 this.fetchShowfromRelisten()
             }else if(showInfo.data.attributes.set1.length === 0){
                 this.fetchShowfromRelisten()
             }else{ 
-                debugger
                 console.log(showInfo)
                 this.setState({
                     loadedShow: true,

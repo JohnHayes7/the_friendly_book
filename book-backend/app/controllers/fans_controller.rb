@@ -2,12 +2,14 @@ class FansController < ApplicationController
 
     def create
         fan = Fan.new(fan_params)
+        binding.pry
         fan.password = params[:password]
+        options  = {include: [:shows, :memories]}
             if fan.save
-                options  = {include: [:shows, :memories]}
                 render json: FanSerializer.new(fan, options)
+            else
+                render json: {code: 3000, message: "Could not create your account, please check your information"}
             end
-        
     end
 
     def show
