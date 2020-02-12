@@ -72,6 +72,7 @@ class MemoryContainer extends React.Component{
         let fanShowMemories = fan.memories.filter(mem => mem.relationships.show.data.id === show.id)
         debugger
         return fanShowMemories.map(mem => {
+            debugger
             return <div><span className="grey-out">You added: </span>{mem.attributes.text}</div>
         })
     }

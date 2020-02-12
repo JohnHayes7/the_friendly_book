@@ -29,12 +29,20 @@ export default function manageFan(state={
         return Object.assign({}, state, loginFan)
 
         case 'UPDATE_FAN':
-            debugger
             const memory = {
-                text: action.fan.text,
-                showId: action.fan.showId
+                attributes:{
+                    text: action.fan.text
+                },
+                type: "memory",
+                relationships: {
+                    show: {
+                        data:{
+                            id: action.fan.showId
+                        }
+                    }
+                }
             }
-            let memories = [...state.memories, memory]
+            let memories = state.memories.push(memory)
         return Object.assign({}, state, memories)
 
         
