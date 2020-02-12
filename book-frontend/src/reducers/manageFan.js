@@ -3,6 +3,7 @@ export default function manageFan(state={
         username: "",
         email: "",
         shows: [],
+        memories: [],
         loggedIn: false,
         show: {
             date: "",
@@ -26,6 +27,15 @@ export default function manageFan(state={
             loggedIn: localStorage.logged_in
            } 
         return Object.assign({}, state, loginFan)
+
+        case 'UPDATE_FAN':
+            debugger
+            const memory = {
+                text: action.fan.text,
+                showId: action.fan.showId
+            }
+            let memories = [...state.memories, memory]
+        return Object.assign({}, state, memories)
 
         
         case 'LOGOUT_FAN':

@@ -1,10 +1,11 @@
 import React from 'react'
 import MemoryForm from '../components/MemoryForm'
 import MemoryDisplay from '../components/MemoryDisplay'
+import { connect } from 'react-redux'
 import '../components/fan_page.css'
 
-export default class MemoryContainer extends React.Component{
-
+class MemoryContainer extends React.Component{
+    
     constructor(){
         super()
         this.state = {
@@ -21,10 +22,22 @@ export default class MemoryContainer extends React.Component{
 
     memorySubmit = event => {
         event.preventDefault()
+        // this.notifyUser()
+        this.sendToRedux()
         this.addMemoryToDb()
         this.setState({
             text: ""
         })
+    }
+
+    notifyUser = () => {
+        debugger
+        let memObj= {
+            text: this.state.text,
+            fanId: this.props.fanId,
+            showId: this.props.selectedShowId
+        }
+        alert(`You have added ${memObj.text}`)
     }
 
     addMemoryToDb = () => {
@@ -43,13 +56,21 @@ export default class MemoryContainer extends React.Component{
         }).then(response => response.json())
         .then(rxObj => {
             this.props.toggleMemoryDisplay()
-            debugger
-            this.props.updateFan(rxObj)
         })
     }
 
-    parseFanMemories = (show, fan) => {
+    sendToRedux = () =>{
+        let memory = {
+            text: this.state.text,
+            showId: this.props.selectedShowId
+        }
+        this.props.updateMemories(memory)
+    }
+
+    parseFanMemories = (show, fan) => { 
+        
         let fanShowMemories = fan.memories.filter(mem => mem.relationships.show.data.id === show.id)
+        debugger
         return fanShowMemories.map(mem => {
             return <div><span className="grey-out">You added: </span>{mem.attributes.text}</div>
         })
@@ -57,11 +78,23 @@ export default class MemoryContainer extends React.Component{
  
     
     render(){
-       
         return(
             <div>
-                {this.props.canAddShow ? <MemoryForm fan={this.props.fan} text={this.state.text} changeHandler={this.changeHandler} memorySubmit={this.memorySubmit} /> : <MemoryDisplay show={this.props.show} parseFanMemories={this.parseFanMemories} fan={this.props.fan} />}
+                {this.props.canAddShow ? <MemoryForm fan={this.props.fan} text={this.state.text} changeHandler={this.changeHandler} memorySubmit={this.memorySubmit} /> : <MemoryDisplay show={this.props.show} parseFanMemories={this.parseFanMemories} fan={this.props.fan}  />}
             </div>
         )
     }
 }
+
+const mapStateToProps = state => {
+    debugger
+    return {
+        fan: state
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    updateMemories: memory => dispatch({type:"UPDATE_FAN", fan: memory})
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MemoryContainer)
