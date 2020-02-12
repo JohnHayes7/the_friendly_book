@@ -48,8 +48,6 @@ class LogInContainer extends React.Component{
         })
     }
 
-    
-
     render(){
         return(
             <div id="login-window">

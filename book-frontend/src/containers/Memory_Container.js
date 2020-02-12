@@ -22,22 +22,11 @@ class MemoryContainer extends React.Component{
 
     memorySubmit = event => {
         event.preventDefault()
-        // this.notifyUser()
         this.sendToRedux()
         this.addMemoryToDb()
         this.setState({
             text: ""
         })
-    }
-
-    notifyUser = () => {
-        debugger
-        let memObj= {
-            text: this.state.text,
-            fanId: this.props.fanId,
-            showId: this.props.selectedShowId
-        }
-        alert(`You have added ${memObj.text}`)
     }
 
     addMemoryToDb = () => {
@@ -68,11 +57,8 @@ class MemoryContainer extends React.Component{
     }
 
     parseFanMemories = (show, fan) => { 
-        
         let fanShowMemories = fan.memories.filter(mem => mem.relationships.show.data.id === show.id)
-        debugger
         return fanShowMemories.map(mem => {
-            debugger
             return <div><span className="grey-out">You added: </span>{mem.attributes.text}</div>
         })
     }
