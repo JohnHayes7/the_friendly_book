@@ -55,10 +55,12 @@ export default class YearPageContainer extends React.Component{
     }
 
     getShowsFromYear = () => {
+        // Retrieve the shows from given year
         fetch(`https://api.relisten.net/api/v2/artists/phish/years/${this.props.match.params.year}`).then(response => response.json())
         .then(shows => {
             let yearShowsAry = []
             
+            // For each show, retrieve and parse the sets from the Rx'd show object
            shows.shows.map(show => {
             const newShow = {
                 date: "", 
@@ -69,12 +71,9 @@ export default class YearPageContainer extends React.Component{
                 set3: [],
                 encore: []
             }
-            
-            // this.getShowFromRelisten(show, newShow)
-            // **************
+
                fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${show.display_date}`).then(response => response.json())
                .then(showSets => {
-                    debugger
                     let sets = showSets.sources[0].sets
                     let firstSet = sets.find(set => set.name === "Set 1" ) || null
                     let secondSet = sets.find(set => set.name === "Set 2") || null
@@ -88,8 +87,6 @@ export default class YearPageContainer extends React.Component{
                         })
                     }
                    
-                   
-                    
                     if(secondSet){
                         secondSet.tracks.map(song => {
                             newShow.set2.push(song.title)
@@ -109,14 +106,12 @@ export default class YearPageContainer extends React.Component{
                     }
                     
                })
-            //    ***********************
                 
                 newShow.date = show.display_date
                 newShow.location = show.venue.location
                 newShow.venue = show.venue.name
 
                 yearShowsAry = [...yearShowsAry, newShow]
-                
             })
 
             this.setState({

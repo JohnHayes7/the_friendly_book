@@ -24,17 +24,16 @@ export default function manageFan(state={
             shows: action.fan.included.filter(attr => attr.type === "show"),
             memories: action.fan.included.filter(attr => attr.type === "memory"),
             loggedIn: localStorage.logged_in
-           }  
-           debugger
+           } 
         return Object.assign({}, state, loginFan)
 
         
         case 'LOGOUT_FAN':
-           const logoutFan ={
+           const logoutFan = {
                loggedIn: localStorage.logged_in
            }
-           debugger
         return Object.assign({}, state, logoutFan )
+
 
         case 'ADD_SHOW':
            const show = {
@@ -46,12 +45,9 @@ export default function manageFan(state={
                set3: action.show.set3,
                encore: action.show.encore
            }
-           
-           debugger
         return Object.assign({}, state.show, show) 
            
-        
-        
+
         default:
             return state
     }

@@ -52,7 +52,6 @@ class SignupContainer extends React.Component{
             localStorage.setItem("logged_in", 'true')
             localStorage.setItem("user_id", newFanInfo.data.id)
             localStorage.setItem("username", newFanInfo.data.attributes.username)
-            debugger
             this.props.login(newFanInfo)
         })
     }

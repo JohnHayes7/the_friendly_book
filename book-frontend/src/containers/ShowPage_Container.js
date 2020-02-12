@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import ShowPage from '../components/ShowPage'
 
 class ShowPageContainer extends React.Component{
@@ -15,7 +16,6 @@ class ShowPageContainer extends React.Component{
    
     
     addShowToDb = () => {
-        debugger
        fetch(`http://localhost:3001/shows`, {
             method: "post",
             headers: {
@@ -38,73 +38,75 @@ class ShowPageContainer extends React.Component{
 
 
     fetchShowfromRelisten = () => {
-        // debugger
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
             .then(showSets => {
-
-                    this.props.show.date = showSets.display_date
-                    this.props.show.location = showSets.venue.location
-                    this.props.show.venue = showSets.venue.name
-                    let firstSet = showSets.sources[0].sets.find(set => set.name === "Set 1")
-                    let secondSet = showSets.sources[0].sets.find(set => set.name === "Set 2")
-                    let thirdSet = showSets.sources[0].sets.find(set => set.name === "Set 3")
-                    let encore = showSets.sources[0].sets.find(set => set.name === "Encore")
-                    debugger
-
-                if(!this.props.show.show){
-                    if(firstSet && firstSet.tracks.length === 0){
-                        firstSet.tracks.map(songTitle => {
-                            this.props.show.set1.push(songTitle.title)
-                        })
+                    if(showSets.error_code === 404){
+                        alert(`Show from ${this.props.match.params.date} could not be found.  Please check the date and date format. Date must be formatted 'mm-dd-yyyy'`)
+                        window.history.back()
+                    }else{
+                        this.props.show.date = showSets.display_date
+                        this.props.show.location = showSets.venue.location
+                        this.props.show.venue = showSets.venue.name
+                        let firstSet = showSets.sources[0].sets.find(set => set.name === "Set 1")
+                        let secondSet = showSets.sources[0].sets.find(set => set.name === "Set 2")
+                        let thirdSet = showSets.sources[0].sets.find(set => set.name === "Set 3")
+                        let encore = showSets.sources[0].sets.find(set => set.name === "Encore")
+    
+                    if(!this.props.show.show){
+                        if(firstSet && firstSet.tracks.length === 0){
+                            firstSet.tracks.map(songTitle => {
+                                this.props.show.set1.push(songTitle.title)
+                            })
+                        }
+                        
+                        if(secondSet && secondSet.tracks.length === 0){
+                            secondSet.tracks.map(song => {
+                                this.props.show.set2.push(song.title)
+                            })
+                        }
+                        
+                        if(thirdSet && thirdSet.tracks.length === 0){
+                            thirdSet.tracks.map(song => {
+                                this.props.show.set3.push(song.title)
+                            })
+                        }
+                        
+                        if(encore && encore.tracks.length === 0 ){
+                            encore.tracks.map(song => {
+                                this.props.show.encore.push(song.title)
+                            })
+                        }
+    
+                    }else{
+    
+                        if(firstSet && firstSet.tracks.length === 0){
+                            firstSet.tracks.map(songTitle => {
+                                this.props.show.show.set1.push(songTitle.title)
+                            })
+                        }
+                        
+    
+                        if(secondSet && secondSet.tracks.length === 0){
+                            secondSet.tracks.map(song => {
+                                this.props.show.show.set2.push(song.title)
+                            })
+                        }
+    
+                        if(thirdSet && thirdSet.tracks.length === 0){
+                            debugger
+                            thirdSet.tracks.map(song => {
+                                this.props.show.show.set3.push(song.title)
+                            })
+                        }
+                        
+                        if(encore && encore.tracks.length === 0){
+                            encore.tracks.map(song => {
+                                this.props.show.show.encore.push(song.title)
+                            })
+                        }
                     }
-                    
-                    if(secondSet && secondSet.tracks.length === 0){
-                        secondSet.tracks.map(song => {
-                            this.props.show.set2.push(song.title)
-                        })
+                    this.addShowToDb() 
                     }
-                    
-                    if(thirdSet && thirdSet.tracks.length === 0){
-                        thirdSet.tracks.map(song => {
-                            this.props.show.set3.push(song.title)
-                        })
-                    }
-                    
-                    if(encore && encore.tracks.length === 0 ){
-                        encore.tracks.map(song => {
-                            this.props.show.encore.push(song.title)
-                        })
-                    }
-
-                }else{
-
-                    if(firstSet && firstSet.tracks.length === 0){
-                        firstSet.tracks.map(songTitle => {
-                            this.props.show.show.set1.push(songTitle.title)
-                        })
-                    }
-                    
-
-                    if(secondSet && secondSet.tracks.length === 0){
-                        secondSet.tracks.map(song => {
-                            this.props.show.show.set2.push(song.title)
-                        })
-                    }
-
-                    if(thirdSet && thirdSet.tracks.length === 0){
-                        debugger
-                        thirdSet.tracks.map(song => {
-                            this.props.show.show.set3.push(song.title)
-                        })
-                    }
-                    
-                    if(encore && encore.tracks.length === 0){
-                        encore.tracks.map(song => {
-                            this.props.show.show.encore.push(song.title)
-                        })
-                    }
-                }
-                this.addShowToDb() 
             })     
     }
 
@@ -113,12 +115,8 @@ class ShowPageContainer extends React.Component{
         fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
         .then(showInfo => {
             if(showInfo.code === 3000){
-                console.log(showInfo)
-                this.fetchShowfromRelisten()
-            }else if(showInfo.data.attributes.set1.length === 0){
                 this.fetchShowfromRelisten()
             }else{ 
-                console.log(showInfo)
                 this.setState({
                     loadedShow: true,
                     results: showInfo
@@ -148,27 +146,12 @@ class ShowPageContainer extends React.Component{
         
     }
 
-    // getShowMemories = show => {
-    //     fetch(`http://localhost:3001/memories/${show.props.showInfo.data.id}`).then(response => response.json())
-    //     .then(rxShow => {
-    //       this.setState({
-    //           memories: rxShow.data,
-    //           fans: rxShow.included
-    //       })
-    //     })
-        
-    // }
-
-
     componentDidMount(){
         console.log("MOUNTED")
         this.getShowFromDb()
     }
     
-
-
     render(){
-        debugger
         return(
             <div>
                 <ShowPage showInfo={this.state.results} getSongs={this.fetchSongsfromRelisten} addFanToShow={this.addFanToShow} displayFans={this.displayFans} />
