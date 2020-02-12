@@ -6,7 +6,7 @@ import Set from './Set'
 import {Link} from 'react-router-dom'
 import Logout from './Logout'
 import Log_In_Container from '../containers/Log_In_Container'
-// import {getFanFromDb} from '../containers/FanPageContainer'
+
 
 class ShowPage extends React.Component{
 
@@ -19,7 +19,6 @@ class ShowPage extends React.Component{
     
 
     parseSetOne = () => {
-        debugger
        return this.props.showInfo.data.attributes.set1.split(", ").map(song => {
             if(song !== ""){
                 return <div>{song}</div>
@@ -28,7 +27,6 @@ class ShowPage extends React.Component{
     }
 
     parseSetTwo = () => {
-        debugger
         return this.props.showInfo.data.attributes.set2.split(", ").map(song => {
             if(song !== ""){
                 return <div>{song}</div>
@@ -37,7 +35,6 @@ class ShowPage extends React.Component{
     }
    
     parseSetThree = () => {
-        debugger
         return this.props.showInfo.data.attributes.set3.split(", ").map(song => {
             if(song !== ""){
                 return <div>{song}</div>
@@ -46,7 +43,6 @@ class ShowPage extends React.Component{
     }
 
     parseEncore = () => {
-        debugger
         if(this.props.showInfo.data.attributes.set_encore){
             return this.props.showInfo.data.attributes.set_encore.split(", ").map(song => {
                 if(song !== ""){
@@ -54,11 +50,9 @@ class ShowPage extends React.Component{
                 }   
             })
         }
-        
     }
 
     setOne = () => {
-        debugger
         if(this.props.showInfo.data.attributes.set1.length > 0){
             return <div><strong>Set 1:</strong></div>
         }
@@ -148,14 +142,6 @@ class ShowPage extends React.Component{
 
       })
     }
-
-
-    // loginOrLogout = () => {
-        
-    //     if(localStorage.logged_in){
-    //         return <Log_In_Container />
-    //     }
-    // }
 
     render(){
        
