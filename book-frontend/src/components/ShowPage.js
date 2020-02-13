@@ -4,7 +4,7 @@ import Header from './Header'
 import LandingYearsContainer from '../containers/LandingYears_Container'
 import Set from './Set'
 import {Link} from 'react-router-dom'
-import Logout from './Logout'
+import FanInfoLogout from './FanInfoLogout'
 import Log_In_Container from '../containers/Log_In_Container'
 
 
@@ -154,7 +154,7 @@ class ShowPage extends React.Component{
             <div>
                 <div id="landing-wrapper">
                     <Header />
-                    {localStorage.logged_in ? <Logout /> : <Log_In_Container />}
+                    {localStorage.logged_in ? <FanInfoLogout /> : <Log_In_Container />}
                 </div>
                 <div id="second-line">
                     {this.displayInfo()}

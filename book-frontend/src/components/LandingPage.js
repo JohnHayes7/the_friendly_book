@@ -4,7 +4,7 @@ import LandingMainContainer from '../containers/LandingMain_Container'
 import LandingYearsContainer from '../containers/LandingYears_Container'
 import Header from './Header'
 import './landing_page.css'
-import Logout from './Logout'
+import FanInfoLogout from './FanInfoLogout'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -19,7 +19,7 @@ class Landing extends React.Component{
                 <div id="whole-window">
                     <div id="landing-wrapper">
                         <Header />
-                        {this.props.fan.logged_in ? <Logout /> : <LogInContainer />}
+                        {this.props.fan.logged_in ? <FanInfoLogout /> : <LogInContainer />}
                        
                     </div>
                     <div id="landing-second-line">
