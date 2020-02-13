@@ -130,10 +130,11 @@ class ShowPageContainer extends React.Component{
     }
 
     addFanToShow = event => {
+        // debugger
         const fanShowData = {
-            month: event.target.pathname.split("/")[2].split("-")[0],
-            day: event.target.pathname.split("/")[2].split("-")[1],
-            year: event.target.pathname.split("/")[2].split("-")[2],
+            month: event.currentTarget.baseURI.split("/")[2].split("-")[0],
+            day: event.currentTarget.baseURI.split("/")[2].split("-")[1],
+            year: event.currentTarget.baseURI.split("/")[2].split("-")[2],
             fanId: localStorage.user_id
         }
         

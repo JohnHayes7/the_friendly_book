@@ -10,11 +10,11 @@ import { connect } from 'react-redux'
 
 class Landing extends React.Component{
     render(){
-        debugger
+        
         if(this.props.fan.loggedIn){
             return <Redirect to={`/fans/${this.props.fan.username}`} />
         }else{
-            debugger
+            
             return(
                 <div id="whole-window">
                     <div id="landing-wrapper">

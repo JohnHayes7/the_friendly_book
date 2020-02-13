@@ -15,6 +15,7 @@ class ShowPage extends React.Component{
         this.state = {
             logged_in: localStorage.logged_in
         }
+        this.displayFans = this.displayFans.bind(this)
     }
     
 
@@ -77,7 +78,14 @@ class ShowPage extends React.Component{
 
     ifLoggedInAddLink = () => {
         if(localStorage.logged_in){
-            return <span id="add-show-link"><Link value="link"onClick={event => this.props.addFanToShow(event)}>Add To My Shows</Link></span>
+            return (
+                <div>
+                    <span id="add-show-link"><div  className="add-show" onClick={event => this.props.addFanToShow(event)}>Add To My Shows</div></span>
+                    <span>Fans:</span>
+                    {this.displayFans()}
+
+                </div>
+            )
         }else{
             return <h4>Login or<Link to="/signup">Signup</Link>to add this show to your collection.</h4>
         }
@@ -101,12 +109,7 @@ class ShowPage extends React.Component{
                         <Set set={this.ifEncore} parseSet={this.parseEncore} />
                     </div>
                     <div id="show-fan-display">
-                        {this.ifLoggedInAddLink()}<br></br>
-                        <ul>{localStorage.logged_in ? "Fans:" : ""}<br></br>
-                            {localStorage.logged_in ? this.displayFans(this) : ""}    
-                        </ul>
-                      
-                                               
+                        {this.ifLoggedInAddLink()}            
                     </div>
                     
                     <div id="memories-div">
@@ -136,8 +139,8 @@ class ShowPage extends React.Component{
     }
 
 
-    displayFans = show => {
-      let fans = show.props.showInfo.included.filter(attr => attr.type === "fan")
+    displayFans() {
+      let fans = this.props.showInfo.included.filter(attr => attr.type === "fan")
       return fans.map(fan => {
           
           return <div key={fan.id} to={`/fans/${fan.attributes.username}`}>{fan.attributes.username}</div>

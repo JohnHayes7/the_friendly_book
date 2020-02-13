@@ -54,6 +54,15 @@
     height: 250px;
 }
 
+.add-show{
+    border: 1px solid grey;
+    padding: 2%;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 3%;
+    background-color: green;
+}
+
 
 
 
