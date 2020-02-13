@@ -8,7 +8,6 @@ import { fetchFan } from '../actions/fetchFan'
 class FanInfoLogout extends React.Component {
 
     displayInfo = () => {
-        debugger
         return(
             this.props.fan.loading ? <h3>Loading...</h3> :(
             <div>
@@ -26,7 +25,7 @@ class FanInfoLogout extends React.Component {
    }
 
 
-    componentWillMount(){
+    componentDidMount(){
         return localStorage.logged_in ? this.props.fetchFan() : <LoginContainer />  
     }
 
