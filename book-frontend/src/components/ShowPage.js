@@ -93,20 +93,22 @@ class ShowPage extends React.Component{
                 <div id="show-info">
                   <strong className="show-name-date">{this.props.showInfo.data.attributes.display_date}</strong><br></br>
                   <strong className="show-name-date">{this.props.showInfo.data.attributes.display_venue}-{this.props.showInfo.data.attributes.display_location}</strong>
-                  <div id="setlist">
+                    <div id="setlist">
                      
                         <Set set={this.setOne} parseSet={this.parseSetOne} />
                         <Set set={this.ifSetTwo} parseSet={this.parseSetTwo} />
                         <Set set={this.ifSetThree} parseSet={this.parseSetThree} />
                         <Set set={this.ifEncore} parseSet={this.parseEncore} />
+                    </div>
+                    <div id="show-fan-display">
                         {this.ifLoggedInAddLink()}<br></br>
                         <ul>{localStorage.logged_in ? "Fans:" : ""}<br></br>
                             {localStorage.logged_in ? this.displayFans(this) : ""}    
                         </ul>
-                      <div>
+                      
                                                
-                      </div>
                     </div>
+                    
                     <div id="memories-div">
                         <span id="mem-title">Memories:</span>
                         {this.parseMemories()}
@@ -138,7 +140,7 @@ class ShowPage extends React.Component{
       let fans = show.props.showInfo.included.filter(attr => attr.type === "fan")
       return fans.map(fan => {
           
-          return <Link key={fan.id} to={`/fans/${fan.attributes.username}`}>{fan.attributes.username}</Link>
+          return <div key={fan.id} to={`/fans/${fan.attributes.username}`}>{fan.attributes.username}</div>
 
       })
     }

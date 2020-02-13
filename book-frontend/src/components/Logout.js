@@ -2,6 +2,7 @@ import React from 'react'
 import './logout.css'
 import { connect } from 'react-redux'
 import LoginContainer from '../containers/Log_In_Container'
+import {Link} from 'react-router-dom'
 
 class Logout extends React.Component {
 
@@ -17,7 +18,7 @@ class Logout extends React.Component {
         
         return(
             <div>
-                <h2>Welcome back, {this.state.username}</h2>
+                <h2>Welcome back, <Link to={`/fans/${this.state.username}`}>{this.state.username}</Link></h2>
                 You Have {this.state.shows.length} stubs in your hand<br></br>
                 <button id="logout-btn" onClick={event => this.logout(event)}> Logout </button>
             </div>
