@@ -23,54 +23,39 @@ class MemoryContainer extends React.Component{
 
     memorySubmit = event => {
         event.preventDefault()
-        this.sendToRedux()
-        // this.addMemoryToDb()
-        this.setState({
-            text: ""
-        })
-        this.props.toggleMemoryDisplay()
-    }
-
-    // addMemoryToDb = () => {
-    //     let memObj= {
-    //         text: this.state.text,
-    //         fanId: this.props.fanId,
-    //         showId: this.props.selectedShowId
-    //     }
-
-    //     fetch('http://localhost:3001/memories',{
-    //         method: "post",
-    //         headers:{
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(memObj)
-    //     }).then(response => response.json())
-    //     .then(rxObj => {
-    //         this.props.toggleMemoryDisplay()
-    //     })
-    // }
-
-    sendToRedux = () =>{
-        debugger
         let memory = {
             text: this.state.text,
             fanId: this.props.fan.id,
             showId: this.props.selectedShowId
         }
         this.props.addFanMemory(memory)
-        // this.props.updateMemories(memory)
+        
+        this.setState({
+            text: ""
+        })
+        this.props.toggleMemoryDisplay()
     }
 
+    // cancelClick = () => {
+    //     this.setState({
+    //         text: ""
+    //     })
+    // }
+
+    closeMemForm = () => {
+        this.setState({
+            text: ""
+        })
+        this.props.toggleMemoryDisplay()
+    }
+
+
     parseFanMemories = () => {
-        // debugger
         let fan = this.props.fan 
         let show = this.props.show
-        debugger
         let fanShowMemories = fan.memories.filter(mem => mem.relationships.show.data.id === show.id)
-        // debugger
         return fanShowMemories.map(mem => {
-            // debugger
-            return <div><span className="grey-out">You added: </span>{mem.attributes.text}</div>
+            return <div><span className="grey-out" key={mem.id}>You added: </span>{mem.attributes.text}</div>
         })
     }
  
@@ -78,7 +63,7 @@ class MemoryContainer extends React.Component{
     render(){
         return(
             <div>
-                {this.props.canAddShow ? <MemoryForm fan={this.props.fan} text={this.state.text} changeHandler={this.changeHandler} memorySubmit={this.memorySubmit} /> : <MemoryDisplay show={this.props.show} parseFanMemories={this.parseFanMemories} fan={this.props.fan}  />}
+                {this.props.canAddShow ? <MemoryForm fan={this.props.fan} closeMemForm={this.closeMemForm} text={this.state.text} changeHandler={this.changeHandler} memorySubmit={this.memorySubmit} /> : <MemoryDisplay show={this.props.show} parseFanMemories={this.parseFanMemories} fan={this.props.fan}  />}
             </div>
         )
     }
