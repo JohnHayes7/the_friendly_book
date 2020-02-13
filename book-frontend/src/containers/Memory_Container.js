@@ -54,6 +54,7 @@ class MemoryContainer extends React.Component{
         debugger
         let memory = {
             text: this.state.text,
+            fanId: this.props.fan.id,
             showId: this.props.selectedShowId
         }
         this.props.addFanMemory(memory)

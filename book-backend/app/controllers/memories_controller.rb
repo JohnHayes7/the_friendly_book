@@ -8,8 +8,8 @@ class MemoriesController < ApplicationController
         mem.show_id = show.id
         mem.text = params[:memory][:text]
         mem.save
-
         options  = {include: [:shows, :memories]}
+        # Renders the fan who created the memory
         render json: FanSerializer.new(fan, options)
        
     end
