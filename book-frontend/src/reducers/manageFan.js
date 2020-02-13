@@ -1,4 +1,5 @@
 export default function manageFan(state={
+        loading: false,
         id: 0,
         username: "",
         email: "",
@@ -17,8 +18,16 @@ export default function manageFan(state={
         
 }, action) {
     switch(action.type){
+
+        case 'LOADING_FAN':
+        return {
+            ...state,
+            loading: true
+        }
+
         case 'LOGIN_FAN':
            const loginFan = {
+            loading: false,
             id: action.fan.data.attributes.id,
             username: action.fan.data.attributes.username,
             email: action.fan.data.attributes.email,

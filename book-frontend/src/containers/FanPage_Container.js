@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import TicketContainer from './Ticket_Container'
 import MemoryContainer from './Memory_Container'
+import {fetchFan} from '../actions/fetchFan'
 
 class FanPageContainer extends React.Component{
 
@@ -16,16 +17,6 @@ class FanPageContainer extends React.Component{
             showMemoryFanId: "",
             showMemoryShowId: ""
         }
-    }
-
-    getFanFromDb = () => {
-        if(localStorage.logged_in){
-            fetch(`http://localhost:3001/fans/${localStorage.user_id}`).then(response => response.json())
-            .then(fan => {
-                this.props.login(fan)
-            })
-        }
-        
     }
 
     formatDateForLink = date =>{
@@ -75,7 +66,6 @@ class FanPageContainer extends React.Component{
     }
 
     toggleMemoryDisplay = () => {
-        debugger
         this.setState(prevState => ({
             showMemoryDiv: !prevState.showMemoryDiv
         }))
@@ -110,6 +100,13 @@ class FanPageContainer extends React.Component{
         } 
     }
 
+    componentDidMount(){
+        if(!this.props.fan.username){
+            this.props.fetchFan()
+            // this.getFanFromDb()
+        }
+    }
+
     render(){
         debugger
         if(!localStorage.logged_in){
@@ -117,7 +114,7 @@ class FanPageContainer extends React.Component{
         }else{
             return(
                 <div>
-                    <FanPage fanProp={this.props.fan} getFan={this.getFanFromDb} displayShows={this.fanShowsDisplay} canAddMemory={this.state.canAddMemory} />
+                    <FanPage fanProp={this.props.fan}  displayShows={this.fanShowsDisplay} canAddMemory={this.state.canAddMemory} />
                 </div>
             )
         }
@@ -132,6 +129,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
+    fetchFan: () => dispatch(fetchFan()),
     login: RxData => dispatch({type: "LOGIN_FAN", fan: RxData})
 })
                                     

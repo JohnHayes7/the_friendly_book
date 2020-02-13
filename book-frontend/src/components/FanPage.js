@@ -8,9 +8,9 @@ import './landing_page.css'
 
 
 const Fan = props => {
-    if(!props.fanProp.username){
-        props.getFan()
-    }
+    // if(!props.fanProp.username){
+    //     props.getFan()
+    // }
 
     return (
         <div>
@@ -18,11 +18,11 @@ const Fan = props => {
                 <Header />
                <Logout />
             </div>
-            <div id="fan-page">
+            {props.fanProp.loading ? <h3>Loading....</h3> : (<div id="fan-page">
                 <FanPageMain fanProp={props.fanProp} displayShows={props.displayShows} />
                 {props.memoryDisplay}
                 <LandingYearsContainer />
-            </div>
+                </div>)}
         </div>
          )
         
