@@ -66,13 +66,16 @@ class FanPageContainer extends React.Component{
     addMemoryHandler = event =>{
         event.preventDefault()
         this.setState({
-            showMemoryDiv: true,
-            showMemoryFanId: localStorage.user_id,
-            showMemoryShowId: event._targetInst.sibling.key
+            
+                showMemoryDiv: true,
+                showMemoryFanId: localStorage.user_id,
+                showMemoryShowId: event._targetInst.sibling.key
+
         })        
     }
 
     toggleMemoryDisplay = () => {
+        debugger
         this.setState(prevState => ({
             showMemoryDiv: !prevState.showMemoryDiv
         }))
@@ -108,6 +111,7 @@ class FanPageContainer extends React.Component{
     }
 
     render(){
+        debugger
         if(!localStorage.logged_in){
            return <Redirect to={"/"} />
         }else{

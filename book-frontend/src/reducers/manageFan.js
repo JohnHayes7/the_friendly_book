@@ -42,8 +42,7 @@ export default function manageFan(state={
                     }
                 }
             }
-            // let memories = state.memories.push(memory)
-        // return Object.assign({}, state, memories)
+            debugger
         return {
             ...state,
             memories: [...state.memories, memory]
