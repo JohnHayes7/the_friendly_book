@@ -29,18 +29,8 @@ class MemoryContainer extends React.Component{
             showId: this.props.selectedShowId
         }
         this.props.addFanMemory(memory)
-        
-        this.setState({
-            text: ""
-        })
-        this.props.toggleMemoryDisplay()
+        this.closeMemForm()
     }
-
-    // cancelClick = () => {
-    //     this.setState({
-    //         text: ""
-    //     })
-    // }
 
     closeMemForm = () => {
         this.setState({
