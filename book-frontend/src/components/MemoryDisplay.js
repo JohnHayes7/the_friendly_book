@@ -6,7 +6,7 @@ const MemoryDisplay = props =>{
     return(
         <div id="memories-display-div">
             Memories:
-            {props.parseFanMemories(props.show, props.fan)}
+            {props.parseFanMemories()}
         </div>
     )
 }

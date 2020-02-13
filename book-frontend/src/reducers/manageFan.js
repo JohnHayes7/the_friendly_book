@@ -37,16 +37,17 @@ export default function manageFan(state={
            } 
         return Object.assign({}, state, loginFan)
 
-        case 'UPDATE_FAN':
+        case 'ADD_MEMORY':
+           
             const memory = {
                 attributes:{
-                    text: action.fan.text
+                    text: action.memory.text
                 },
                 type: "memory",
                 relationships: {
                     show: {
                         data:{
-                            id: action.fan.showId
+                            id: action.memory.showId
                         }
                     }
                 }

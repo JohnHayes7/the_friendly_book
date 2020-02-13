@@ -1,6 +1,8 @@
-export const addMemory = () =>{
+export const addFanMemory = (memory) =>{
+    debugger
     return (dispatch) => {
-       fetch(``)
+        dispatch({type: 'ADD_MEMORY', memory: memory })
+        fetch(``)
 
     }
 }
