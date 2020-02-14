@@ -6,16 +6,6 @@ export default function manageFan(state={
         shows: [],
         memories: [],
         loggedIn: false,
-        show: {
-            date: "",
-            location: "",
-            venue: "",
-            set1: [],
-            set2: [],
-            set3: [],
-            encore: []
-        }
-        
 }, action) {
     switch(action.type){
 
@@ -52,7 +42,7 @@ export default function manageFan(state={
                     }
                 }
             }
-            debugger
+            
         return {
             ...state,
             memories: [...state.memories, memory]

@@ -7,8 +7,15 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import manageFan from './reducers/manageFan'
+import manageShow from './reducers/manageShow'
+import { combineReducers } from 'redux'
 
-let store = createStore(manageFan, applyMiddleware(thunk))
+const rootReducer = combineReducers({
+    fan: manageFan,
+    show: manageShow
+})
+
+let store = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
     <Provider store={store}>
