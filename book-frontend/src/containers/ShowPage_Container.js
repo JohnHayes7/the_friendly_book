@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import ShowPage from '../components/ShowPage'
 
 class ShowPageContainer extends React.Component{
@@ -13,7 +12,8 @@ class ShowPageContainer extends React.Component{
         }
     }
    
-    
+    searchDate = () => this.formatSearchDate(this.props.match.params.date)
+
     addShowToDb = () => {
        fetch(`http://localhost:3001/shows`, {
             method: "post",
@@ -31,13 +31,13 @@ class ShowPageContainer extends React.Component{
         })  
     }
 
-    searchDate = date => {
+    formatSearchDate = date => {
         return date.split("-")[2] + '-' + date.split("-")[0] + '-' + date.split("-")[1]
     }
 
 
     fetchShowfromRelisten = () => {
-        fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
+        fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate()}`).then(response => response.json())
             .then(showSets => {
                 debugger
                 this.parseShowFromRelisten(showSets)
@@ -116,7 +116,7 @@ class ShowPageContainer extends React.Component{
 
 
     getShowFromDb = () => {
-        fetch(`http://localhost:3001/shows/${this.searchDate(this.props.match.params.date)}`).then(response => response.json())
+        fetch(`http://localhost:3001/shows/${this.searchDate()}`).then(response => response.json())
         .then(showInfo => {
             if(showInfo.code === 3000){
                 this.fetchShowfromRelisten()
@@ -156,6 +156,7 @@ class ShowPageContainer extends React.Component{
         this.getShowFromDb()
     }
     
+    
     render(){
         return(
             <div>
@@ -165,10 +166,12 @@ class ShowPageContainer extends React.Component{
     }
 }
 
+
+
 const mapStateToProps = state => {
     return {
-        show: state
+        reduxShow: state
     }
 }
 
-export default connect(mapStateToProps)(ShowPageContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ShowPageContainer)

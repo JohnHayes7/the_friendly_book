@@ -8,11 +8,12 @@ import { fetchFan } from '../actions/fetchFan'
 class FanInfoLogout extends React.Component {
 
     displayInfo = () => {
+        debugger
         return(
-            this.props.fan.loading ? <h3>Loading...</h3> :(
+            this.props.reduxFan.fan.loading ? <h3>Loading...</h3> :(
             <div>
-                <h2>Welcome back, <Link to={`/fans/${this.props.fan.username}`}>{this.props.fan.username}</Link></h2>
-                You Have {this.props.fan.shows.length} stubs in your hand<br></br>
+                <h2>Welcome back, <Link to={`/fans/${this.props.reduxFan.fan.username}`}>{this.props.reduxFan.fan.username}</Link></h2>
+                You Have {this.props.reduxFan.fan.shows.length} stubs in your hand<br></br>
                 <button id="logout-btn" onClick={event => this.logout(event)}> Logout </button>
             </div>
             )
@@ -40,7 +41,7 @@ class FanInfoLogout extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        fan: state
+        reduxFan: state
     } 
 }
 
