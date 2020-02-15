@@ -153,7 +153,7 @@ class ShowPageContainer extends React.Component{
     }
 
     componentDidMount(){
-        console.log("MOUNTED")
+        console.log(this.props.getShowFromDb(this.searchDate()))
         this.props.getShowFromDb(this.searchDate())
     }
     

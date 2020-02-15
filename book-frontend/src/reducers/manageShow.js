@@ -11,7 +11,7 @@ export default function manageShow(state={
     switch(action.type){
 
         case 'LOADING_SHOW':
-
+            debugger
         return{ ...state, loading: true }
            
 
@@ -30,7 +30,7 @@ export default function manageShow(state={
 
         return {...state, show}
 
-        
+
         default:
             return state
     }
