@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ShowPage from '../components/ShowPage'
+import { getShowFromDb } from '../actions/showActions'
 
 class ShowPageContainer extends React.Component{
     
@@ -115,19 +116,19 @@ class ShowPageContainer extends React.Component{
     }
 
 
-    getShowFromDb = () => {
-        fetch(`http://localhost:3001/shows/${this.searchDate()}`).then(response => response.json())
-        .then(showInfo => {
-            if(showInfo.code === 3000){
-                this.fetchShowfromRelisten()
-            }else{ 
-                this.setState({
-                    loadedShow: true,
-                    results: showInfo
-                })
-            }
-        })
-    }
+    // getShowFromDb = () => {
+    //     fetch(`http://localhost:3001/shows/${this.searchDate()}`).then(response => response.json())
+    //     .then(showInfo => {
+    //         if(showInfo.code === 3000){
+    //             this.fetchShowfromRelisten()
+    //         }else{ 
+    //             this.setState({
+    //                 loadedShow: true,
+    //                 results: showInfo
+    //             })
+    //         }
+    //     })
+    // }
 
     addFanToShow = event => {
         // debugger
@@ -153,11 +154,12 @@ class ShowPageContainer extends React.Component{
 
     componentDidMount(){
         console.log("MOUNTED")
-        this.getShowFromDb()
+        this.props.getShowFromDb(this.searchDate())
     }
     
-    
+
     render(){
+        debugger
         return(
             <div>
                 <ShowPage showInfo={this.state.results} getSongs={this.fetchSongsfromRelisten} addFanToShow={this.addFanToShow} displayFans={this.displayFans} />
@@ -165,6 +167,10 @@ class ShowPageContainer extends React.Component{
         )
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    getShowFromDb: date => dispatch(getShowFromDb(date))
+})
 
 
 
