@@ -130,6 +130,10 @@ class ShowPageContainer extends React.Component{
     //     })
     // }
 
+    getOrFetchShow = () =>{
+        
+    }
+
     addFanToShow = event => {
         // debugger
         const fanShowData = {
@@ -153,8 +157,8 @@ class ShowPageContainer extends React.Component{
     }
 
     componentDidMount(){
-        console.log(this.props.getShowFromDb(this.searchDate()))
         this.props.getShowFromDb(this.searchDate())
+        // console.log(this.props.getShowFromDb(this.searchDate()))
     }
     
 
