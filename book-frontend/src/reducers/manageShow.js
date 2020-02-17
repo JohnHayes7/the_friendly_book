@@ -1,5 +1,7 @@
 export default function manageShow(state={
+    searchingDb: false,
     loading: false,
+    fetching: false,
     date: "",
     location: "",
     venue: "",
@@ -10,14 +12,18 @@ export default function manageShow(state={
 }, action){
     switch(action.type){
 
-        case 'LOADING_SHOW':
+        case 'SEARCING_DB':
             debugger
-        return{ ...state, loading: true }
-           
+        return{ ...state, searchingDb: true }
+
+        case 'FETCHING_SHOW':
+            debugger
+        return{...state, fetching: true}           
 
         case 'ADD_SHOW':
             const show = {
-                loading: false,
+                searchingDb: false,
+                fethcing: false,
                 date: "",
                 location: "",
                 venue: "",

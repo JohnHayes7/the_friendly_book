@@ -180,7 +180,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
     return {
-        reduxShow: state
+        redux: state
     }
 }
 
