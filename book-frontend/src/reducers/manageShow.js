@@ -12,7 +12,7 @@ export default function manageShow(state={
 }, action){
     switch(action.type){
 
-        case 'SEARCING_DB':
+        case 'SEARCHING_DB':
             debugger
         return{ ...state, searchingDb: true }
 
@@ -21,9 +21,10 @@ export default function manageShow(state={
         return{...state, fetching: true}           
 
         case 'ADD_SHOW':
+            debugger
             const show = {
                 searchingDb: false,
-                fethcing: false,
+                fetching: false,
                 date: "",
                 location: "",
                 venue: "",

@@ -37,13 +37,13 @@ class ShowPageContainer extends React.Component{
     }
 
 
-    fetchShowfromRelisten = () => {
-        fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate()}`).then(response => response.json())
-            .then(showSets => {
-                debugger
-                this.parseShowFromRelisten(showSets)
-            })     
-    }
+    // fetchShowfromRelisten = () => {
+    //     fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.searchDate()}`).then(response => response.json())
+    //         .then(showSets => {
+    //             debugger
+    //             this.parseShowFromRelisten(showSets)
+    //         })     
+    // }
 
     parseShowFromRelisten = showSets => {
         if(showSets.error_code === 404){
@@ -166,14 +166,15 @@ class ShowPageContainer extends React.Component{
         debugger
         return(
             <div>
-                <ShowPage showInfo={this.state.results} getSongs={this.fetchSongsfromRelisten} addFanToShow={this.addFanToShow} displayFans={this.displayFans} />
+                <ShowPage showInfo={this.props.redux.show} getSongs={this.fetchSongsfromRelisten} addFanToShow={this.addFanToShow} displayFans={this.displayFans} />
             </div>
         )
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    getShowFromDb: date => dispatch(getShowFromDb(date))
+    getShowFromDb: date => dispatch(getShowFromDb(date)),
+    fetchShowfromRelisten: date => dispatch(fetchShowfromRelisten(date))
 })
 
 

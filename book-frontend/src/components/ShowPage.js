@@ -94,6 +94,9 @@ class ShowPage extends React.Component{
     
 
     displayInfo = () => {
+        // IF SEARCHING OR FETCHING DISPLAY 'LOADING....'
+        // this.props.showInfo.searchingDb ? <h1>LOADING....</h1> : ""
+        // this.props.showInfo.fetching ? <h1> FETCHING...</h1> : ""
         debugger
         if(this.props.showInfo.data){
             debugger
