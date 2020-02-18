@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ShowPage from '../components/ShowPage'
 import { getShowFromDb } from '../actions/showActions'
+import { fetchShowFromRelisten } from '../actions/showActions'
 
 class ShowPageContainer extends React.Component{
     
@@ -130,10 +131,6 @@ class ShowPageContainer extends React.Component{
     //     })
     // }
 
-    getOrFetchShow = () =>{
-        
-    }
-
     addFanToShow = event => {
         // debugger
         const fanShowData = {
@@ -163,6 +160,10 @@ class ShowPageContainer extends React.Component{
     
 
     render(){
+        if(this.props.redux.show.fetching){
+            debugger
+            this.props.fetchShowFromRelisten(this.searchDate())
+        }
         debugger
         return(
             <div>
@@ -174,7 +175,7 @@ class ShowPageContainer extends React.Component{
 
 const mapDispatchToProps = dispatch => ({
     getShowFromDb: date => dispatch(getShowFromDb(date)),
-    fetchShowfromRelisten: date => dispatch(fetchShowfromRelisten(date))
+    fetchShowFromRelisten: date => dispatch(fetchShowFromRelisten(date))
 })
 
 

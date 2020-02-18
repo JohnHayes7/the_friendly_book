@@ -10,8 +10,19 @@ export const getShowFromDb = (date) =>{
             }else{
                 // DISPATCH AN ADD SHOW TYPE TO REDUX
             }
-
-            debugger
         })
+    }
+}
+
+export const fetchShowFromRelisten = (date) => {
+    debugger
+    return (dispatch) =>{
+        fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${date}`).then(response => response.json())
+            .then(showSets => {
+                debugger
+                dispatch({type: 'ADD_TO_REDUX_SHOW', show: showSets})
+                // 
+                
+            })   
     }
 }
