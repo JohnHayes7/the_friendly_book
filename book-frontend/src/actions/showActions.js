@@ -20,7 +20,7 @@ export const fetchShowFromRelisten = (date) => {
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${date}`).then(response => response.json())
             .then(showSets => {
                 debugger
-                dispatch({type: 'ADD_TO_REDUX_SHOW', show: showSets})
+                dispatch({type: 'ADD_SHOW_FROM_RELISTEN', show: showSets})
                 // 
                 
             })   
