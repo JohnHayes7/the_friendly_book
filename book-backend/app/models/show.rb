@@ -14,12 +14,12 @@ class Show < ApplicationRecord
                 set1_text += "#{s[:title]}, "
             end
            self.set1 = set1_text
-           binding.pry
+        #    binding.pry
         end
     end
 
     def add_set_two(set_two)
-        binding.pry
+        # binding.pry
         set2_text = ""
         if set_two
             set_two[:tracks].each do |s|
@@ -29,11 +29,11 @@ class Show < ApplicationRecord
             set2_text = "No 2nd Set"
         end
         self.set2 = set2_text
-        binding.pry
+        # binding.pry
     end
 
     def add_set_three(set_three)
-        binding.pry
+        # binding.pry
         set3_text = ""
         if set_three
             set_three[:tracks].each do |s|
@@ -46,7 +46,7 @@ class Show < ApplicationRecord
     end
 
     def add_encore(set_encore)
-        binding.pry
+        # binding.pry
         encore_text = ""
         if set_encore
             set_encore[:tracks].each do |s|

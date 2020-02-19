@@ -2,6 +2,7 @@ export const addFanMemory = (memory) =>{
     // debugger
     return (dispatch) => {
         dispatch({type: 'ADD_MEMORY', memory: memory })
+        debugger
         fetch('http://localhost:3001/memories',{
             method: "post",
             headers:{

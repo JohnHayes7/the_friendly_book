@@ -2,7 +2,7 @@ class ShowsController < ApplicationController
 
 
     def create
-        binding.pry
+        # binding.pry
         # if params[:show][:date] && params[:show][:date].length > 0
             # binding.pry
             # if params[:show][:date].length > 0
@@ -35,7 +35,7 @@ class ShowsController < ApplicationController
                 show_date.venue_id = venue.id
                 # binding.pry
                 show_date.save
-                binding.pry
+                # binding.pry
             # else
             #     # binding.pry
             #     year_value = Year.get_year(params[:date])
@@ -115,10 +115,10 @@ class ShowsController < ApplicationController
                 s.set3 = "No 3rd Set"
                 s.add_encore(params[:sources][0][:sets][2])
             end
-            binding.pry
+            # binding.pry
             s.save
             show_date.save
-            binding.pry
+            # binding.pry
             render json: ShowSerializer.new(s, options)
         else
             render json: ShowSerializer.new(show_date.show, options)

@@ -23,9 +23,10 @@ class MemoryContainer extends React.Component{
 
     memorySubmit = event => {
         event.preventDefault()
+        debugger
         let memory = {
             text: this.state.text,
-            fanId: this.props.fan.id,
+            fanId: this.props.fan.fan.id,
             showId: this.props.selectedShowId
         }
         this.props.addFanMemory(memory)
