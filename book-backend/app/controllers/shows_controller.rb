@@ -123,7 +123,7 @@ class ShowsController < ApplicationController
             day = ShowDate.get_day(params[:id])
             month = ShowDate.get_month(params[:id])
             # binding.pry
-            show_date = ShowDate.find_by({month: month, day: day, year_id: year.id})
+            show_date = year.find_by({month: month, day: day, year_id: year.id})
             options = {include: [:fans, :memories, :show_date, :venue, :songs]}
             # binding.pry
             if show_date
