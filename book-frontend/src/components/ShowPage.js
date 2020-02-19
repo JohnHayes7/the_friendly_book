@@ -20,7 +20,7 @@ class ShowPage extends React.Component{
     
 
     parseSetOne = () => {
-       return this.props.showInfo.data.attributes.set1.split(", ").map(song => {
+       return this.props.showInfo.set1.map(song => {
             if(song !== ""){
                 return <div>{song}</div>
             }   
@@ -28,7 +28,7 @@ class ShowPage extends React.Component{
     }
 
     parseSetTwo = () => {
-        return this.props.showInfo.data.attributes.set2.split(", ").map(song => {
+        return this.props.showInfo.set2.map(song => {
             if(song !== ""){
                 return <div>{song}</div>
             }   
@@ -36,7 +36,7 @@ class ShowPage extends React.Component{
     }
    
     parseSetThree = () => {
-        return this.props.showInfo.data.attributes.set3.split(", ").map(song => {
+        return this.props.showInfo.set3.map(song => {
             if(song !== ""){
                 return <div>{song}</div>
             }   
@@ -44,8 +44,8 @@ class ShowPage extends React.Component{
     }
 
     parseEncore = () => {
-        if(this.props.showInfo.data.attributes.set_encore){
-            return this.props.showInfo.data.attributes.set_encore.split(", ").map(song => {
+        if(this.props.showInfo.encore.length > 0){
+            return this.props.showInfo.encore.map(song => {
                 if(song !== ""){
                     return <div>{song}</div>
                 }   
@@ -54,26 +54,32 @@ class ShowPage extends React.Component{
     }
 
     setOne = () => {
-        if(this.props.showInfo.data.attributes.set1.length > 0){
+        if(this.props.showInfo.set1.length > 0){
             return <div><strong>Set 1:</strong></div>
         }
     }
 
     ifSetTwo = () => {
-        if(this.props.showInfo.data.attributes.set2){
+        if(this.props.showInfo.set2.length > 0){
             return  <div><strong>Set 2:</strong></div>
         }
     }
     ifSetThree = () => {
-        if(this.props.showInfo.data.attributes.set3){
+        if(this.props.showInfo.set3.length > 0){
             return <div><strong>Set 3:</strong></div>
         }
     }
 
     ifEncore = () => {
-        if(this.props.showInfo.data.attributes.set_encore){
+        if(this.props.showInfo.encore.length > 0){
             return <div><strong>Encore:</strong></div>
         }
+    }
+
+    parseSetlist = (set) => {
+        set.map(song => {
+           return <div>{song}</div>
+        })
     }
 
     ifLoggedInAddLink = () => {
@@ -98,12 +104,12 @@ class ShowPage extends React.Component{
         // this.props.showInfo.searchingDb ? <h1>LOADING....</h1> : ""
         // this.props.showInfo.fetching ? <h1> FETCHING...</h1> : ""
         debugger
-        if(this.props.showInfo.data){
+        if(this.props.showInfo.date !== ""){
             debugger
             return(
                 <div id="show-info">
-                  <strong className="show-name-date">{this.props.showInfo.data.attributes.display_date}</strong><br></br>
-                  <strong className="show-name-date">{this.props.showInfo.data.attributes.display_venue}-{this.props.showInfo.data.attributes.display_location}</strong>
+                  <strong className="show-name-date">{this.props.showInfo.date}</strong><br></br>
+                  <strong className="show-name-date">{this.props.showInfo.venue}-{this.props.showInfo.location}</strong>
                     <div id="setlist">
                      
                         <Set set={this.setOne} parseSet={this.parseSetOne} />
@@ -125,8 +131,8 @@ class ShowPage extends React.Component{
     }
     
     parseMemories = () => {
-        let memories = this.props.showInfo.included.filter(element => element.type === "memory")
-        let fans = this.props.showInfo.included.filter(element => element.type === "fan")
+        let memories = this.props.showInfo.memories
+        let fans = this.props.showInfo.fans
         if(memories.length > 0){
             return memories.map(mem => {
                 let fanObj = {}
@@ -143,7 +149,7 @@ class ShowPage extends React.Component{
 
 
     displayFans() {
-      let fans = this.props.showInfo.included.filter(attr => attr.type === "fan")
+      let fans = this.props.showInfo.fans
       return fans.map(fan => {
           
           return <div key={fan.id} to={`/fans/${fan.attributes.username}`}>{fan.attributes.username}</div>

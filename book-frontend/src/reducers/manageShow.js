@@ -9,7 +9,9 @@ export default function manageShow(state={
     set1: [],
     set2: [],
     set3: [],
-    encore: []
+    encore: [],
+    fans: [],
+    memories: []
 }, action){
     switch(action.type){
 
@@ -41,16 +43,14 @@ export default function manageShow(state={
                 set1: setOne.tracks.map(track => track.title),
                 set2: setTwo ? setTwo.tracks.map(track => track.title) : [],
                 set3: setThree ? setThree.tracks.map(track => track.title) : [],
-                encore: setEncore ? setEncore.tracks.map(track => track.title) : []
+                encore: setEncore ? setEncore.tracks.map(track => track.title) : [],
+                fans: []
                 
             }
             debugger    
 
 
-        return {
-            ...state, 
-            show
-        }
+        return Object.assign({}, state, show)
 
 
         default:
