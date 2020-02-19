@@ -17,21 +17,19 @@ export default function manageShow(state={
 
         case 'SEARCHING_DB':
             debugger
-        return{ ...state, searchingDb: true }
+        return{ ...state, searchingDb: true, addToDb: false, date: "" }
+
 
         case 'FETCHING_SHOW':
             debugger
-        return{...state, searchingDb: false, fetching: true}           
+        return{...state, searchingDb: false, fetching: true}    
+
 
         case 'ADD_SHOW_FROM_RELISTEN':
-    
             let setOne = action.show.sources[0].sets.find(set => set.name === "Set 1")
             let setTwo = action.show.sources[0].sets.find(set => set.name === "Set 2")
             let setThree = action.show.sources[0].sets.find(set => set.name === "Set 3")
             let setEncore = action.show.sources[0].sets.find(set => set.name === "encore")
-
-
-            
             debugger
             const show = {
                 searchingDb: false,
@@ -44,13 +42,31 @@ export default function manageShow(state={
                 set2: setTwo ? setTwo.tracks.map(track => track.title) : [],
                 set3: setThree ? setThree.tracks.map(track => track.title) : [],
                 encore: setEncore ? setEncore.tracks.map(track => track.title) : [],
-                fans: []
-                
+                fans: [],
+                memories: []  
             }
             debugger    
-
-
         return Object.assign({}, state, show)
+
+        case 'DISPLAY_SHOW_FROM_DB':
+            debugger
+            const dbShow = {
+                searchingDb: false,
+                fetching: false,
+                addToDb: false,
+                date: action.show.data.attributes.display_date,
+                location: action.show.data.attributes.display_location,
+                venue: action.show.data.attributes.display_venue,
+                set1: action.show.data.attributes.set1.split(", "),
+                set2: action.show.data.attributes.set2 === "" ? [] : action.show.data.attributes.set2.split(", "),
+                set3: action.show.data.attributes.set3 === "" ? [] : action.show.data.attributes.set3.split(", "),
+                encore: action.show.data.attributes.set_encore === "" ? [] : action.show.data.attributes.set_encore(", "),
+                fans: [],
+                memories: []
+            }
+            debugger
+
+        return Object.assign({}, state, dbShow)
 
 
         default:

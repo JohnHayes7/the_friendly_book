@@ -13,7 +13,8 @@ class FanInfoLogout extends React.Component {
             this.props.reduxFan.fan.loading ? <h3>Loading...</h3> :(
             <div>
                 <h2>Welcome back, <Link to={`/fans/${this.props.reduxFan.fan.username}`}>{this.props.reduxFan.fan.username}</Link></h2>
-                You Have {this.props.reduxFan.fan.show ? this.props.reduxFan.fan.shows.length : ""} stubs in your hand<br></br>
+                {this.props.reduxFan.fan.shows ? `You Have ${this.props.reduxFan.fan.shows.length} stubs in your hand` : "Loading..."}
+                <br></br>
                 <button id="logout-btn" onClick={event => this.logout(event)}> Logout </button>
             </div>
             )
