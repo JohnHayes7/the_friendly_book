@@ -6,6 +6,7 @@ class Show < ApplicationRecord
     belongs_to :venue
     belongs_to :year
     
+    # FUTURE REFACTOR SHOULD RETURN THIS AS AN ARRAY
     def add_set_one(set_one)
         set1_text = ""
         if set_one

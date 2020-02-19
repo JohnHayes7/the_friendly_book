@@ -5,10 +5,12 @@ class ShowDate < ApplicationRecord
     has_one :weather
 
     def self.get_day(date)
+        binding.pry
         date.split("-").last
     end
 
     def self.get_month(date)
+        binding.pry
         date.split("-")[1]
     end
 

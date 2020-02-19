@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import ShowPage from '../components/ShowPage'
 import { getShowFromDb } from '../actions/showActions'
 import { fetchShowFromRelisten } from '../actions/showActions'
+import { addShowToDb } from '../actions/showActions'
 
 class ShowPageContainer extends React.Component{
     
@@ -163,6 +164,9 @@ class ShowPageContainer extends React.Component{
         if(this.props.redux.show.fetching){
             debugger
             this.props.fetchShowFromRelisten(this.searchDate())
+        }else if(this.props.redux.show.addToDb){
+            debugger
+            this.props.addShowToDb(this.props.redux.show)
         }
         debugger
         return(
@@ -175,7 +179,8 @@ class ShowPageContainer extends React.Component{
 
 const mapDispatchToProps = dispatch => ({
     getShowFromDb: date => dispatch(getShowFromDb(date)),
-    fetchShowFromRelisten: date => dispatch(fetchShowFromRelisten(date))
+    fetchShowFromRelisten: date => dispatch(fetchShowFromRelisten(date)),
+    addShowToDb: show => dispatch(addShowToDb(show))
 })
 
 

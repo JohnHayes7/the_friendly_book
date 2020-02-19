@@ -24,9 +24,24 @@ export const fetchShowFromRelisten = (date) => {
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${date}`).then(response => response.json())
             .then(showSets => {
                 debugger
-                dispatch({type: 'ADD_SHOW_FROM_RELISTEN', show: showSets})
-                // 
-                
+                if(showSets.error_code !== 404){
+                    dispatch({type: 'ADD_SHOW_FROM_RELISTEN', show: showSets})
+                    fetch(`http://localhost:3001/shows`, {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(showSets)
+                    }).then(response => response.json()).
+                    then(addedShow => {  
+                    })
+                }
             })   
+    }
+}
+
+export const addShowToDb = (show) => {
+    return (dispatch) => {
+        
     }
 }
