@@ -39,9 +39,3 @@ export const fetchShowFromRelisten = (date) => {
             })   
     }
 }
-
-export const addShowToDb = (show) => {
-    return (dispatch) => {
-        
-    }
-}
