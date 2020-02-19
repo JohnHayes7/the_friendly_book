@@ -46,75 +46,75 @@ class ShowPageContainer extends React.Component{
     //         })     
     // }
 
-    parseShowFromRelisten = showSets => {
-        if(showSets.error_code === 404){
-            alert(`Show from ${this.props.match.params.date} could not be found.  Please check the date and date format. Date must be formatted 'mm-dd-yyyy'`)
-            window.history.back()
-        }else{
-            this.props.show.date = showSets.display_date
-            this.props.show.location = showSets.venue.location
-            this.props.show.venue = showSets.venue.name
-            let firstSet = showSets.sources[0].sets.find(set => set.name === "Set 1")
-            let secondSet = showSets.sources[0].sets.find(set => set.name === "Set 2")
-            let thirdSet = showSets.sources[0].sets.find(set => set.name === "Set 3")
-            let encore = showSets.sources[0].sets.find(set => set.name === "Encore")
+    // parseShowFromRelisten = showSets => {
+    //     if(showSets.error_code === 404){
+    //         alert(`Show from ${this.props.match.params.date} could not be found.  Please check the date and date format. Date must be formatted 'mm-dd-yyyy'`)
+    //         window.history.back()
+    //     }else{
+    //         this.props.show.date = showSets.display_date
+    //         this.props.show.location = showSets.venue.location
+    //         this.props.show.venue = showSets.venue.name
+    //         let firstSet = showSets.sources[0].sets.find(set => set.name === "Set 1")
+    //         let secondSet = showSets.sources[0].sets.find(set => set.name === "Set 2")
+    //         let thirdSet = showSets.sources[0].sets.find(set => set.name === "Set 3")
+    //         let encore = showSets.sources[0].sets.find(set => set.name === "Encore")
 
-        if(!this.props.show.show){
-            if(firstSet && firstSet.tracks.length === 0){
-                firstSet.tracks.map(songTitle => {
-                    this.props.show.set1.push(songTitle.title)
-                })
-            }
+    //     if(!this.props.show.show){
+    //         if(firstSet && firstSet.tracks.length === 0){
+    //             firstSet.tracks.map(songTitle => {
+    //                 this.props.show.set1.push(songTitle.title)
+    //             })
+    //         }
             
-            if(secondSet && secondSet.tracks.length === 0){
-                secondSet.tracks.map(song => {
-                    this.props.show.set2.push(song.title)
-                })
-            }
+    //         if(secondSet && secondSet.tracks.length === 0){
+    //             secondSet.tracks.map(song => {
+    //                 this.props.show.set2.push(song.title)
+    //             })
+    //         }
             
-            if(thirdSet && thirdSet.tracks.length === 0){
-                thirdSet.tracks.map(song => {
-                    this.props.show.set3.push(song.title)
-                })
-            }
+    //         if(thirdSet && thirdSet.tracks.length === 0){
+    //             thirdSet.tracks.map(song => {
+    //                 this.props.show.set3.push(song.title)
+    //             })
+    //         }
             
-            if(encore && encore.tracks.length === 0 ){
-                encore.tracks.map(song => {
-                    this.props.show.encore.push(song.title)
-                })
-            }
+    //         if(encore && encore.tracks.length === 0 ){
+    //             encore.tracks.map(song => {
+    //                 this.props.show.encore.push(song.title)
+    //             })
+    //         }
 
-        }else{
+    //     }else{
 
-            if(firstSet && firstSet.tracks.length === 0){
-                firstSet.tracks.map(songTitle => {
-                    this.props.show.show.set1.push(songTitle.title)
-                })
-            }
+    //         if(firstSet && firstSet.tracks.length === 0){
+    //             firstSet.tracks.map(songTitle => {
+    //                 this.props.show.show.set1.push(songTitle.title)
+    //             })
+    //         }
             
 
-            if(secondSet && secondSet.tracks.length === 0){
-                secondSet.tracks.map(song => {
-                    this.props.show.show.set2.push(song.title)
-                })
-            }
+    //         if(secondSet && secondSet.tracks.length === 0){
+    //             secondSet.tracks.map(song => {
+    //                 this.props.show.show.set2.push(song.title)
+    //             })
+    //         }
 
-            if(thirdSet && thirdSet.tracks.length === 0){
-                debugger
-                thirdSet.tracks.map(song => {
-                    this.props.show.show.set3.push(song.title)
-                })
-            }
+    //         if(thirdSet && thirdSet.tracks.length === 0){
+    //             debugger
+    //             thirdSet.tracks.map(song => {
+    //                 this.props.show.show.set3.push(song.title)
+    //             })
+    //         }
             
-            if(encore && encore.tracks.length === 0){
-                encore.tracks.map(song => {
-                    this.props.show.show.encore.push(song.title)
-                })
-            }
-        }
-        this.addShowToDb() 
-        }
-    }
+    //         if(encore && encore.tracks.length === 0){
+    //             encore.tracks.map(song => {
+    //                 this.props.show.show.encore.push(song.title)
+    //             })
+    //         }
+    //     }
+    //     this.addShowToDb() 
+    //     }
+    // }
 
 
     // getShowFromDb = () => {
