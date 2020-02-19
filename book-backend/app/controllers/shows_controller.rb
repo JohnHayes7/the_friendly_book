@@ -102,11 +102,20 @@ class ShowsController < ApplicationController
             s.display_location = "#{city_name}, #{state_initials}"
             # binding.pry
             # FIND PARAMS FOR EACH SET AND REFACTOR
-            s.add_set_one(params[:show][:set1])
-            s.add_set_two(params[:show][:set2])
-            s.add_set_three(params[:show][:set3])
-            s.add_encore(params[:show][:encore])
-            # binding.pry
+            if params[:sources][0][:sets][0][:name] == "Set 1"
+                s.add_set_one(params[:sources][0][:sets][0])
+            end
+            if params[:sources][0][:sets][1][:name] == "Set 2"
+                s.add_set_two(params[:sources][0][:sets][1])
+            end
+            if params[:sources][0][:sets][2][:name] == "Set 3"
+                s.add_set_three(params[:sources][0][:sets][2])
+                s.add_encore(params[:sources][0][:sets][3])
+            elsif params[:sources][0][:sets][2][:name] == "Encore"
+                s.set3 = "No 3rd Set"
+                s.add_encore(params[:sources][0][:sets][2])
+            end
+            binding.pry
             s.save
             show_date.save
             binding.pry
