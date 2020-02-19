@@ -15,7 +15,7 @@ const Fan = props => {
                 <Header />
                <FanInfoLogout />
             </div>
-            {props.fanProp.loading ? <h3>Loading....</h3> : (<div id="fan-page">
+            {props.fanProp.fan.loading ? <h3>Loading....</h3> : (<div id="fan-page">
                 <FanPageMain fanProp={props.fanProp} displayShows={props.displayShows} />
                 {props.memoryDisplay}
                 <LandingYearsContainer />

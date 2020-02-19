@@ -60,7 +60,7 @@ export default function manageShow(state={
                 set1: action.show.data.attributes.set1.split(", "),
                 set2: action.show.data.attributes.set2 === "" ? [] : action.show.data.attributes.set2.split(", "),
                 set3: action.show.data.attributes.set3 === "" ? [] : action.show.data.attributes.set3.split(", "),
-                encore: action.show.data.attributes.set_encore === "" ? [] : action.show.data.attributes.set_encore(", "),
+                encore: action.show.data.attributes.set_encore === "" ? [] : action.show.data.attributes.set_encore.split(", "),
                 fans: [],
                 memories: []
             }

@@ -41,7 +41,8 @@ class MemoryContainer extends React.Component{
 
 
     parseFanMemories = () => {
-        let fan = this.props.fan 
+        debugger
+        let fan = this.props.fan.fan
         let show = this.props.show
         let fanShowMemories = fan.memories.filter(mem => mem.relationships.show.data.id === show.id)
         return fanShowMemories.map(mem => {

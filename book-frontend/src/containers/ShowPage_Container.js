@@ -17,22 +17,22 @@ class ShowPageContainer extends React.Component{
    
     searchDate = () => this.formatSearchDate(this.props.match.params.date)
 
-    addShowToDb = () => {
-       fetch(`http://localhost:3001/shows`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(this.props.show)
-        }).then(response => response.json())
-        .then(showInfo => {   
-            console.log(showInfo)
-            this.setState({
-                loadedShow: true,
-                results: showInfo
-           }) 
-        })  
-    }
+    // addShowToDb = () => {
+    //    fetch(`http://localhost:3001/shows`, {
+    //         method: "post",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(this.props.show)
+    //     }).then(response => response.json())
+    //     .then(showInfo => {   
+    //         console.log(showInfo)
+    //         this.setState({
+    //             loadedShow: true,
+    //             results: showInfo
+    //        }) 
+    //     })  
+    // }
 
     formatSearchDate = date => {
         return date.split("-")[2] + '-' + date.split("-")[0] + '-' + date.split("-")[1]

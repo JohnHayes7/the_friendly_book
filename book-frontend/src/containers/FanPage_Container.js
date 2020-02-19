@@ -76,6 +76,7 @@ class FanPageContainer extends React.Component{
     }
  
     fanShowsDisplay = shows =>{
+        debugger
         if(shows){
             if(shows.length < 1){
                 return(
@@ -101,10 +102,9 @@ class FanPageContainer extends React.Component{
     }
 
     componentDidMount(){
-        if(!this.props.fan.username){
-            this.props.fetchFan()
-            // this.getFanFromDb()
-        }
+        this.props.fetchFan()
+        // this.getFanFromDb()
+        
     }
 
     render(){
@@ -123,6 +123,7 @@ class FanPageContainer extends React.Component{
 }
 
 const mapStateToProps = state => {   
+    debugger
     return {
         fan: state
     }
