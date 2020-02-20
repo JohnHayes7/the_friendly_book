@@ -61,8 +61,8 @@ export default function manageShow(state={
                 set2: action.show.data.attributes.set2 === "" ? [] : action.show.data.attributes.set2.split(", "),
                 set3: action.show.data.attributes.set3 === "" ? [] : action.show.data.attributes.set3.split(", "),
                 encore: action.show.data.attributes.set_encore === "" ? [] : action.show.data.attributes.set_encore.split(", "),
-                fans: [],
-                memories: []
+                fans: action.show.included.filter(data => data.type === "fan"),
+                memories: action.show.included.filter(data => data.type === "memory")
             }
             debugger
 
