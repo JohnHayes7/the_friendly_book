@@ -26,9 +26,9 @@ export default function manageFan(state={
             loggedIn: localStorage.logged_in
            } 
         return Object.assign({}, state, loginFan)
+        
 
         case 'ADD_MEMORY':
-           
             const memory = {
                 attributes:{
                     text: action.memory.text

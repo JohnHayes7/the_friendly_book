@@ -2,7 +2,7 @@ class FansController < ApplicationController
 
     def create
         fan = Fan.new(fan_params)
-        binding.pry
+        # binding.pry
         fan.password = params[:password]
         options  = {include: [:shows, :memories]}
             if fan.save

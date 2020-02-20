@@ -2,7 +2,7 @@ import React from 'react'
 import './fan_page.css'
 
 const FanPageMain = props => {
-    debugger
+    // debugger
     return props.fanProp.fan.loading ? "Loading...." : (
         <div id="fan-page-main">
             {props.fanProp.fan.username}

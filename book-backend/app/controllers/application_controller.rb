@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
     #     session[:user_id] = @user.id
     # end
     def logged_in?
-        binding.pry
+        # binding.pry
         !!session[:user_id]
     end
     def current_user

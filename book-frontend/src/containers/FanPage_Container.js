@@ -76,7 +76,7 @@ class FanPageContainer extends React.Component{
     }
  
     fanShowsDisplay = shows =>{
-        debugger
+        // debugger
         if(shows){
             if(shows.length < 1){
                 return(
@@ -96,9 +96,7 @@ class FanPageContainer extends React.Component{
                     </div>
                 )
             }
-        }else{
-            return <h5>You'll Never Get Out Of This Maze</h5>
-        } 
+        }
     }
 
     componentDidMount(){

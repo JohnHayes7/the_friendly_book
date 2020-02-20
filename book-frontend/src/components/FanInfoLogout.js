@@ -8,7 +8,7 @@ import { fetchFan } from '../actions/fetchFan'
 class FanInfoLogout extends React.Component {
 
     displayInfo = () => {
-        debugger
+        // debugger
         return(
             this.props.reduxFan.fan.loading ? <h3>Loading...</h3> :(
             <div>

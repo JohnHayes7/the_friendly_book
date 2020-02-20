@@ -37,7 +37,7 @@ export default function manageShow(state={
             let setTwo = action.show.sources[0].sets.find(set => set.name === "Set 2")
             let setThree = action.show.sources[0].sets.find(set => set.name === "Set 3")
             let setEncore = action.show.sources[0].sets.find(set => set.name === "encore")
-            debugger
+            
             const show = {
                 searchingDb: false,
                 fetching: false,
@@ -51,14 +51,12 @@ export default function manageShow(state={
                 encore: setEncore ? setEncore.tracks.map(track => track.title) : [],
                 fans: [],
                 memories: []  
-            }
-            debugger    
+            }    
         return Object.assign({}, state, show)
 
+
         case 'DISPLAY_SHOW_FROM_DB':
-            debugger
             const dbShow = {
-                
                 searchingDb: false,
                 fetching: false,
                 addToDb: false,
@@ -72,8 +70,6 @@ export default function manageShow(state={
                 fans: action.show.included.filter(data => data.type === "fan"),
                 memories: action.show.included.filter(data => data.type === "memory")
             }
-            debugger
-
         return Object.assign({}, state, dbShow)
 
 

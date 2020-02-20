@@ -30,8 +30,6 @@ export default class YearPageContainer extends React.Component{
                  })
              }
             
-            
-             
              if(secondSet){
                  secondSet.tracks.map(song => {
                      newShow.set2.push(song.title)

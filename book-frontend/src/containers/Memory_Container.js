@@ -62,7 +62,6 @@ class MemoryContainer extends React.Component{
 }
 
 const mapStateToProps = state => {
-    // debugger
     return {
         fan: state
     }

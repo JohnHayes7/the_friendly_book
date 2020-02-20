@@ -8,7 +8,6 @@ import './landing_page.css'
 
 
 const Fan = props => {
-
     return (
         <div>
             <div id="landing-wrapper">

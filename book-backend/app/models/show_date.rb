@@ -5,12 +5,10 @@ class ShowDate < ApplicationRecord
     has_one :weather
 
     def self.get_day(date)
-        
         date.split("-").last
     end
 
     def self.get_month(date)
-        
         date.split("-")[1]
     end
 
@@ -19,7 +17,6 @@ class ShowDate < ApplicationRecord
     end
 
     def self.format_date_for_search(date)
-        # binding.pry
         "#{date.split("-").last}-#{date.split("-").first}-#{date.split("-")[1]}"
     end
 

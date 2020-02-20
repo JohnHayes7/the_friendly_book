@@ -2,95 +2,32 @@ class ShowsController < ApplicationController
 
 
     def create
-        # binding.pry
-        # if params[:show][:date] && params[:show][:date].length > 0
-            # binding.pry
-            # if params[:show][:date].length > 0
-                # binding.pry
-                year_value = params[:year][:year]
-                year = Year.find_or_create_by(value: year_value)
-                day = ShowDate.get_day(params[:display_date])
-                month = ShowDate.get_month(params[:display_date])
-                # binding.pry
-                show_date = year.show_dates.find_by({month: month, day: day, year_id: year.id})
-                if !show_date
-                    show_date = ShowDate.new({month: month, day: day})
-                end
-                # binding.pry
-                show_date.year_id = year.id
+        year_value = params[:year][:year]
+        year = Year.find_or_create_by(value: year_value)
+        day = ShowDate.get_day(params[:display_date])
+        month = ShowDate.get_month(params[:display_date])
+        show_date = year.show_dates.find_by({month: month, day: day, year_id: year.id})
+        if !show_date
+            show_date = ShowDate.new({month: month, day: day})
+        end
 
-                state_initials = State.get_state_from_location(params[:venue][:location])
-                state = State.find_or_create_by(initials: state_initials)
+        show_date.year_id = year.id
 
-                city_name = City.get_city_from_location(params[:venue][:location])
-                city = City.find_or_create_by(name: city_name)
-                city.state_id = state.id 
-                city.save
+        state_initials = State.get_state_from_location(params[:venue][:location])
+        state = State.find_or_create_by(initials: state_initials)
 
-                venue = Venue.find_or_create_by(name: params[:venue][:name])
-                venue.city_id = city.id
-                venue.state_id = state.id
-                venue.save
+        city_name = City.get_city_from_location(params[:venue][:location])
+        city = City.find_or_create_by(name: city_name)
+        city.state_id = state.id 
+        city.save
 
-                show_date.venue_id = venue.id
-                # binding.pry
-                show_date.save
-                # binding.pry
-            # else
-            #     # binding.pry
-            #     year_value = Year.get_year(params[:date])
-            #     year = Year.find_or_create_by(value: year_value)
-            #     day = ShowDate.get_day(params[:date])
-            #     month = ShowDate.get_month(params[:date])
-            #     show_date = ShowDate.find_or_create_by({month: month, day: day})
-            #     show_date.year_id = year.id
-                
-            #     state_initials = State.get_state_from_location(params[:location])
-            #     state = State.find_or_create_by(initials: state_initials)
-    
-            #     city_name = City.get_city_from_location(params[:location])
-            #     city = City.find_or_create_by(name: city_name)
-            #     city.state_id = state.id 
-            #     city.save
-    
-            #     venue = Venue.find_or_create_by(name: params[:venue])
-            #     venue.city_id = city.id
-            #     venue.state_id = state.id
-            #     venue.save
-    
-            #     show_date.venue_id = venue.id
-            #     show_date.save
-            #     # binding.pry
-            # end
-        # else
-            # binding.pry
-            # year_value = Year.get_year(params[:date])
-            # year = Year.find_or_create_by(value: year_value)
-            # day = ShowDate.get_day(params[:date])
-            # month = ShowDate.get_month(params[:date])
-            # show_date = year.show_dates.find_or_create_by({month: month, day: day, year_id: year.id})
-            # # binding.pry
-            # # show_date.year_id = year.id
-            
-            # state_initials = State.get_state_from_location(params[:location])
-            # state = State.find_or_create_by(initials: state_initials)
+        venue = Venue.find_or_create_by(name: params[:venue][:name])
+        venue.city_id = city.id
+        venue.state_id = state.id
+        venue.save
 
-            # city_name = City.get_city_from_location(params[:location])
-            # city = City.find_or_create_by(name: city_name)
-            # city.state_id = state.id 
-            # city.save
-
-            # venue = Venue.find_or_create_by(name: params[:venue])
-            # venue.city_id = city.id
-            # venue.state_id = state.id
-            # venue.save
-
-            # show_date.venue_id = venue.id
-            # binding.pry
-            # show_date.save
-            # binding.pry
-        # end    
-
+        show_date.venue_id = venue.id 
+        show_date.save
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
         
         if !show_date.show
@@ -100,8 +37,7 @@ class ShowsController < ApplicationController
             s.venue_id = venue.id
             s.display_venue = venue.name
             s.display_location = "#{city_name}, #{state_initials}"
-            # binding.pry
-            # FIND PARAMS FOR EACH SET AND REFACTOR
+
             if params[:sources][0][:sets][0][:name] == "Set 1"
                 s.add_set_one(params[:sources][0][:sets][0])
             end
@@ -117,45 +53,32 @@ class ShowsController < ApplicationController
                 s.set3 = "No 3rd Set"
                 s.add_encore(params[:sources][0][:sets][2])
             end
-            # binding.pry
             s.save
             show_date.save
-            # binding.pry
             render json: ShowSerializer.new(s, options)
         else
             render json: ShowSerializer.new(show_date.show, options)
         end
-        
-        
     end
 
 
     def show 
-        # binding.pry
-            year_value = ShowDate.get_year(params[:id])
-            # Need to find the search date within the year.
-            year = Year.find_by({value: year_value})
-            day = ShowDate.get_day(params[:id])
-            month = ShowDate.get_month(params[:id])
-            # binding.pry
-            show_date = year.show_dates.find_by({month: month, day: day, year_id: year.id})
-            options = {include: [:fans, :memories, :show_date, :venue, :songs]}
-            # binding.pry
-            if show_date
-                # binding.pry
-                if show_date.show
-                    s = Show.find(show_date.show.id)
-                    # binding.pry
-                    render json: ShowSerializer.new(s, options) 
-                else
-                    # binding.pry
-                    render json: { status: "error", code: 3000, message: "Can Not Find Show"}
-                end
+        year_value = ShowDate.get_year(params[:id])
+        year = Year.find_by({value: year_value})
+        day = ShowDate.get_day(params[:id])
+        month = ShowDate.get_month(params[:id])
+        show_date = year.show_dates.find_by({month: month, day: day, year_id: year.id})
+        options = {include: [:fans, :memories, :show_date, :venue, :songs]}
+        if show_date
+            if show_date.show
+                s = Show.find(show_date.show.id)
+                render json: ShowSerializer.new(s, options) 
             else
-                # binding.pry
                 render json: { status: "error", code: 3000, message: "Can Not Find Show"}
             end
-        
+        else
+            render json: { status: "error", code: 3000, message: "Can Not Find Show"}
+        end
     end
 
     def update
@@ -179,7 +102,6 @@ class ShowsController < ApplicationController
     end
 
     def add_fan
-        
         show_date = ShowDate.find_by({month:params[:month], day:params[:day]})
         year = Year.find_by(value: params[:year])
         fan = Fan.find(params[:fanId])
