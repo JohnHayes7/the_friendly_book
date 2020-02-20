@@ -107,11 +107,13 @@ class ShowsController < ApplicationController
             end
             if params[:sources][0][:sets][1][:name] == "Set 2"
                 s.add_set_two(params[:sources][0][:sets][1])
+            elsif params[:sources][0][:sets][1][:name] == "Encore"
+                s.add_encore(params[:sources][0][:sets][1])
             end
-            if params[:sources][0][:sets][2][:name] == "Set 3"
+            if params[:sources][0][:sets][2] && params[:sources][0][:sets][2][:name] == "Set 3"
                 s.add_set_three(params[:sources][0][:sets][2])
                 s.add_encore(params[:sources][0][:sets][3])
-            elsif params[:sources][0][:sets][2][:name] == "Encore"
+            elsif params[:sources][0][:sets][2] && params[:sources][0][:sets][2][:name] == "Encore"
                 s.set3 = "No 3rd Set"
                 s.add_encore(params[:sources][0][:sets][2])
             end

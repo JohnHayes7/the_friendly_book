@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import ShowPage from '../components/ShowPage'
 import { getShowFromDb } from '../actions/showActions'
 import { fetchShowFromRelisten } from '../actions/showActions'
+import { addFanToShow } from '../actions/showActions'
 
 
 class ShowPageContainer extends React.Component{
@@ -132,25 +133,28 @@ class ShowPageContainer extends React.Component{
     //     })
     // }
 
-    addFanToShow = event => {
-        // debugger
+    clickHandler = event => {
+       
         const fanShowData = {
             month: event.currentTarget.baseURI.split("/")[4].split("-")[0],
             day: event.currentTarget.baseURI.split("/")[4].split("-")[1],
             year: event.currentTarget.baseURI.split("/")[4].split("-")[2],
-            fanId: localStorage.user_id
+            fanId: localStorage.user_id,
+            username: this.props.redux.fan.username
         }
+        // debugger
+        this.props.addFanToShow(fanShowData)
         
-        fetch(`http://localhost:3001/add_fan_to_show`,{
-            method: 'post',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(fanShowData)
-        }).then(response => response.json())
-        .then(rxShow => {
-           this.setState({loadedShow: true, results: rxShow})
-        })
+        // fetch(`http://localhost:3001/add_fan_to_show`,{
+        //     method: 'post',
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify(fanShowData)
+        // }).then(response => response.json())
+        // .then(rxShow => {
+        //    this.setState({loadedShow: true, results: rxShow})
+        // })
         
     }
 
@@ -168,7 +172,7 @@ class ShowPageContainer extends React.Component{
         debugger
         return(
             <div>
-                <ShowPage showInfo={this.props.redux.show} getSongs={this.fetchSongsfromRelisten} addFanToShow={this.addFanToShow} displayFans={this.displayFans} />
+                <ShowPage showInfo={this.props.redux.show} getSongs={this.fetchSongsfromRelisten} clickHandler={this.clickHandler} displayFans={this.displayFans} />
             </div>
         )
     }
@@ -176,7 +180,8 @@ class ShowPageContainer extends React.Component{
 
 const mapDispatchToProps = dispatch => ({
     getShowFromDb: date => dispatch(getShowFromDb(date)),
-    fetchShowFromRelisten: date => dispatch(fetchShowFromRelisten(date))
+    fetchShowFromRelisten: date => dispatch(fetchShowFromRelisten(date)),
+    addFanToShow: (fanShowData) => dispatch(addFanToShow(fanShowData))
    
 })
 

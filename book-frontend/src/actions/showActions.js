@@ -39,3 +39,19 @@ export const fetchShowFromRelisten = (date) => {
             })   
     }
 }
+
+export const addFanToShow = (fanShowData) => {
+    return (dispatch) => {
+        dispatch({type: 'ADD_FAN_TO_SHOW', fanShowData})
+        fetch(`http://localhost:3001/add_fan_to_show`,{
+            method: 'post',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(fanShowData)
+        }).then(response => response.json())
+        .then(rxShow => {
+           
+        })
+    }
+}

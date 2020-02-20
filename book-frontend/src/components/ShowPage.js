@@ -86,7 +86,7 @@ class ShowPage extends React.Component{
         if(localStorage.logged_in){
             return (
                 <div>
-                    <span id="add-show-link"><div  className="add-show" onClick={event => this.props.addFanToShow(event)}>Add To My Shows</div></span>
+                    <span id="add-show-link"><div  className="add-show" onClick={event => this.props.clickHandler(event)}>Add To My Shows</div></span>
                     <span>Fans:</span>
                     {this.displayFans()}
 
@@ -151,8 +151,8 @@ class ShowPage extends React.Component{
     displayFans() {
       let fans = this.props.showInfo.fans
       return fans.map(fan => {
-          
-          return <div key={fan.id} to={`/fans/${fan.attributes.username}`}>{fan.attributes.username}</div>
+          debugger
+          return fan.attributes ? <div key={fan.id} to={`/fans/${fan.attributes.username}`}>{fan.attributes.username}</div> : <div key={fan} to={`/fans/${fan}`}>{fan}</div>
 
       })
     }

@@ -16,13 +16,20 @@ export default function manageShow(state={
     switch(action.type){
 
         case 'SEARCHING_DB':
-            debugger
+            
         return{ ...state, searchingDb: true, addToDb: false, date: "" }
 
 
         case 'FETCHING_SHOW':
-            debugger
-        return{...state, searchingDb: false, fetching: true}    
+            
+        return{...state, searchingDb: false, fetching: true}
+        
+        case 'ADD_FAN_TO_SHOW':
+        
+        return {
+            ...state,
+            fans: [...state.fans, action.fanShowData.username]
+        }
 
 
         case 'ADD_SHOW_FROM_RELISTEN':
@@ -51,13 +58,14 @@ export default function manageShow(state={
         case 'DISPLAY_SHOW_FROM_DB':
             debugger
             const dbShow = {
+                
                 searchingDb: false,
                 fetching: false,
                 addToDb: false,
                 date: action.show.data.attributes.display_date,
                 location: action.show.data.attributes.display_location,
                 venue: action.show.data.attributes.display_venue,
-                set1: action.show.data.attributes.set1.split(", "),
+                set1: action.show.data.attributes.set1 .split(", "),
                 set2: action.show.data.attributes.set2 === "" ? [] : action.show.data.attributes.set2.split(", "),
                 set3: action.show.data.attributes.set3 === "" ? [] : action.show.data.attributes.set3.split(", "),
                 encore: action.show.data.attributes.set_encore === "" ? [] : action.show.data.attributes.set_encore.split(", "),
