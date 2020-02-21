@@ -37,7 +37,7 @@ export default function manageShow(state={
             let setTwo = action.show.sources[0].sets.find(set => set.name === "Set 2")
             let setThree = action.show.sources[0].sets.find(set => set.name === "Set 3")
             let setEncore = action.show.sources[0].sets.find(set => set.name === "encore")
-            
+
             const show = {
                 searchingDb: false,
                 fetching: false,
@@ -56,6 +56,7 @@ export default function manageShow(state={
 
 
         case 'DISPLAY_SHOW_FROM_DB':
+            debugger
             const dbShow = {
                 searchingDb: false,
                 fetching: false,

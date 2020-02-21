@@ -6,10 +6,10 @@ export const getShowFromDb = (date) =>{
         .then(rxShow =>{
             // debugger
             if(rxShow.code === 3000){
-                // debugger
+                debugger
                 dispatch({type: 'FETCHING_SHOW'})
             }else{
-                // debugger
+                debugger
                 dispatch({type: 'DISPLAY_SHOW_FROM_DB', show: rxShow})
             }
         })
@@ -17,13 +17,13 @@ export const getShowFromDb = (date) =>{
 }
 
 export const fetchShowFromRelisten = (date) => {
-    // debugger
+    debugger
     return (dispatch) =>{
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${date}`).then(response => response.json())
             .then(showSets => {
-                // debugger
+                debugger
                 if(showSets.error_code !== 404){
-                    dispatch({type: 'ADD_SHOW_FROM_RELISTEN', show: showSets})
+                    // dispatch({type: 'ADD_SHOW_FROM_RELISTEN', show: showSets})
                     fetch(`http://localhost:3001/shows`, {
                         method: 'POST',
                         headers: {
@@ -31,7 +31,9 @@ export const fetchShowFromRelisten = (date) => {
                         },
                         body: JSON.stringify(showSets)
                     }).then(response => response.json()).
-                    then(addedShow => {  
+                    then(addedShow => { 
+                        debugger 
+                        dispatch({type: 'DISPLAY_SHOW_FROM_DB', show: addedShow})
                     })
                 }
             })   
