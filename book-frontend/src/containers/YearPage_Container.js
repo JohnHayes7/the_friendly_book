@@ -16,7 +16,7 @@ export default class YearPageContainer extends React.Component{
     getShowFromRelisten = (rxShow, newShow) => {
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${rxShow.display_date}`).then(response => response.json())
         .then(showSets => {
-             debugger
+            //  debugger
              let sets = showSets.sources[0].sets
              let firstSet = sets.find(set => set.name === "Set 1" ) || null
              let secondSet = sets.find(set => set.name === "Set 2") || null

@@ -29,7 +29,6 @@ class TicketContainer extends React.Component{
         this.setState(prevState => ({
             clicked: !prevState.clicked,
         }))
-        // I WANT TO CHANGE TO 'GET SHOW' 
         this.props.addShow(this.props)
     }
 
