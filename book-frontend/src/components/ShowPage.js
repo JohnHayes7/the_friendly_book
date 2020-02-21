@@ -103,9 +103,9 @@ class ShowPage extends React.Component{
         // IF SEARCHING OR FETCHING DISPLAY 'LOADING....'
         // this.props.showInfo.searchingDb ? <h1>LOADING....</h1> : ""
         // this.props.showInfo.fetching ? <h1> FETCHING...</h1> : ""
-        debugger
+        // debugger
         if(this.props.showInfo.date !== ""){
-            debugger
+            // debugger
             return(
                 <div id="show-info">
                   <strong className="show-name-date">{this.props.showInfo.date}</strong><br></br>
@@ -151,7 +151,7 @@ class ShowPage extends React.Component{
     displayFans() {
       let fans = this.props.showInfo.fans
       return fans.map(fan => {
-          debugger
+        //   debugger
           return fan.attributes ? <div key={fan.id} to={`/fans/${fan.attributes.username}`}>{fan.attributes.username}</div> : <div key={fan} to={`/fans/${fan}`}>{fan}</div>
 
       })
