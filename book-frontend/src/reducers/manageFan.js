@@ -26,22 +26,26 @@ export default function manageFan(state={
             loggedIn: localStorage.logged_in
            } 
         return Object.assign({}, state, loginFan)
-        
+
 
         case 'ADD_MEMORY':
-            const memory = {
-                attributes:{
-                    text: action.memory.text
-                },
-                type: "memory",
-                relationships: {
-                    show: {
-                        data:{
-                            id: action.memory.showId
-                        }
-                    }
-                }
-            }
+            debugger
+            const memory = action.memory.data
+            // {
+            //     attributes:{
+            //         text: action.memory.text
+            //     },
+            //     type: "memory",
+            //     relationships: {
+            //         show: {
+            //             data:{
+            //                 id: action.memory.showId
+            //             }
+            //         }
+            //     }
+            // }
+
+            // let memories = action.memory.included.filter(mem => )
             
         return {
             ...state,

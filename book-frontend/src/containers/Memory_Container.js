@@ -23,7 +23,7 @@ class MemoryContainer extends React.Component{
 
     memorySubmit = event => {
         event.preventDefault()
-        debugger
+        // debugger
         let memory = {
             text: this.state.text,
             fanId: this.props.fan.fan.id,

@@ -1,6 +1,7 @@
 class MemoriesController < ApplicationController
 
     def create
+        # binding.pry
         show = Show.find(params[:showId])
         fan = Fan.find(params[:fanId])
         mem = Memory.new
@@ -8,9 +9,11 @@ class MemoriesController < ApplicationController
         mem.show_id = show.id
         mem.text = params[:memory][:text]
         mem.save
-        options  = {include: [:shows, :memories]}
+        fan.memories << mem
+        options  = {include: [:show, :fan]}
+        # binding.pry
         # Renders the fan who created the memory
-        render json: FanSerializer.new(fan, options)
+        render json: MemorySerializer.new(mem, options)
        
     end
 

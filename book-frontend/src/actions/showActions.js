@@ -4,7 +4,7 @@ export const getShowFromDb = (date) =>{
         dispatch({type: 'SEARCHING_DB'})
         fetch(`http://localhost:3001/shows/${date}`).then(response => response.json())
         .then(rxShow =>{
-            debugger
+            // debugger
             if(rxShow.code === 3000){
                 // debugger
                 dispatch({type: 'FETCHING_SHOW'})

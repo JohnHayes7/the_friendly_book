@@ -106,7 +106,7 @@ class FanPageContainer extends React.Component{
     }
 
     render(){
-        debugger
+        // debugger
         if(!localStorage.logged_in){
            return <Redirect to={"/"} />
         }else{
@@ -121,7 +121,7 @@ class FanPageContainer extends React.Component{
 }
 
 const mapStateToProps = state => {   
-    debugger
+    // debugger
     return {
         fan: state
     }

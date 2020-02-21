@@ -1,7 +1,6 @@
 export const addFanMemory = (memory) =>{
-    // debugger
+    debugger
     return (dispatch) => {
-        dispatch({type: 'ADD_MEMORY', memory: memory })
         // debugger
         fetch('http://localhost:3001/memories',{
             method: "post",
@@ -11,8 +10,8 @@ export const addFanMemory = (memory) =>{
             body: JSON.stringify(memory)
         }).then(response => response.json())
         .then(rxObj => {
-            
+            debugger
+        dispatch({type: 'ADD_MEMORY', memory: rxObj})
         })
-
     }
 }
