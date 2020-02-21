@@ -1,6 +1,6 @@
 class ShowDateSerializer
   include FastJsonapi::ObjectSerializer
-  has_one :show
+  has_many :shows
   belongs_to :year
   belongs_to :venue
   has_one :weather

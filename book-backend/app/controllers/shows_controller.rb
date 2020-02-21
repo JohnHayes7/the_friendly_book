@@ -2,13 +2,14 @@ class ShowsController < ApplicationController
 
 
     def create
+        binding.pry
         year_value = params[:year][:year]
         year = Year.find_or_create_by(value: year_value)
         day = ShowDate.get_day(params[:display_date])
         month = ShowDate.get_month(params[:display_date])
-        show_date = year.show_dates.find_by({month: month, day: day, year_id: year.id})
+        show_date = ShowDate.find_by({month: month, day: day, year_id: year.id})
         if !show_date
-            show_date = ShowDate.new({month: month, day: day})
+            show_date = ShowDate.new({month: month, day: day, year_id: year.id})
         end
 
         show_date.year_id = year.id
@@ -29,10 +30,13 @@ class ShowsController < ApplicationController
         show_date.venue_id = venue.id 
         show_date.save
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
-        
-        if !show_date.show
+        show = show_date.shows.find_by(:year_id == year.id)
+        binding.pry
+        if !show
+            binding.pry
             s = Show.new()
             s.display_date = show_date.build_display_date
+            s.year_id = year.id
             s.show_date_id = show_date.id
             s.venue_id = venue.id
             s.display_venue = venue.name
@@ -50,14 +54,15 @@ class ShowsController < ApplicationController
                 s.add_set_three(params[:sources][0][:sets][2])
                 s.add_encore(params[:sources][0][:sets][3])
             elsif params[:sources][0][:sets][2] && params[:sources][0][:sets][2][:name] == "Encore"
-                s.set3 = "No 3rd Set"
+                s.set3 = ""
                 s.add_encore(params[:sources][0][:sets][2])
             end
             s.save
             show_date.save
+            binding.pry
             render json: ShowSerializer.new(s, options)
         else
-            render json: ShowSerializer.new(show_date.show, options)
+            render json: ShowSerializer.new(show, options)
         end
     end
 
@@ -70,9 +75,11 @@ class ShowsController < ApplicationController
         show_date = year.show_dates.find_by({month: month, day: day, year_id: year.id})
         options = {include: [:fans, :memories, :show_date, :venue, :songs]}
         if show_date
-            if show_date.show
-                s = Show.find(show_date.show.id)
-                render json: ShowSerializer.new(s, options) 
+            if show_date.shows
+                render json: { status: "error", code: 3000, message: "Can Not Find Show"}
+
+                # s = Show.find(show_date.shows.find(show.id))
+                # render json: ShowSerializer.new(s, options) 
             else
                 render json: { status: "error", code: 3000, message: "Can Not Find Show"}
             end
