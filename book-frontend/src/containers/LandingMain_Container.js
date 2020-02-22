@@ -16,6 +16,7 @@ class LandingMainContainer extends React.Component {
             history: {
                 venue: "Loading...",
                 date: "Loading...",
+                location: ""
             },
             setlist: {
                 set1: [],
@@ -62,19 +63,12 @@ class LandingMainContainer extends React.Component {
 
             let encore = show.sources[0].sets.find(set => set.name === "Encore")
             
-            
-
-            
-            // setThree.map(song => song.title)
-
-           
-            
             this.setState({
                 setlist: {
-                    set1: setone ? setOne.tracks.map(song => song.title) : "",
+                    set1: setOne ? setOne.tracks.map(song => song.title) : "",
                     set2: setTwo ? setTwo.map(song => song.title) : "",
                     set3: setThree ? setThree.map(song => song.title) : "",
-                    encore: encore? encore.map(song => song.title) : ""
+                    encore: encore ? encore.map(song => song.title) : ""
                 }
             })
         })
@@ -83,14 +77,15 @@ class LandingMainContainer extends React.Component {
     todayInHistory = () => {
         
         fetch('https://api.relisten.net/api/v2/artists/phish/shows/today').then(response => response.json())
-        .then(show => {
+        .then(shows => {
             debugger
             // I WANT TO RANDOMLY PICK SHOW WHEN THERE IS MORE THAN 1 SHOW ON A GIVEN DATE
-            if(show.length > 0){
+            if(shows.length > 0){
                 this.setState({
                     history: {
-                        venue: show[0].venue.name, 
-                        date: show[0].display_date
+                        venue: shows[0].venue.name, 
+                        date: shows[0].display_date,
+                        location: shows[0].venue.location
                     }
                 })
                this.getSetlist() 

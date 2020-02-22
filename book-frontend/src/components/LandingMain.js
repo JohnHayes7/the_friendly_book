@@ -20,10 +20,13 @@ export default class LandingMain extends React.Component{
 
     
     parseEncoreInfo = () => {
-        return this.props.encore.map(song => {
-             return <div className="setlist" key={song}> * {song} </div>
-         })
-      }
+        if(this.props.encore !== ""){
+            return this.props.encore.map(song => {
+                return <div className="setlist" key={song}> * {song} </div>
+                })
+            }
+        }
+        
 
     formatDateForLink = () => {
         let date = this.props.todayInHistory.date
@@ -78,7 +81,8 @@ export default class LandingMain extends React.Component{
                     <span className="landing-title">Today In Phish History</span>
                         <div id="history-display">
                             {this.props.todayInHistory.venue}<br></br>
-                            {this.formatDisplayDate()}
+                            {this.props.todayInHistory.location}<br></br>
+                            <div className="small-date">{this.formatDisplayDate()}</div>
                             <div id="today-setlist">
                             {this.displaySetOne()}{this.parseSetOneInfo()}<br></br>
                             {this.displaySetTwo()}{this.parseSetTwoInfo()}<br></br>

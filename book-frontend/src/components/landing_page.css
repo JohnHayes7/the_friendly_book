@@ -100,6 +100,10 @@
         overflow: scroll;
     }
 
+    .small-date{
+        font-size: .75em;
+    }
+
     #today-setlist{
         font-size: .7em;
     }
