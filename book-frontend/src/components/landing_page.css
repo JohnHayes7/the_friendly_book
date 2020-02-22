@@ -64,12 +64,15 @@
               
         height: 650px;
         border: 1px solid grey;
-        text-align: center;
+        text-align: left;
         font-size: 2em;
+        color: grey;
+        padding-top: 20px;
     }
     /* VIDEOS */
     #landingMain-Vids{
         display: flex;
+        margin-top: 3px;
         margin-left: 50px;
     }
 
@@ -77,6 +80,10 @@
         width: 410px;
         height: 200px;
         border: 1px solid grey;
+    }
+
+    .landing-title{
+        padding: 50px;
     }
 
     #land-vid-2{
@@ -89,10 +96,12 @@
         border: 1px solid grey;
         width: 88%;
         height: 250px;
+        font-size: .8em;
+        overflow: scroll;
     }
 
     #today-setlist{
-        font-size: .5em;
+        font-size: .7em;
     }
 
     /* YEARS WINDOW */

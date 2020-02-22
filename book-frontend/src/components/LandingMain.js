@@ -5,7 +5,7 @@ export default class LandingMain extends React.Component{
 
     parseSetOneInfo = () => {
         return this.props.setOne.map(song => {
-            return<span key={song}> * {song} </span>
+            return<div className="setlist" key={song}> {song} </div>
         })
         
     }
@@ -13,7 +13,7 @@ export default class LandingMain extends React.Component{
     parseSetTwoInfo = () => {
         if(this.props.setTwo){
             return this.props.setTwo.map(song => {
-                return <span key={song}> * {song} </span>
+                return <div className="setlist" key={song}> * {song} </div>
             })
         }
     }
@@ -21,7 +21,7 @@ export default class LandingMain extends React.Component{
     
     parseEncoreInfo = () => {
         return this.props.encore.map(song => {
-             return <span key={song}> * {song} </span>
+             return <div className="setlist" key={song}> * {song} </div>
          })
       }
 
@@ -36,21 +36,15 @@ export default class LandingMain extends React.Component{
     }
 
     displaySetOne = () => {
-        if(this.props.setOne){
-           return <strong>Set1:</strong>
-        }
+        return this.props.setOne.length > 0 ? <strong>Set1:</strong> : ""
     }
 
     displaySetTwo = () => {
-        if(this.props.setTwo){
-            return <strong>Set2:</strong>
-        }
+        return this.props.setTwo.length > 0 ? <strong>Set2:</strong> : ""
     }
 
     displayEncore = () => {
-        if(this.props.encore){
-            return <strong>Encore:</strong>
-        }
+        return this.props.encore.length > 0 ? <strong>Encore:</strong> : ""
     }
 
     formatDisplayDate = () =>{
@@ -59,7 +53,6 @@ export default class LandingMain extends React.Component{
        let day = this.props.todayInHistory.date.split("-")[2]
 
        return `${month}.${day}.${year}`
-       
     }
 
     render(){
@@ -72,7 +65,7 @@ export default class LandingMain extends React.Component{
         
         return(
                 <div id="landingPage-main">
-                    Random Phish
+                    <span className="landing-title">Random Phish</span>
                     <div id="landingMain-Vids">
                         <div className="landingPageVid" id="land-vid-1">
                             <Youtube videoId={this.props.randomVideos[0]} opts={opts} />
@@ -82,7 +75,7 @@ export default class LandingMain extends React.Component{
                         </div>
                     </div><br></br><br></br>
                     <div id="landing-history">
-                        Today In Phish History
+                    <span className="landing-title">Today In Phish History</span>
                         <div id="history-display">
                             {this.props.todayInHistory.venue}<br></br>
                             {this.formatDisplayDate()}

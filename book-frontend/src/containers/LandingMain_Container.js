@@ -20,6 +20,7 @@ class LandingMainContainer extends React.Component {
             setlist: {
                 set1: [],
                 set2: [],
+                set3: [],
                 encore:[]
             }
         }
@@ -51,40 +52,29 @@ class LandingMainContainer extends React.Component {
     getSetlist = () => {
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.state.history.date}`).then(response => response.json())
         .then(show => {
-            const setOneTitles = []
-            const setTwoTitles = []
-            const encoreTitles = []
+            debugger
 
-            let setOne = show.sources[0].sets[0].tracks
+            let setOne = show.sources[0].sets.find(set => set.name === "Set 1")
+
+            let setTwo = show.sources[0].sets.find(set => set.name === "Set 2")
+    
+            let setThree = show.sources[0].sets.find(set => set.name === "Set 3")
+
+            let encore = show.sources[0].sets.find(set => set.name === "Encore")
             
-            let setTwo = []
-            if(show.sources[0].sets[1]){
-                 setTwo = show.sources[0].sets[1].tracks
-            }
-            
-            let encore =[]
-            if(show.sources[0].sets[2]){
-                encore = show.sources[0].sets[2].tracks
-            }
             
 
-            setOne.map( track => {
-                setOneTitles.push(track.title)
-            })
+            
+            // setThree.map(song => song.title)
 
-            setTwo.map( track => {
-                setTwoTitles.push(track.title)
-            })
-
-            encore.map( track => {
-                encoreTitles.push(track.title)
-            })
+           
             
             this.setState({
                 setlist: {
-                    set1: setOneTitles,
-                    set2: setTwoTitles,
-                    encore: encoreTitles
+                    set1: setone ? setOne.tracks.map(song => song.title) : "",
+                    set2: setTwo ? setTwo.map(song => song.title) : "",
+                    set3: setThree ? setThree.map(song => song.title) : "",
+                    encore: encore? encore.map(song => song.title) : ""
                 }
             })
         })
@@ -94,6 +84,7 @@ class LandingMainContainer extends React.Component {
         
         fetch('https://api.relisten.net/api/v2/artists/phish/shows/today').then(response => response.json())
         .then(show => {
+            debugger
             // I WANT TO RANDOMLY PICK SHOW WHEN THERE IS MORE THAN 1 SHOW ON A GIVEN DATE
             if(show.length > 0){
                 this.setState({
