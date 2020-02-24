@@ -1,5 +1,6 @@
 import React from 'react'
 import Youtube from 'react-youtube'
+import Set from './Set'
 
 export default class LandingMain extends React.Component{
 
@@ -13,7 +14,7 @@ export default class LandingMain extends React.Component{
     parseSetTwoInfo = () => {
         if(this.props.setTwo){
             return this.props.setTwo.map(song => {
-                return <div className="setlist" key={song}> * {song} </div>
+                return <div className="setlist" key={song}> {song} </div>
             })
         }
     }
@@ -22,7 +23,7 @@ export default class LandingMain extends React.Component{
     parseEncoreInfo = () => {
         if(this.props.encore !== ""){
             return this.props.encore.map(song => {
-                return <div className="setlist" key={song}> * {song} </div>
+                return <div className="setlist" key={song}> {song} </div>
                 })
             }
         }
@@ -83,11 +84,13 @@ export default class LandingMain extends React.Component{
                             {this.props.todayInHistory.venue}<br></br>
                             {this.props.todayInHistory.location}<br></br>
                             <div className="small-date">{this.formatDisplayDate()}</div>
-                            <div id="today-setlist">
-                            {this.displaySetOne()}{this.parseSetOneInfo()}<br></br>
-                            {this.displaySetTwo()}{this.parseSetTwoInfo()}<br></br>
-                            {this.displayEncore()}{this.parseEncoreInfo()}<br></br><br></br>
                             <a target="_blank" href={`https://relisten.net/phish/` + this.formatDateForLink() }>Listen on Relisten</a>
+                            <div id="today-setlist">
+                                <Set set={this.displaySetOne} parseSet={this.parseSetOneInfo} />
+                                <Set set={this.displaySetTwo} parseSet={this.parseSetTwoInfo} />
+                                {/* <Set set={this.ifSetThree} parseSet={this.parseSetThree} /> */}
+                                <Set set={this.displayEncore} parseSet={this.parseEncoreInfo} />
+                                
                             </div>
                         </div>
                     </div>

@@ -66,9 +66,9 @@ class LandingMainContainer extends React.Component {
             this.setState({
                 setlist: {
                     set1: setOne ? setOne.tracks.map(song => song.title) : "",
-                    set2: setTwo ? setTwo.map(song => song.title) : "",
-                    set3: setThree ? setThree.map(song => song.title) : "",
-                    encore: encore ? encore.map(song => song.title) : ""
+                    set2: setTwo ? setTwo.tracks.map(song => song.title) : "",
+                    set3: setThree ? setThree.tracks.map(song => song.title) : "",
+                    encore: encore ? encore.tracks.map(song => song.title) : ""
                 }
             })
         })
