@@ -4,7 +4,7 @@ const Set = props => {
 
 
     return(
-        <div className="set"> 
+        <div className={props.grid}> 
             {props.set()}
             {props.parseSet()}
         </div>

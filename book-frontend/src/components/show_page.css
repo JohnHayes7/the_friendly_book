@@ -12,9 +12,15 @@
     display: flex;
 }
 
-.set{
+.set-grid{
     width: 50%;
     border: 1px solid grey;
+    padding: 1%
+}
+
+.set-no-grid{
+    width: 17%;
+    /* border: 1px solid grey; */
     padding: 1%
 }
 

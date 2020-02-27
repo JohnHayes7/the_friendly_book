@@ -112,10 +112,10 @@ class ShowPage extends React.Component{
                   <strong className="show-name-date">{this.props.showInfo.venue}-{this.props.showInfo.location}</strong>
                     <div id="setlist">
                      
-                        <Set set={this.setOne} parseSet={this.parseSetOne} />
-                        <Set set={this.ifSetTwo} parseSet={this.parseSetTwo} />
-                        <Set set={this.ifSetThree} parseSet={this.parseSetThree} />
-                        <Set set={this.ifEncore} parseSet={this.parseEncore} />
+                        <Set grid="set-grid" set={this.setOne} parseSet={this.parseSetOne} />
+                        <Set grid="set-grid" set={this.ifSetTwo} parseSet={this.parseSetTwo} />
+                        <Set grid="set-grid" set={this.ifSetThree} parseSet={this.parseSetThree} />
+                        <Set grid="set-grid" set={this.ifEncore} parseSet={this.parseEncore} />
                     </div>
                     <div id="show-fan-display">
                         {this.ifLoggedInAddLink()}            

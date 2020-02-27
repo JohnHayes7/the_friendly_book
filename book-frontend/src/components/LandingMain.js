@@ -86,8 +86,8 @@ export default class LandingMain extends React.Component{
                             <div className="small-date">{this.formatDisplayDate()}</div>
                             <a target="_blank" href={`https://relisten.net/phish/` + this.formatDateForLink() }>Listen on Relisten</a>
                             <div id="today-setlist">
-                                <Set set={this.displaySetOne} parseSet={this.parseSetOneInfo} />
-                                <Set set={this.displaySetTwo} parseSet={this.parseSetTwoInfo} />
+                                <Set grid="set-no-grid" set={this.displaySetOne} parseSet={this.parseSetOneInfo} />
+                                <Set grid="set-no-grid" set={this.displaySetTwo} parseSet={this.parseSetTwoInfo} />
                                 {/* <Set set={this.ifSetThree} parseSet={this.parseSetThree} /> */}
                                 <Set set={this.displayEncore} parseSet={this.parseEncoreInfo} />
                                 
