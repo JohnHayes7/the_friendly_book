@@ -7,6 +7,7 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "express": "^4.17.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-axios": "^2.0.3",
@@ -21,7 +22,7 @@
     "rodal": "^1.7.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/server.js",
     "build": "react-scripts build",
     "deploy": "aws s3 sync build/ s3://thefriendlybook --acl public-read",
     "test": "react-scripts test",
