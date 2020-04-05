@@ -28,10 +28,11 @@ class LogInContainer extends React.Component{
     submitHandler = event => {
         event.preventDefault()
 
-        fetch('http://localhost:3001/login', {
+        fetch('https://thefriendlybook-api.herokuapp.com/login', {
             method: 'post',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                
             },
             body: JSON.stringify(this.state)
         }).then(response => response.json())
