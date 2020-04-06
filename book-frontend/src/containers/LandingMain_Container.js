@@ -1,6 +1,6 @@
 import React from 'react'
 import LandingMain from '../components/LandingMain'
-import dotenv from  'dotenv'
+// require ('dotenv').config()
 
 
 const YT_APIKEY = process.env.REACT_APP_YOUTUBE_API_KEY
