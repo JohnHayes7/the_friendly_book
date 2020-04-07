@@ -4,7 +4,8 @@ const app = express();
 const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3000;
 
-require('dotenv').config();
+// require('dotenv').config();
+
 
 app.use(express.static(publicPath));
 

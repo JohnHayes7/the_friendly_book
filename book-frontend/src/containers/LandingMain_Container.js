@@ -39,6 +39,7 @@ class LandingMainContainer extends React.Component {
 
 
     getVideos = () => {
+        console.log(process.env)
         fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=phish&key=${YT_APIKEY}`).then(response => response.json())
         .then(videos => {
             videos.items.shift()

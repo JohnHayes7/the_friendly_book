@@ -10,6 +10,8 @@ import manageFan from './reducers/manageFan'
 import manageShow from './reducers/manageShow'
 import { combineReducers } from 'redux';
 
+require('dotenv').config();
+
   const rootReducer = combineReducers({
     fan: manageFan,
     show: manageShow

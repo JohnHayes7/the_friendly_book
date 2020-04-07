@@ -25,7 +25,7 @@
   "scripts": {
     "start": "node server/server.js",
     "build": "react-scripts build",
-    "deploy": "aws s3 sync build/ s3://thefriendlybook --acl public-read",
+    "deploy": "react-scripts deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -43,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.11"
   }
 }
