@@ -31,8 +31,9 @@ class LogInContainer extends React.Component{
         fetch('https://thefriendlybook-api.herokuapp.com/login', {
             method: 'post',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                
+                'Access-Control-Allow-Origin': '*' 
             },
             body: JSON.stringify(this.state)
         }).then(response => response.json())

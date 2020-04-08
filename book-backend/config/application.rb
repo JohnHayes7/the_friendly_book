@@ -37,6 +37,13 @@ module BookBackend
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
 
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+          origins '*'
+          resource '*', headers: :any, methods: [:get, :post]
+      end
+    end
+
     # config.middleware.insert_after ActiveRecord::QueryCache, ActionDispatch::Cookies
     # config.middleware.insert_after ActionDispatch::Cookies, ActionDispatch::Session::CookieStore
   end
