@@ -34,7 +34,7 @@ class LogInContainer extends React.Component{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'https://thefriendlybook.herokuapp.com/',
- 
+                
             },
             body: JSON.stringify(this.state)
         }).then(response => response.json())
