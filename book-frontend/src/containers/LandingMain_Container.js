@@ -40,6 +40,7 @@ class LandingMainContainer extends React.Component {
 
     getVideos = () => {
         console.log(process.env)
+        console.log(process.env.REACT_APP_YOUTUBE_API_KEY)
         fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=phish&key=${YT_APIKEY}`).then(response => response.json())
         .then(videos => {
             videos.items.shift()
@@ -55,7 +56,7 @@ class LandingMainContainer extends React.Component {
     getSetlist = () => {
         fetch(`https://api.relisten.net/api/v2/artists/phish/shows/${this.state.history.date}`).then(response => response.json())
         .then(show => {
-            debugger
+            // debugger
 
             let setOne = show.sources[0].sets.find(set => set.name === "Set 1")
 
@@ -80,7 +81,7 @@ class LandingMainContainer extends React.Component {
         
         fetch('https://api.relisten.net/api/v2/artists/phish/shows/today').then(response => response.json())
         .then(shows => {
-            debugger
+            // debugger
             // I WANT TO RANDOMLY PICK SHOW WHEN THERE IS MORE THAN 1 SHOW ON A GIVEN DATE
             if(shows.length > 0){
                 this.setState({
