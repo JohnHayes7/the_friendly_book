@@ -37,7 +37,7 @@ module BookBackend
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
 
-    config.middleware.use Rack::Cors do
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '*',
